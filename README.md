@@ -4,4 +4,7 @@ A repo to store and share my common dotfiles
 ## Programmes being tracked
 
 - Neovim
-- Waybar 
+- Waybar
+- mpv
+- tmux
+- lsd

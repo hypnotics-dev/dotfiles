@@ -1,12 +1,5 @@
-tt.*
-.tests
-doc/tags
-debug
-.repro
-foo.*
-*.log
-data
 .config/emacs.back/
 .zshrc
 .gitignore
+.config/nvim/lazy-lock.json
 
