@@ -70,25 +70,14 @@ return {
 			indent = { enable = true, disable = { "ruby" } },
 		},
 		config = function(_, opts)
-			-- Prefer git instead of curl in order to improve connectivity in some environments
 			require("nvim-treesitter.install").prefer_git = true
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				textobjects = {
-					--[[ Extra text objects
-                    @class.outer
-                    @comment.outer
-                    @conditional.outer
-                    @function.outer
-                    @loop.outer
-                    @return.outer
-                    ]]
 					select = {
 						enable = true,
-						-- Automatically jump forward to textobj, similar to targets.vim
 						lookahead = true,
 						keymaps = {
-							-- You can use the capture groups defined in textobjects.scm
 							["af"] = { query = "@function.outer", desc = "Select outer part of a function region" },
 							["if"] = { query = "@function.inner", desc = "Select inner part of a function region" },
 							["ac"] = { query = "@class.outer", desc = "Select outer part of a class region" },
@@ -105,19 +94,16 @@ return {
 					swap = {
 						enable = true,
 						swap_next = {
-							["<leader>cn"] = "@parameter.inner",
+							["<leader>cl"] = "@parameter.inner",
 						},
 						swap_previous = {
-							["<leader>cp"] = "@parameter.inner",
+							["<leader>ch"] = "@parameter.inner",
 						},
 					},
 					move = {
 						enable = true,
 						set_jumps = true, -- whether to set jumps in the jumplist
 						goto_next_start = {
-							-- @comment
-							--  conditional
-							--  return
 							["]m"] = { query = "@function.outer", desc = "Next function" },
 							["]]"] = { query = "@class.outer", desc = "Next class" },
 							["]o"] = { query = "@loop.*", desc = "Next loop" },
@@ -156,6 +142,9 @@ return {
 						enable = true,
 						border = "none",
 						floating_preview_opts = {},
+						-- TODO: Find a way to clean up keybind desc
+						-- Peek Definition Code @function.outer is not clean
+						-- maybe move these to a subgroup [C]ode [P]eek
 						peek_definition_code = {
 							["<leader>cf"] = "@function.outer",
 							["<leader>cc"] = "@class.outer",

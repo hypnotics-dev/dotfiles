@@ -8,4 +8,5 @@ foo.*
 data
 .config/emacs.back/
 .zshrc
+.gitignore
 

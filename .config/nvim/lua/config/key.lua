@@ -17,15 +17,14 @@ map(ni, "<C-x>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror m
 map(ni, "<C-x>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Save as a keybind
-map(ni, "<C-x><C-s>", ":w<CR>", { desc = "[S]ave file", silent = true })
-map(ni, "<C-x><C-s>", ":w<CR>", { desc = "[F]ile [S]ave", silent = true })
+map(ni, "<C-x><C-s>", "<Esc>:w<CR>", { desc = "[S]ave file", silent = true })
+map(ni, "<leader>fs", ":w<CR>", { desc = "[F]ile [S]ave", silent = true })
 
 -- Change term exit keybind
 map("t", "<C-x>/", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 
-map(ni, "<C-x>fc", ":Fidget clear<CR>", { desc = "[F]idget [C]lear" })
+map(ni, "<C-x>fc", "<Esc>:Fidget clear<CR>", { desc = "[F]idget [C]lear" })
 
--- TODO: comments keymap
 map("n", "]t", function()
 	require("todo-comments").jump_next()
 end, { desc = "Next TODO comment" })
@@ -46,7 +45,7 @@ map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
 map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
 
 -- Treesitter jump to context
-map("n", "[c", function()
+map("n", "<leader>cj", function()
 	require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = true })
 
@@ -88,7 +87,7 @@ end, { desc = "Harpoon [P]revious buffer" })
 
 -- Toggle Zen mode
 map("n", "<leader>wz", ":ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
-map(ni, "<C-x>z", ":ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
+map(ni, "<C-x>z", "<Esc>:ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
 
 -- TODO: text movement in visual mode
 
