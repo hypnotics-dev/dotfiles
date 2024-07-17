@@ -18,7 +18,7 @@ map(ni, "<C-x>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfi
 
 -- Save as a keybind
 map(ni, "<C-x><C-s>", "<Esc>:w<CR>", { desc = "[S]ave file", silent = true })
-map(ni, "<leader>fs", ":w<CR>", { desc = "[F]ile [S]ave", silent = true })
+map('n', "<leader>fs", ":w<CR>", { desc = "[F]ile [S]ave", silent = true })
 
 -- Change term exit keybind
 map("t", "<C-x>/", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
