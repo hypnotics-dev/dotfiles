@@ -77,7 +77,9 @@ return {
 					end
 
 					-- Lsp keymap set, C-t can be used to jump back to prev locations
-					map(n, "gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					map(n, "<leader>cd", require("telescope.builtin").lsp_definitions,
+						"[G]oto [D]efinition")
+					map(n, "gd", vim.lsp.buf.definition(), "[G]oto [D]efinition")
 
 					-- Provides a telescope menu with all references of word
 					map(n, "gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -333,7 +335,8 @@ return {
 					{ name = 'nvim_lsp' },
 					{ name = 'luasnip' },
 					{ name = 'path' },
-					{ name = 'fuzzy_buffer' },
+					-- NOTE: not sure if this is just for lua, but buf completion over runs lsp completions
+					-- { name = 'fuzzy_buffer' },
 					{ name = 'fuzzy_path' },
 				},
 			}

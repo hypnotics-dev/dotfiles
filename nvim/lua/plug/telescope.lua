@@ -46,10 +46,11 @@ return {
 							['<c-enter>'] = 'to_fuzzy_refine',
 							['<C-j>'] = 'move_selection_next',
 							['<C-k>'] = 'move_selection_previous',
-							['<C-u'] = 'preview_scrolling_up',
-							['<C-d'] = 'preview_scrolling_down',
+							['<C-u>'] = 'preview_scrolling_up',
+							['<C-d>'] = 'preview_scrolling_down',
 							['enter'] = 'select_default',
 							['<c-t>'] = require("trouble.sources.telescope").open,
+							['<c-x>'] = 'delete_buffer',
 						},
 						n = {
 							['j'] = 'move_selection_next',
@@ -62,6 +63,7 @@ return {
 							['d'] = 'results_scrolling_down',
 							['enter'] = 'select_default',
 							['<c-t>'] = require("trouble.sources.telescope").open,
+							['<c-x>'] = 'delete_buffer',
 						}
 					},
 				},
