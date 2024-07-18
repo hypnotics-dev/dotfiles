@@ -82,11 +82,8 @@ end, { desc = "Harpoon [P]revious buffer" })
 map("n", "<leader>wz", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
 map(ni, "<C-x>z", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
 
--- TODO: text movement in visual mode
-
 -- Invoke oil
 map("n", "<leader>fo", "<cmd>Oil<CR>", { desc = "Open [O]il" })
-
 
 -- NOTE: for some reason spider requires <cmd> syntax
 map({ "o", "x", "n" }, 'e', "<cmd>lua require('spider').motion('e')<CR>", { desc = 'Spider-e' })
@@ -102,3 +99,16 @@ map("n", "<leader>cch", "o-- HACK: ", { desc = "Add [H]ACK" })
 map("n", "<leader>ccp", "o-- PERF: ", { desc = "Add [P]ERF" })
 map("n", "<leader>cce", "o-- TEST: ", { desc = "Add [T]EST" })
 map("n", "<leader>ccw", "o-- WARN: ", { desc = "Add [W]ARN" })
+
+vim.keymap.set('n', '<A-j>', ':MoveLine(1)<CR>', { desc = "Move line up" })
+vim.keymap.set('n', '<A-k>', ':MoveLine(-1)<CR>', { desc = "Move line down" })
+vim.keymap.set('n', '<A-h>', ':MoveWord(-1)<CR>', { desc = "Move word left" })
+vim.keymap.set('n', '<A-l>', ':MoveWord(1)<CR>', { desc = "Move word right" })
+
+-- Visual-mode commands
+vim.keymap.set('v', '<A-j>', ':MoveLine(1)<CR>', { desc = "Move line up" })
+vim.keymap.set('v', '<A-k>', ':MoveLine(-1)<CR>', { desc = "Move line down" })
+vim.keymap.set('v', '<A-h>', ':MoveWord(-1)<CR>', { desc = "Move word left" })
+vim.keymap.set('v', '<A-l>', ':MoveWord(1)<CR>', { desc = "Move word right" })
+--
+-- TODO: Add some <C-x> keybinds for stuff in insert mode
