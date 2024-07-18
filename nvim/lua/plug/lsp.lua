@@ -79,7 +79,7 @@ return {
 					-- Lsp keymap set, C-t can be used to jump back to prev locations
 					map(n, "<leader>cd", require("telescope.builtin").lsp_definitions,
 						"[G]oto [D]efinition")
-					map(n, "gd", vim.lsp.buf.definition(), "[G]oto [D]efinition")
+					map(n, "gd", '<cmd> lua vim.lsp.buf.definition()<CR>', "[G]oto [D]efinition")
 
 					-- Provides a telescope menu with all references of word
 					map(n, "gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -129,8 +129,7 @@ return {
 						local hint_on = function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 						end
-						map(n, "<leader>th", hint_on, "[T]oggle Inlay [H]ints")
-						map(ni, "<C-x>th", hint_on, "[T]oggle Inlay [H]ints")
+						map(n, "<leader>ct", hint_on, "[T]oggle Inlay [H]ints")
 					end
 				end,
 			})

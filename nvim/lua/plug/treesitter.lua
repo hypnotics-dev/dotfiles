@@ -146,8 +146,8 @@ return {
 						-- Peek Definition Code @function.outer is not clean
 						-- maybe move these to a subgroup [C]ode [P]eek
 						peek_definition_code = {
-							["<leader>cf"] = "@function.outer",
-							["<leader>cc"] = "@class.outer",
+							["<leader>cpf"] = "@function.outer",
+							["<leader>cpc"] = "@class.outer",
 						},
 					},
 					highlight = {

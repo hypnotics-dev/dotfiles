@@ -22,14 +22,14 @@ return {
 				},
 			})
 			require("which-key").add({
-				{ "<leader>c", group = "[C]ode" },
-				{ "<leader>s", group = "[S]earch" },
-				{ "<leader>w", group = "[W]orkspace" },
-				{ "<leader>t", group = "[T]oggle" },
-				{ "<leader>d", group = "[D]ebug" },
-				{ "<leader>f", group = "[F]ile" },
-				{ "<leader>o", group = "Tr[o]uble" },
-				{ "<leader>a", group = "[A]round" },
+				{ "<leader>c",  group = "[C]ode" },
+				{ "<leader>cp", group = "[C]ode [P]eek" },
+				{ "<leader>cc", group = "[C]ode [C]omments" },
+				{ "<leader>s",  group = "[S]earch" },
+				{ "<leader>w",  group = "[W]orkspace" },
+				{ "<leader>d",  group = "[D]ebug" },
+				{ "<leader>f",  group = "[F]ile" },
+				{ "<leader>t",  group = "[T]rouble" },
 			})
 		end,
 	},
@@ -62,11 +62,11 @@ return {
 			})
 			hydra({
 				hint = [[
-			_l_    : focus right     _k_    : focus up         _j_    : focus down       _h_    : focus left
-			_<S-l>_: move right      _<S-k>_: move up          _<S-j>_: move down        _<S-h>_: move left
-			_a_    : increase width  _s_    : decrease height  _d_    : increase height  _f_    : decrease width
-			^^                       _-_    : split horizontal _|_    : split vertical   ^^
-			^^                       _<Enter>_: quit           _q_    : quit
+			_l_: focus right      _k_: focus up          _j_: focus down        _h_: focus left
+			_L_: move right       _K_: move up           _J_: move down         _H_: move left
+			_a_: increase width   _s_: decrease height   _d_: increase height   _f_: decrease width
+			^^                    _-_: split horizontal  _|_: split vertical    ^^
+			^^                    _<Enter>_: quit        _q_: quit              ^^
 			]],
 				config = {
 					invoke_on_body = true,
@@ -84,18 +84,18 @@ return {
 					{ "k",       "<C-w>k" },
 					{ "j",       "<C-w>j" },
 					{ "h",       "<C-w>h" },
-					{ "<S-l>",   "<C-w><S-l>" },
-					{ "<S-k>",   "<C-w><S-k>" },
-					{ "<S-j>",   "<C-w><S-j>" },
-					{ "<S-h>",   "<C-w><S-h>" },
+					{ "L",       "<C-w>L" },
+					{ "K",       "<C-w>K" },
+					{ "J",       "<C-w>J" },
+					{ "H",       "<C-w>H" },
 					{ "a",       "<C-w>>" },
 					{ "s",       "<C-w>-" },
 					{ "d",       "<C-w>+" },
 					{ "f",       "<C-w><" },
 					{ "-",       "<C-w>s" },
 					{ "|",       "<C-w>v" },
-					{ "<Enter>", nil,         { exit = true } },
-					{ "q",       nil,         { exit = true } },
+					{ "<Enter>", nil,     { exit = true } },
+					{ "q",       nil,     { exit = true } },
 				}
 
 			})
@@ -106,7 +106,7 @@ return {
 					_l_ _h_      : class
 					_f_ _b_      : conditional
 					_d_ _u_      : loop
-					_z_ _<S-z>_  : fold
+					_z_ _Z_      : fold
 					_/_ _?_      : comment
 					_w_ _s_      : return
 					_n_ _p_      : assignment
@@ -137,7 +137,7 @@ return {
 					{ "h",       "[[" },
 					{ "b",       "[c" },
 					{ "u",       "[o" },
-					{ "<S-z>",   "[z" },
+					{ "Z",       "[z" },
 					{ "?",       "[/" },
 					{ "s",       "[r" },
 					{ "p",       "]=" },
