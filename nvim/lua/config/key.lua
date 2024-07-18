@@ -17,8 +17,8 @@ map(ni, "<C-x>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror m
 map(ni, "<C-x>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Save as a keybind
-map(ni, "<C-x><C-s>", "<Esc>:w<CR>", { desc = "[S]ave file", silent = true })
-map('n', "<leader>fs", ":w<CR>", { desc = "[F]ile [S]ave", silent = true })
+map(ni, "<C-x><C-s>", "<cmd>w<CR>", { desc = "[S]ave file", silent = true })
+map('n', "<leader>fs", "<cmd>w<CR>", { desc = "[F]ile [S]ave", silent = true })
 
 -- Change term exit keybind
 map("t", "<C-x>/", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
@@ -33,7 +33,7 @@ map("n", "[t", function()
 	require("todo-comments").jump_prev()
 end, { desc = "Previous TODO comment" })
 
-map("n", "<leader>st", ":TodoTelescope<CR>", { desc = "[S]earch [T]odo[T]elescope" })
+map("n", "<leader>st", "<cmd>TodoTelescope<CR>", { desc = "[S]earch [T]odo[T]elescope" })
 
 -- Treesitter make text objects repeatable
 local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
@@ -86,16 +86,20 @@ map("n", "<leader>wp", function()
 end, { desc = "Harpoon [P]revious buffer" })
 
 -- Toggle Zen mode
-map("n", "<leader>wz", ":ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
-map(ni, "<C-x>z", "<Esc>:ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
+map("n", "<leader>wz", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
+map(ni, "<C-x>z", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
 
 -- TODO: text movement in visual mode
 
 -- Invoke oil
-map("n", "<leader>fo", ":Oil<CR>", { desc = "Open [O]il" })
+map("n", "<leader>fo", "<cmd>Oil<CR>", { desc = "Open [O]il" })
 
-map("n", "<leader>wc", ":bd<CR>", { desc = "[C]lose Buffer" })
-map("n", "<leader>fn", ':new<CR>', { desc = '[F]ile [N]ew' })
+map("n", "<leader>wc", "<cmd>bd<CR>", { desc = "[C]lose Buffer" })
+map("n", "<leader>fn", '<cmd>new<CR>', { desc = '[F]ile [N]ew' })
 
+-- NOTE: for some reason spider requires <cmd> syntax
+map({ "o", "x", "n" }, 'e', "<cmd>lua require('spider').motion('e')<CR>", { desc = 'Spider-e' })
+map({ "o", "x", "n" }, 'w', "<cmd>lua require('spider').motion('w')<CR>", { desc = 'Spider-w' })
+map({ "o", "x", "n" }, 'b', "<cmd>lua require('spider').motion('b')<CR>", { desc = 'Spider-b' })
 
--- TODO: add key bind to add TODO, FIXME, BUGS, NOTES, HACK, PERF, TEST, WARN
+-- TODO: add key bind to add TODO, FIXME, BUGS, NOTE, HACK, PERF, TEST, WARN

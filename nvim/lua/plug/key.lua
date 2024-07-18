@@ -149,4 +149,8 @@ return {
 		end,
 	},
 	--TODO: add nvim-spider plugin
+	{
+		"chrisgrieser/nvim-spider",
+		lazy = true,
+	}
 }
