@@ -5,7 +5,16 @@ return {
 		dependencies = {
 			-- Lsp automation helpers
 			{ "williamboman/mason.nvim", config = true },
-			"williamboman/mason-lspconfig.nvim",
+			{
+				"williamboman/mason-lspconfig.nvim",
+				opts = {
+					setup = {
+						rust_analyzer = function()
+							return true
+						end,
+					},
+				}
+			},
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			{
