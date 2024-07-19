@@ -290,38 +290,33 @@ return {
 			{
 				"<leader>td",
 				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
+				desc = "[D]iagnostics (Trouble)",
 			},
 			{
 				"<leader>tb",
 				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Buffer Diagnostics (Trouble)",
+				desc = "[B]uffer Diagnostics (Trouble)",
 			},
 			{
 				"<leader>ts",
 				"<cmd>Trouble symbols toggle focus=false<cr>",
-				desc = "Symbols (Trouble)",
+				desc = "[S]ymbols (Trouble)",
 			},
 			{
 				"<leader>tr",
 				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-				desc = "LSP Definitions / references / ... (Trouble)",
+				desc = "LSP Definitions / [r]eferences / ... (Trouble)",
 			},
 			{
 				"<leader>tl",
 				"<cmd>Trouble loclist toggle<cr>",
-				desc = "Location List (Trouble)",
+				desc = "[L]ocation List (Trouble)",
 			},
 			{
 				"<leader>tq",
 				"<cmd>Trouble qflist toggle<cr>",
-				desc = "Quickfix List (Trouble)",
+				desc = "[Q]uickfix List (Trouble)",
 			},
 		},
 	},
-	{
-		'mrcjkb/rustaceanvim',
-		version = '^4', -- Recommended
-		lazy = false, -- This plugin is already lazy
-	}
 }
