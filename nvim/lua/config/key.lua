@@ -4,7 +4,7 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 local ni = { "n", "i" }
 local map = function(mode, keys, cmd, opts)
-        vim.keymap.set(mode, keys, cmd, opts)
+    vim.keymap.set(mode, keys, cmd, opts)
 end
 
 -- Diagnostic keymaps
@@ -25,11 +25,11 @@ map("t", "<C-x>/", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 map(ni, "<C-x>fc", "<Esc>:Fidget clear<CR>", { desc = "[F]idget [C]lear" })
 
 map("n", "]t", function()
-        require("todo-comments").jump_next()
+    require("todo-comments").jump_next()
 end, { desc = "Next TODO comment" })
 
 map("n", "[t", function()
-        require("todo-comments").jump_prev()
+    require("todo-comments").jump_prev()
 end, { desc = "Previous TODO comment" })
 
 map("n", "<leader>st", "<cmd>TodoTelescope<CR>", { desc = "[S]earch [T]odo[T]elescope" })
@@ -45,34 +45,34 @@ map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
 
 -- Treesitter jump to context
 map("n", "<leader>cj", function()
-        require("treesitter-context").go_to_context(vim.v.count1)
+    require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = true, desc = "Treesitter [j]ump to context" })
 
 -- Harpoon keybinds
 local harpoon = require("harpoon")
 
 map("n", "<leader>wa", function()
-        harpoon:list():add()
+    harpoon:list():add()
 end, { desc = "Harpoon [A]dd" })
 
 map("n", "<A-1>", function()
-        harpoon:list():select(1)
+    harpoon:list():select(1)
 end)
 map("n", "<A-2>", function()
-        harpoon:list():select(2)
+    harpoon:list():select(2)
 end)
 map("n", "<A-3>", function()
-        harpoon:list():select(3)
+    harpoon:list():select(3)
 end)
 map("n", "<A-4>", function()
-        harpoon:list():select(4)
+    harpoon:list():select(4)
 end)
 
 map("n", "<leader>wn", function()
-        harpoon:list():prev()
+    harpoon:list():prev()
 end, { desc = "Harpoon [N]ext buffer" })
 map("n", "<leader>wp", function()
-        harpoon:list():next()
+    harpoon:list():next()
 end, { desc = "Harpoon [P]revious buffer" })
 
 -- Toggle Zen mode
