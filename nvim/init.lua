@@ -8,12 +8,12 @@ require("config.theme")
 -- Load plugins
 require("lazy").setup({
 
-	require("plug.treesitter"),
-	require("plug.lsp"),
-	require("plug.debug"),
-	require("plug.telescope"),
-	require("plug.ui"),
-	require("plug.key"),
+        require("plug.treesitter"),
+        require("plug.lsp"),
+        require("plug.debug"),
+        require("plug.telescope"),
+        require("plug.ui"),
+        require("plug.key"),
 })
 
 -- Load post-plugin settings

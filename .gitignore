@@ -1,5 +1,2 @@
-.config/emacs.back/
-.zshrc
-.gitignore
-.config/nvim/lazy-lock.json
+/nvim/lazy-lock.json
 

@@ -6,8 +6,8 @@ vim.g.maplocalleader = " " -- not sure what this would be used for
 vim.g.have_nerd_font = true
 
 -- Set tab settings
-vim.opt.expandtab = false
-vim.opt.tabstop = 4
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
 
 -- Set line numbers to relative
 vim.opt.relativenumber = true
