@@ -12,6 +12,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
 -- Set line numbers to relative
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Allow for the mouse in nvim
