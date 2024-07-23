@@ -1,6 +1,6 @@
 return {
     {
-        'nim-telescope/telescope.nvim',
+        'nvim-telescope/telescope.nvim',
         event = 'VimEnter', -- loads when vim has finished opening all core utils
         branch = '0.1.x',
         dependencies = {

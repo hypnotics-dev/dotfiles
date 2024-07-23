@@ -246,18 +246,7 @@ return {
             --  nvim-cmp does not ship with all sources by default. They are split
             --  into multiple repos for maintenance purposes.
             'hrsh7th/cmp-nvim-lsp',
-            -- 'hrsh7th/cmp-path', -- fzf alternative exist
-            {
-                'tzachar/fuzzy.nvim',
-                dependencies = {
-                    {
-                        'nvim-telescope/telescope-fzf-native.nvim',
-                        build = 'make',
-                    },
-                },
-            },
-            'tzachar/cmp-fuzzy-path',
-            'tzachar/cmp-fuzzy-buffer',
+            'hrsh7th/cmp-path',
             'ray-x/cmp-treesitter',
         },
         config = function()
@@ -295,12 +284,6 @@ return {
                     --  This will expand snippets if the LSP sent a snippet.
                     ['<C-f>'] = cmp.mapping.confirm { select = true },
 
-                    -- If you prefer more traditional completion keymaps,
-                    -- you can uncomment the following lines
-                    --['<CR>'] = cmp.mapping.confirm { select = true },
-                    --['<Tab>'] = cmp.mapping.select_next_item(),
-                    --['<S-Tab>'] = cmp.mapping.select_prev_item(),
-
                     -- Manually trigger a completion from nvim-cmp.
                     --  Generally you don't need this, because nvim-cmp will display
                     --  completions whenever it has completion options available.
@@ -335,7 +318,7 @@ return {
                     { name = 'path' },
                     -- NOTE: not sure if this is just for lua, but buf completion over runs lsp completions
                     -- { name = 'fuzzy_buffer' },
-                    { name = 'fuzzy_path' },
+                    -- { name = 'fuzzy_path' },
                 },
             }
         end,
