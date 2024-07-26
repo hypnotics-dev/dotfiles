@@ -151,10 +151,6 @@ return {
         end,
     },
     {
-        "chrisgrieser/nvim-spider",
-        lazy = true,
-    },
-    {
         'fedepujol/move.nvim',
         opts = {
             line = {

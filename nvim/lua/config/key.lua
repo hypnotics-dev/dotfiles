@@ -81,11 +81,6 @@ map("n", "<leader>wz", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
 -- Invoke oil
 map("n", "<leader>fo", "<cmd>Oil<CR>", { desc = "Open [O]il" })
 
--- For some reason spider requires <cmd> syntax
-map({ "o", "x", "n" }, 'w', "<cmd>lua require('spider').motion('w')<CR>", { desc = 'Spider-w' })
-map({ "o", "x", "n" }, 'e', "<cmd>lua require('spider').motion('e')<CR>", { desc = 'Spider-e' })
-map({ "o", "x", "n" }, 'b', "<cmd>lua require('spider').motion('b')<CR>", { desc = 'Spider-b' })
-
 -- todo comments insert
 map("n", "<leader>cct", "o-- TODO: ", { desc = "Add [T]ODO" })
 map("n", "<leader>ccf", "o-- FIXME: ", { desc = "Add [F]IXME" })

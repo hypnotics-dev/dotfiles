@@ -63,7 +63,9 @@ return {
     {
         "folke/zen-mode.nvim",
         opts = {
-            width = 180,
+            window = {
+                width = 250,
+            },
             plugins = {
                 todo = { enabled = true },
             },
