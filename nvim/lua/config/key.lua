@@ -20,7 +20,7 @@ map("n", "<leader>wc", "<cmd>bd<CR>", { desc = "[C]lose Buffer" })
 map("n", "<leader>fn", '<cmd>new<CR>', { desc = '[F]ile [N]ew' })
 
 -- Change term exit keybind
-map("t", "<C-x>/", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
+map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 
 map(ni, "<C-x>fc", "<Esc>:Fidget clear<CR>", { desc = "[F]idget [C]lear" })
 
