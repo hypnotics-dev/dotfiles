@@ -82,14 +82,14 @@ map("n", "<leader>wz", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
 map("n", "<leader>fo", "<cmd>Oil<CR>", { desc = "Open [O]il" })
 
 -- todo comments insert
-map("n", "<leader>cct", "o-- TODO: ", { desc = "Add [T]ODO" })
-map("n", "<leader>ccf", "o-- FIXME: ", { desc = "Add [F]IXME" })
-map("n", "<leader>ccb", "o-- BUGS: ", { desc = "Add [B]UGS" })
-map("n", "<leader>ccn", "o-- NOTE: ", { desc = "Add [N]OTE" })
-map("n", "<leader>cch", "o-- HACK: ", { desc = "Add [H]ACK" })
-map("n", "<leader>ccp", "o-- PERF: ", { desc = "Add [P]ERF" })
-map("n", "<leader>cce", "o-- TEST: ", { desc = "Add [T]EST" })
-map("n", "<leader>ccw", "o-- WARN: ", { desc = "Add [W]ARN" })
+map("n", "<leader>cct", "oTODO: <cmd>normal gcc$<CR> ", { desc = "Add [T]ODO" })
+map("n", "<leader>ccf", "oFIXME: <cmd>normal gcc$<CR> ", { desc = "Add [F]IXME" })
+map("n", "<leader>ccb", "oBUG: <cmd>normal gcc$<CR> ", { desc = "Add [B]UG" })
+map("n", "<leader>ccn", "oNOTE: <cmd>normal gcc$<CR> ", { desc = "Add [N]OTE" })
+map("n", "<leader>cch", "oHACK: <cmd>normal gcc$<CR> ", { desc = "Add [H]ACK" })
+map("n", "<leader>ccp", "oPERF: <cmd>normal gcc$<CR> ", { desc = "Add [P]ERF" })
+map("n", "<leader>cce", "oTEST: <cmd>normal gcc$<CR> ", { desc = "Add T[E]ST" })
+map("n", "<leader>ccw", "oWARN: <cmd>normal gcc$<CR> ", { desc = "Add [W]ARN" })
 
 -- Move.nvim
 map('n', '<A-j>', '<cmd>MoveLine(1)<CR>', { desc = "Move line up", silent = true, })
