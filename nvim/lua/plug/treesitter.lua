@@ -35,29 +35,17 @@ return {
             {
                 "nvim-treesitter/nvim-treesitter-context",
                 opts = {
-                    max_lines = 1,                                -- How many lines the window should span. Values <= 0 mean no limit.
-                    min_window_height = 0,                        -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+                    max_lines = 1,            -- How many lines the window should span. Values <= 0 mean no limit.
+                    min_window_height = 0,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
                     line_numbers = true,
-                    multiline_threshold = 20,                     -- Maximum number of lines to show for a single context
-                    trim_scope = "outer",                         -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-                    mode = "cursor",                              -- Line used to calculate context. Choices: 'cursor', 'topline'
+                    multiline_threshold = 20, -- Maximum number of lines to show for a single context
+                    trim_scope = "outer",     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+                    mode = "cursor",          -- Line used to calculate context. Choices: 'cursor', 'topline'
                 },
             },
         },
         opts = {
-            ensure_installed = {
-                "bash",
-                "c",
-                "diff",
-                "lua",
-                "luadoc",
-                "vim",
-                "vimdoc",
-                "rust",
-                "yuck",
-                "make",
-                "java",
-            },
+            ensure_installed = { "all" },
             -- Autoinstall languages that are not installed
             auto_install = true,
             highlight = {
@@ -85,9 +73,9 @@ return {
                             ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
                         },
                         selection_modes = {
-                            ["@parameter.outer"] = "v",                             -- charwise
-                            ["@function.outer"] = "V",                              -- linewise
-                            ["@class.outer"] = "<c-v>",                             -- blockwise
+                            ["@parameter.outer"] = "v", -- charwise
+                            ["@function.outer"] = "V",  -- linewise
+                            ["@class.outer"] = "<c-v>", -- blockwise
                         },
                         include_surrounding_whitespace = true,
                     },
@@ -102,7 +90,7 @@ return {
                     },
                     move = {
                         enable = true,
-                        set_jumps = true,                         -- whether to set jumps in the jumplist
+                        set_jumps = true, -- whether to set jumps in the jumplist
                         goto_next_start = {
                             ["]m"] = { query = "@function.outer", desc = "Next function" },
                             ["]]"] = { query = "@class.outer", desc = "Next class" },
