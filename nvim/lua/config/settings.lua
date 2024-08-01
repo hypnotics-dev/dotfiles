@@ -68,6 +68,4 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 20
 
--- Unset the C-x keybind
-
 vim.keymap.set("n", "<C-A>", "<C-x>")
