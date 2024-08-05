@@ -410,7 +410,6 @@ return {
                         end
                     end)
 
-                    -- FIXME: add desc property to keybinds
                     map('n', '<leader>gs', gitsigns.stage_hunk, { desc = "[S]tage Hunk" })
                     map('n', '<leader>gr', gitsigns.reset_hunk, { desc = "[R]eset Hunk" })
                     map('v', 'gs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,

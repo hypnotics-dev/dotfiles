@@ -67,9 +67,6 @@ return {
                         }
                     },
                 },
-                -- TODO: not sure what this does
-                --[[ pickers = {}, ]]
-
                 extensions = { -- configs go here
                     ['ui-select'] = {
                         require('telescope.themes').get_dropdown(),

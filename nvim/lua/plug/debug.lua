@@ -1,9 +1,6 @@
 return {
     {
-
-        -- NOTE: Yes, you can install new plugins here!
         'mfussenegger/nvim-dap',
-        -- NOTE: And you can specify dependencies as well
         dependencies = {
             -- Creates a beautiful debugger UI
             'rcarriga/nvim-dap-ui',
@@ -17,15 +14,15 @@ return {
             {
                 'theHamsta/nvim-dap-virtual-text',
                 opts = {
-                    enabled = true,                                         -- enable this plugin (the default)
-                    enabled_commands = true,                                -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
-                    highlight_changed_variables = true,                     -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
-                    highlight_new_as_changed = false,                       -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
-                    show_stop_reason = true,                                -- show stop reason when stopped for exceptions
-                    commented = false,                                      -- prefix virtual text with comment string
-                    only_first_definition = true,                           -- only show virtual text at first definition (if there are multiple)
-                    all_references = false,                                 -- show virtual text on all all references of the variable (not only definitions)
-                    clear_on_continue = false,                              -- clear virtual text on "continue" (might cause flickering when stepping)
+                    enabled = true,                     -- enable this plugin (the default)
+                    enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+                    highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
+                    highlight_new_as_changed = false,   -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+                    show_stop_reason = true,            -- show stop reason when stopped for exceptions
+                    commented = false,                  -- prefix virtual text with comment string
+                    only_first_definition = true,       -- only show virtual text at first definition (if there are multiple)
+                    all_references = false,             -- show virtual text on all all references of the variable (not only definitions)
+                    clear_on_continue = false,          -- clear virtual text on "continue" (might cause flickering when stepping)
                     -- position of virtual text, see `:h nvim_buf_set_extmark()`, default tries to inline the virtual text. Use 'eol' to set to end of line
                     virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
                 }
@@ -99,21 +96,21 @@ return {
     {
         "folke/trouble.nvim",
         opts = {
-            auto_close = false,                  -- auto close when there are no items
-            auto_open = false,                   -- auto open when there are items
-            auto_preview = true,                 -- automatically open preview when on an item
-            auto_refresh = true,                 -- auto refresh when open
-            auto_jump = false,                   -- auto jump to the item when there's only one
-            focus = false,                       -- Focus the window when opened
-            restore = true,                      -- restores the last location in the list when opening
-            follow = true,                       -- Follow the current item
-            indent_guides = true,                -- show indent guides
-            max_items = 200,                     -- limit number of items that can be displayed per section
-            multiline = true,                    -- render multi-line messages
-            pinned = false,                      -- When pinned, the opened trouble window will be bound to the current buffer
-            warn_no_results = true,              -- show a warning when there are no results
-            open_no_results = false,             -- open the trouble window when there are no results
-            win = {},                            -- window options for the results window. Can be a split or a floating window.
+            auto_close = false,      -- auto close when there are no items
+            auto_open = false,       -- auto open when there are items
+            auto_preview = true,     -- automatically open preview when on an item
+            auto_refresh = true,     -- auto refresh when open
+            auto_jump = false,       -- auto jump to the item when there's only one
+            focus = false,           -- Focus the window when opened
+            restore = true,          -- restores the last location in the list when opening
+            follow = true,           -- Follow the current item
+            indent_guides = true,    -- show indent guides
+            max_items = 200,         -- limit number of items that can be displayed per section
+            multiline = true,        -- render multi-line messages
+            pinned = false,          -- When pinned, the opened trouble window will be bound to the current buffer
+            warn_no_results = true,  -- show a warning when there are no results
+            open_no_results = false, -- open the trouble window when there are no results
+            win = {},                -- window options for the results window. Can be a split or a floating window.
             -- Window options for the preview window. Can be a split, floating window,
             -- or `main` to show the preview in the main editor window.
             preview = {
@@ -125,11 +122,11 @@ return {
             },
             -- Throttle/Debounce settings. Should usually not be changed.
             throttle = {
-                refresh = 20,                                            -- fetches new data when needed
-                update = 10,                                             -- updates the window
-                render = 10,                                             -- renders the window
-                follow = 100,                                            -- follows the current item
-                preview = { ms = 100, debounce = true },                 -- shows the preview for the current item
+                refresh = 20,                            -- fetches new data when needed
+                update = 10,                             -- updates the window
+                render = 10,                             -- renders the window
+                follow = 100,                            -- follows the current item
+                preview = { ms = 100, debounce = true }, -- shows the preview for the current item
             },
             -- Key mappings can be set to the name of a builtin action,
             -- or you can define your own custom action.
@@ -172,13 +169,13 @@ return {
                 zn = "fold_disable",
                 zN = "fold_enable",
                 zi = "fold_toggle_enable",
-                gb = {                 -- example of a custom action that toggles the active view filter
+                gb = { -- example of a custom action that toggles the active view filter
                     action = function(view)
                         view:filter({ buf = 0 }, { toggle = true })
                     end,
                     desc = "Toggle Current Buffer Filter",
                 },
-                s = {                 -- example of a custom action that toggles the severity
+                s = { -- example of a custom action that toggles the severity
                     action = function(view)
                         local f = view:get_filter("severity")
                         local severity = ((f and f.filter.severity or 0) + 1) % 5
@@ -284,7 +281,7 @@ return {
                 },
             },
 
-        },         -- for default options, refer to the configuration section for custom setup.
+        }, -- for default options, refer to the configuration section for custom setup.
         cmd = "Trouble",
         keys = {
             {
