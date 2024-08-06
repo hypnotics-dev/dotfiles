@@ -1,0 +1,71 @@
+* Base [%]
+- [ ] [[https://github.com/alexluigit/dirvish][Dirvish]]
+- [ ] [[https://github.com/mykyta-shyrin/cheatsheet][cheatsheet]]
+- [ ] [[https://github.com/akermu/emacs-libvterm][libvterm]]
+- [ ] [[https://jblevins.org/projects/markdown-mode/][*Builtin* Markdown]]
+- [ ] [[https://github.com/ardumont/markdown-toc][Markdown Toc]]
+- [ ] [[https://github.com/Fuco1/smartparens][Smartparens]]
+- [ ] [[https://www.emacswiki.org/emacs/LaTeXPreviewPane][*Builtin Latex]]
+- [ ] [[https://www.emacswiki.org/emacs/UndoTree][Undo Tree]]
+- [ ] [[https://github.com/dakra/speed-type][Speed Type]]
+- [ ] [[https://github.com/narendraj9/hledger-mode][hledger]]
+- [ ] [[https://github.com/bcbcarl/emacs-wttrin][Wttrin]]
+- [ ] [[https://github.com/johanvts/emacs-fireplace][Fireplace]]
+- [ ] [[https://github.com/iqbalansari/restart-emacs][Restart Emacs]]
+* Feed [%]
+- [ ] [[https://www.emacswiki.org/emacs/CategoryGnus][*Builtin* GNUS]]
+- [ ] [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]]
+- [ ] [[https://www.emacswiki.org/emacs/ERC][*Builtin* ERC]]
+- [ ] [[https://www.emacswiki.org/emacs/rcirc][*Builtin* RCIRC]]
+- [ ] [[https://www.emacswiki.org/emacs/NotMuch][NotMuch]]
+- [ ] [[https://github.com/skeeto/elfeed][Elfeed]]
+- [ ] [[https://github.com/remyhonig/elfeed-org][Elfeed-org]]
+
+* Org [%]
+- [ ] [[https://github.com/org-roam/org-roam][Roam]]
+- [ ] [[https://github.com/minad/org-modern][Modern]]
+- [ ] [[https://github.com/alphapapa/org-super-agenda][Super Agenda]]
+- [ ] [[https://github.com/alphapapa/org-ql][Ql]]
+
+* Keys [%]
+- [ ] [[https://github.com/emacs-evil/evil][Evil]]
+- [ ] [[https://github.com/emacs-evil/evil-collection][Evil Collection]]
+- [ ] [[https://github.com/abo-abo/hydra][Hydra]]
+- [ ] [[https://github.com/noctuid/general.el][general.el]]
+
+* Git [%]
+- [ ] [[https://magit.vc/][Magit]]
+- [ ] [[https://github.com/magit/forge][Forge]]
+- [ ] [[https://github.com/magit/git-modes][Git Modes]]
+
+* Gui [0%]
+- [/] [[https://github.com/gonewest818/dimmer.el][Dimmer.el]]
+  - [ ] Install plugin
+  - [ ] Configure Dimmed colors
+- [ ] [[https://github.com/rainstormstudio/nerd-icons.el][Nerd Icons]]
+- [ ] [[https://github.com/Fanael/rainbow-delimiters][Rainbow Delimiters]]
+- [/] [[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]]
+  - [ ] Install
+  - [/] Add Life
+    - [ ] Elfeed
+    - [ ] IRC
+    - [ ] News Agregator
+    - [ ] Mail Solution
+    - [ ] Agenda
+    - [ ] Hledger
+    - [ ] Wttrin
+  - [/] Add Dev dir
+    - [ ] Dev git repos
+    - [ ] Dev org planner
+    - [ ] Dev Markdown Edits
+  - [/] Add Uni
+    - [ ] Notes
+    - [ ] Labs
+    - [ ] Reports
+  - [ ] Add Config
+  - [ ] Add Recent Files
+- [/] [[https://github.com/seagle0128/doom-modeline][Doom Modeline]]
+  - [ ] Add File save status
+  - [ ] Add File location
+  - [ ] Add Position
+  - [ ] Add Major Mode
