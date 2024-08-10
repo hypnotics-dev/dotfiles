@@ -1,52 +1,67 @@
-* Base [%]
-- [ ] [[https://github.com/alexluigit/dirvish][Dirvish]]
-- [ ] [[https://github.com/mykyta-shyrin/cheatsheet][cheatsheet]]
+* Base [9%]
+- [X] [[https://github.com/alexluigit/dirvish][Dirvish]]
 - [ ] [[https://github.com/akermu/emacs-libvterm][libvterm]]
-- [ ] [[https://jblevins.org/projects/markdown-mode/][*Builtin* Markdown]]
-- [ ] [[https://github.com/ardumont/markdown-toc][Markdown Toc]]
 - [ ] [[https://github.com/Fuco1/smartparens][Smartparens]]
-- [ ] [[https://www.emacswiki.org/emacs/LaTeXPreviewPane][*Builtin Latex]]
-- [ ] [[https://www.emacswiki.org/emacs/UndoTree][Undo Tree]]
+- [ ] [[https://github.com/iqbalansari/restart-emacs][Restart Emacs]]
+- [ ] [[https://github.com/ardumont/markdown-toc][Markdown Toc]]
+- [ ] [[https://github.com/mykyta-shyrin/cheatsheet][cheatsheet]]
+- [0%] [[https://github.com/narendraj9/hledger-mode][hledger]]
+  - [ ] Setup sane defaults
+  - [ ] Setup an system to encrypt files
 - [ ] [[https://github.com/dakra/speed-type][Speed Type]]
-- [ ] [[https://github.com/narendraj9/hledger-mode][hledger]]
 - [ ] [[https://github.com/bcbcarl/emacs-wttrin][Wttrin]]
 - [ ] [[https://github.com/johanvts/emacs-fireplace][Fireplace]]
-- [ ] [[https://github.com/iqbalansari/restart-emacs][Restart Emacs]]
-* Feed [%]
-- [ ] [[https://www.emacswiki.org/emacs/CategoryGnus][*Builtin* GNUS]]
-- [ ] [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]]
-- [ ] [[https://www.emacswiki.org/emacs/ERC][*Builtin* ERC]]
+* Feed [0%]
 - [ ] [[https://www.emacswiki.org/emacs/rcirc][*Builtin* RCIRC]]
-- [ ] [[https://www.emacswiki.org/emacs/NotMuch][NotMuch]]
-- [ ] [[https://github.com/skeeto/elfeed][Elfeed]]
-- [ ] [[https://github.com/remyhonig/elfeed-org][Elfeed-org]]
+- [ ] [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]]
+- [0%] [[https://github.com/skeeto/elfeed][Elfeed]]
+  - [ ] [[https://github.com/remyhonig/elfeed-org][Elfeed-org]]
+  - [ ] [[https://github.com/manojm321/elfeed-dashboard][Elfeed Dashboard]]
 
-* Org [%]
+* Org [0%]
 - [ ] [[https://github.com/org-roam/org-roam][Roam]]
-- [ ] [[https://github.com/minad/org-modern][Modern]]
 - [ ] [[https://github.com/alphapapa/org-super-agenda][Super Agenda]]
 - [ ] [[https://github.com/alphapapa/org-ql][Ql]]
 
-* Keys [%]
+* Keys [0%]
 - [ ] [[https://github.com/emacs-evil/evil][Evil]]
-- [ ] [[https://github.com/emacs-evil/evil-collection][Evil Collection]]
-- [ ] [[https://github.com/abo-abo/hydra][Hydra]]
+- [0%] [[https://github.com/emacs-evil/evil-collection][Evil Collection]]
+  - [ ] Configure calc
+  - [ ] Configure calender
+  - [ ] Configure dashboard
+  - [ ] Configure dired
+  - [ ] Configure elfeed
+  - [ ] Configure flycheck
+  - [ ] Configure magit
+  - [ ] Configure forge
+  - [ ] Configure mu4e
+  - [ ] Configure org
+  - [ ] Configure org-roam
+  - [ ] Configure vterm
+- [0%] [[https://github.com/abo-abo/hydra][Hydra]]
+  - [ ] Create hydra for window nav (like nvim)
+  - [0%] Create hydra for Repeatitive Actions to Come
+    - [ ] 
 - [ ] [[https://github.com/noctuid/general.el][general.el]]
 
-* Git [%]
-- [ ] [[https://magit.vc/][Magit]]
-- [ ] [[https://github.com/magit/forge][Forge]]
-- [ ] [[https://github.com/magit/git-modes][Git Modes]]
+* Git [100%]
+- [X] [[https://magit.vc/][Magit]]
+- [100%] [[https://github.com/magit/forge][Forge]]
+  - [X] Install
+  - [X] Add a mechanism to quickly setup new forges 
+    - Was not needed
+  - [X] Add Github forge
+  - [X] Add Gitlab forge
 
 * Gui [0%]
-- [/] [[https://github.com/gonewest818/dimmer.el][Dimmer.el]]
+- [0%] [[https://github.com/gonewest818/dimmer.el][Dimmer.el]]
   - [ ] Install plugin
   - [ ] Configure Dimmed colors
 - [ ] [[https://github.com/rainstormstudio/nerd-icons.el][Nerd Icons]]
 - [ ] [[https://github.com/Fanael/rainbow-delimiters][Rainbow Delimiters]]
-- [/] [[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]]
+- [0%] [[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]]
   - [ ] Install
-  - [/] Add Life
+  - [0%] Add Life
     - [ ] Elfeed
     - [ ] IRC
     - [ ] News Agregator
@@ -54,18 +69,21 @@
     - [ ] Agenda
     - [ ] Hledger
     - [ ] Wttrin
-  - [/] Add Dev dir
+  - [0%] Add Dev dir
     - [ ] Dev git repos
     - [ ] Dev org planner
     - [ ] Dev Markdown Edits
-  - [/] Add Uni
+  - [0%] Add Uni
     - [ ] Notes
     - [ ] Labs
     - [ ] Reports
   - [ ] Add Config
   - [ ] Add Recent Files
-- [/] [[https://github.com/seagle0128/doom-modeline][Doom Modeline]]
+- [0%] [[https://github.com/seagle0128/doom-modeline][Doom Modeline]]
   - [ ] Add File save status
   - [ ] Add File location
   - [ ] Add Position
   - [ ] Add Major Mode
+
+
+
