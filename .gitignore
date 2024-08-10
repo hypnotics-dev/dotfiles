@@ -1,3 +1,5 @@
 nvim/lazy-lock.json
 emacs/*~
+emacs.#*
+.gitconfig
 

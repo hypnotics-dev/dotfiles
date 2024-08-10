@@ -15,11 +15,6 @@ return {
                     bt = {},
                     ft = {},
                 },
-                modes = {
-                    defer = {
-                        v = true,
-                    }
-                },
             })
             require("which-key").add({
                 { "<leader>c",  group = "[C]ode" },
