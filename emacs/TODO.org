@@ -10,35 +10,31 @@
 - [ ] [[https://github.com/bcbcarl/emacs-wttrin][Wttrin]]
 - [ ] [[https://github.com/johanvts/emacs-fireplace][Fireplace]]
 * TODO Feed [0%]
-- [ ] [[https://www.emacswiki.org/emacs/rcirc][*Builtin* RCIRC]]
 - [ ] [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]]
 - [0%] [[https://github.com/skeeto/elfeed][Elfeed]]
   - [ ] [[https://github.com/remyhonig/elfeed-org][Elfeed-org]]
   - [ ] [[https://github.com/manojm321/elfeed-dashboard][Elfeed Dashboard]]
 
-* TODO Org [0%]
-- [ ] [[https://github.com/org-roam/org-roam][Roam]]
-- [ ] [[https://github.com/alphapapa/org-super-agenda][Super Agenda]]
-- [ ] [[https://github.com/alphapapa/org-ql][Ql]]
-* TODO Keys [0%]
+* TODO Org [100%]
+- [X] [[https://github.com/org-roam/org-roam][Roam]]
+- [X] [[https://github.com/alphapapa/org-super-agenda][Super Agenda]]
+- [X] [[https://github.com/alphapapa/org-ql][Ql]]
+* TODO Keys [80%]
 - [ ] [[https://github.com/emacs-evil/evil][Evil]]
-- [0%] [[https://github.com/emacs-evil/evil-collection][Evil Collection]]
-  - [ ] Configure calc
-  - [ ] Configure calender
-  - [ ] Configure dashboard
-  - [ ] Configure dired
-  - [ ] Configure elfeed
-  - [ ] Configure flycheck
-  - [ ] Configure magit
-  - [ ] Configure forge
-  - [ ] Configure mu4e
-  - [ ] Configure org
-  - [ ] Configure org-roam
-  - [ ] Configure vterm
-- [0%] [[https://github.com/abo-abo/hydra][Hydra]]
-  - [ ] Create hydra for window nav (like nvim)
-  - [0%] Create hydra for Repeatitive Actions to Come
-    - [ ] 
+- [100%] [[https://github.com/emacs-evil/evil-collection][Evil Collection]]
+  - [X] Configure calc
+  - [X] Configure calender
+  - [X] Configure dashboard
+  - [X] Configure dired
+  - [X] Configure elfeed
+  - [X] Configure flycheck
+  - [X] Configure magit
+  - [X] Configure forge
+  - [X] Configure mu4e
+  - [X] Configure org
+  - [X] Configure org-roam
+  - [X] Configure vterm
+- [ ] [[https://github.com/abo-abo/hydra][Hydra]]
 - [ ] [[https://github.com/noctuid/general.el][general.el]]
 
 * DONE Git [100%]
@@ -81,6 +77,7 @@ CLOSED: [2024-08-10 Sat 17:43]
   - [ ] Add File location
   - [ ] Add Position
   - [ ] Add Major Mode
+
 
 
 

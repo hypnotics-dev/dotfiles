@@ -1,4 +1,48 @@
-
+* Introduction
+Packages used by this config.
+- All the Icons
+- Hl TODO
+- Org Roam
+- Orgit
+- Orgit Forge
+- Org QL
+- Org Super Agenda
+- Magit
+- Forge
+- Git Modes
+- Smartparens
+- Dirvish
+- Restart Emasc
+- hledger
+- speedtypes
+- fireplace
+- evil
+- evil collections
+- hydra
+- general
+- Dimmer
+- Dashboard
+- Doom Modeline
+- wttrin
+- cheatsheet
+- Elfeed
+- mu4e
+- circe
+- vertico
+- marginal
+- consult
+- ace-link?
+- avy?
+- presient.el
+- org-noter
+- toc-org
+- dslide?
+- emacs-markdownfmt?
+- grip-mode
+- Auctex?
+- mu4e-alert
+- eradio
+- org-alert
 * Emacs
 General emacs configuration.
 ** Init
@@ -49,8 +93,6 @@ Configuration GUI elements
 
   ;; disable line numbers for these buffer types
   (dolist (mode '(org-mode-hook ;; maybe change
-                  term-mode-hook ;; a terminal maybe change
-                  eshell-mode-hook
                   nov-mode-hook)) ;; add relative line numbers when necessary
     (add-hook mode (lambda() (display-line-numbers-mode 0))))
 
@@ -61,15 +103,24 @@ Configuration GUI elements
 
 #+end_src
 
+** Help
+Better emacs help system
+#+begin_src emacs-lisp
+
+  (use-package helpful
+    :bind
+    ([remap describe-function] . helpful-callable)
+    ([remap describe-command]  . helpful-command)
+    ([remap describe-variable] . helpful-variable)
+    ([remap describe-symbol]   . helpful-symbol)
+    ([remap describe-key]      . helpful-key))
+
+#+end_src
 ** Font
 Configuration for fonts and faces
 #+begin_src emacs-lisp
 
     (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono")
-
-    (use-package rainbow-delimiters
-      :hook (prog-mode . rainbow-delimiters-mode)
-      :hook (org-mode  . rainbow-delimiters-mode))
 
     (use-package hl-todo)
 
@@ -89,7 +140,6 @@ Configuration for fonts and faces
   (setq epg-gpg-program "gpg2")
 #+end_src
 
-** Files
 * Org
 Org mode is a formatted plain text writter.
 
@@ -124,6 +174,8 @@ Org mode is a formatted plain text writter.
 #+begin_src emacs-lisp
 
   (setq org-agenda-start-with-log-mode t) ;; create a log of tasks 
+  (use-package org-super-agenda)
+  ;; (org-super-agenda-mode 1)
 
 #+end_src
 
@@ -183,18 +235,38 @@ A Zettlekan system for emacs org mode.
 #+end_src
 
 ** Org Ql
+Query org files with a query language
+
+#+begin_src emacs-lisp
+  (use-package org-ql)
+#+end_src
+
 ** Orgit
-** TODO [33%]
+Linking git repos and forge instances inside of org mode.
+
+#+begin_src emacs-lisp
+  (use-package orgit)
+  (use-package orgit-forge)
+#+end_src
+
+** Commands
+| Command | key | Purpose |
+|         |     |         |
+
+** TODO [11%]
 - [X] Determine if log into drawer is nessecerary
-- [0%] Agenda
-  - [ ] Determine if agenda start with log mode is needed
+- [ ] Determine if agenda start with log mode is needed
+- [ ] Build out org-agenda workflow
+- [ ] Configure org-super-agenda
 - [ ] Configure roam some more
+- [ ] Add a way to autoconfigure gitconfigure orgit atributes (like in the readme)
+- [ ] Add a function to create a org feature to declare file as a document (margins,fonts and such)
+- [ ] Create a template system and a template manager
+- [ ] Configure Org Keymap
    
 * Git
 Magit, a git client for emacs and forge a git instance tool.
 
-| Command | Key | Purpose |
-|         |     |         |
 
 #+begin_src emacs-lisp
   (use-package magit)
@@ -206,14 +278,19 @@ Magit, a git client for emacs and forge a git instance tool.
     :after magit)
 
 #+end_src
+
+** Commands
+| Command | Key | Purpose |
+|         |     |         |
+
 ** TODO [0%]
 - [ ] Make sure evil collection works on magit, forge and git-modes
 - [ ] Make sure gpg aut works well, i.e type password once per several hours or server lifetime?
 - [ ] Verify if system crafters magit configuration should be implemented
-*** Add docs [0%]
-- [ ] Common keys to acces magit in emacs
-- [ ] Keys for forge
-- [ ] Keys for accessing git modes files
+- [0%] Add docs 
+  - [ ] Common keys to acces magit in emacs
+  - [ ] Keys for forge
+  - [ ] Keys for accessing git modes files
 ** Dependencies
 - git (for magit)
 - GnuPG (for decrypting authinfo file)
@@ -298,3 +375,104 @@ Depends on PDF Tools for pdf thumbnails
 * Cheatsheet
 * Smartparens
 * Keys
+Emacs Keymaping with evil and general
+** Evil
+Emacs VI Layer, Vim keybinds inside of emacs
+
+#+begin_src emacs-lisp
+
+  (defun hyp/evil-hook ()
+    (dolist (mode '(custom-mode
+                    git-rebase-mode
+                    nov-mode
+                    term-mode))
+      (add-to-list 'evil-emacs-state-modes mode)))
+
+  (use-package evil
+    :init
+
+    (setq evil-want-integration t)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump nil)
+    (setq evil-undo-system 'undo-redo)
+
+    :hook (evil-mode . hyp/evil-hook)
+    :config
+    (evil-mode 1)
+
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+    (evil-set-initial-state 'messages-buffer-mode 'normal)
+    (evil-set-initial-state 'dashboard-mode 'normal))
+
+  (use-package evil-collection
+    :after evil
+    :config
+    (evil-collection-init '(calendar
+                            dired
+                            calc
+                            ediff
+                            elfeed
+                            magit
+                            forge
+                            mu4e
+                            org
+                            org-roam
+                            eshell
+                            apropos
+                            consult
+                            dashboard
+                            flymake
+                            mu4e
+                            mu4e-conversation
+                            tab-bar
+                            vertico))) 
+
+#+end_src
+
+** Keymaps
+#+begin_src emacs-lisp
+  (use-package general
+    :config
+    (general-evil-setup t)
+    (general-create-definer hyp/leader-keys
+      :keymaps '(normal insert visual)
+      :prefix "SPC"
+      :global-prefix "C-SPC"))
+
+  (use-package hydra)
+#+end_src
+
+*** Prefix key mapping
+#+begin_src emacs-lisp
+
+#+end_src
+
+*** General keymaps
+#+begin_src emacs-lisp
+
+#+end_src
+
+*** hydras
+Increase or decrease text
+#+begin_src emacs-lisp
+  (defhydra hydra-text-scale (:timeout 4)
+    "scale text"
+    ("k" text-scale-increase 1 "in")
+    ("j" text-scale-decrease 1 "out")
+    ("f" nil "finished" :exit t))
+#+end_src
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+** TODO [0%]
+- [ ] Configure evil collection (add and remove supported modes)
+- [ ] Implement the window hydra
+- [ ] Add hydras for tedious and repetetive actions
+  
