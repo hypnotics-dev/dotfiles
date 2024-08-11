@@ -1,9 +1,7 @@
-* Base [9%]
+* TODO Base [9%]
 - [X] [[https://github.com/alexluigit/dirvish][Dirvish]]
-- [ ] [[https://github.com/akermu/emacs-libvterm][libvterm]]
 - [ ] [[https://github.com/Fuco1/smartparens][Smartparens]]
 - [ ] [[https://github.com/iqbalansari/restart-emacs][Restart Emacs]]
-- [ ] [[https://github.com/ardumont/markdown-toc][Markdown Toc]]
 - [ ] [[https://github.com/mykyta-shyrin/cheatsheet][cheatsheet]]
 - [0%] [[https://github.com/narendraj9/hledger-mode][hledger]]
   - [ ] Setup sane defaults
@@ -11,19 +9,18 @@
 - [ ] [[https://github.com/dakra/speed-type][Speed Type]]
 - [ ] [[https://github.com/bcbcarl/emacs-wttrin][Wttrin]]
 - [ ] [[https://github.com/johanvts/emacs-fireplace][Fireplace]]
-* Feed [0%]
+* TODO Feed [0%]
 - [ ] [[https://www.emacswiki.org/emacs/rcirc][*Builtin* RCIRC]]
 - [ ] [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]]
 - [0%] [[https://github.com/skeeto/elfeed][Elfeed]]
   - [ ] [[https://github.com/remyhonig/elfeed-org][Elfeed-org]]
   - [ ] [[https://github.com/manojm321/elfeed-dashboard][Elfeed Dashboard]]
 
-* Org [0%]
+* TODO Org [0%]
 - [ ] [[https://github.com/org-roam/org-roam][Roam]]
 - [ ] [[https://github.com/alphapapa/org-super-agenda][Super Agenda]]
 - [ ] [[https://github.com/alphapapa/org-ql][Ql]]
-
-* Keys [0%]
+* TODO Keys [0%]
 - [ ] [[https://github.com/emacs-evil/evil][Evil]]
 - [0%] [[https://github.com/emacs-evil/evil-collection][Evil Collection]]
   - [ ] Configure calc
@@ -44,7 +41,8 @@
     - [ ] 
 - [ ] [[https://github.com/noctuid/general.el][general.el]]
 
-* Git [100%]
+* DONE Git [100%]
+CLOSED: [2024-08-10 Sat 17:43]
 - [X] [[https://magit.vc/][Magit]]
 - [100%] [[https://github.com/magit/forge][Forge]]
   - [X] Install
@@ -53,12 +51,11 @@
   - [X] Add Github forge
   - [X] Add Gitlab forge
 
-* Gui [0%]
+* TODO Gui [0%]
 - [0%] [[https://github.com/gonewest818/dimmer.el][Dimmer.el]]
   - [ ] Install plugin
   - [ ] Configure Dimmed colors
 - [ ] [[https://github.com/rainstormstudio/nerd-icons.el][Nerd Icons]]
-- [ ] [[https://github.com/Fanael/rainbow-delimiters][Rainbow Delimiters]]
 - [0%] [[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]]
   - [ ] Install
   - [0%] Add Life
