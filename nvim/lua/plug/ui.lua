@@ -40,7 +40,6 @@ return {
                         "nofile",
                         "quickfix",
                         "prompt",
-
                     },
                     filetypes = {
                         "dashboard",
@@ -52,7 +51,7 @@ return {
                         "gitcommit",
                         "Telescope Prompt",
                         "Telescope Result",
-
+                        "yaml",
                     },
                 },
 
