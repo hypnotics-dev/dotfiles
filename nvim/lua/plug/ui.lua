@@ -225,55 +225,53 @@ return {
             },
         },
     },
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = function(_, opts)
-            require("lualine").setup({
-                options = {
-                    icons_enabled = true,
-                    theme = "auto",
-                    component_separators = { left = "", right = "" },
-                    section_separators = { left = "", right = "" },
-                    disabled_filetypes = {
-                        statusline = {},
-                        winbar = {},
-                    },
-                    ignore_focus = {},
-                    always_divide_middle = true,
-                    globalstatus = false,
-                    refresh = {
-                        statusline = 1000,
-                        tabline = 1000,
-                        winbar = 1000,
-                    },
-                },
-                sections = {
-                    lualine_a = { "mode" },
-                    lualine_b = { "branch", "diff", "diagnostics" },
-                    lualine_c = { "filename" },
-                    lualine_x = { "encoding", "fileformat", "filetype" },
-                    lualine_y = { "progress" },
-                    lualine_z = { "location" },
-                },
-                inactive_sections = {
-                    lualine_a = {},
-                    lualine_b = {},
-                    lualine_c = { 'filename' },
-                    lualine_x = { 'location' },
-                    lualine_y = {},
-                    lualine_z = {}
-                },
-            })
-        end,
-    },
+    -- {
+    --     "nvim-lualine/lualine.nvim",
+    --     dependencies = { "nvim-tree/nvim-web-devicons" },
+    --     opts = function(_, opts)
+    --         require("lualine").setup({
+    --             options = {
+    --                 icons_enabled = true,
+    --                 theme = "auto",
+    --                 component_separators = { left = "", right = "" },
+    --                 section_separators = { left = "", right = "" },
+    --                 disabled_filetypes = {
+    --                     statusline = {},
+    --                     winbar = {},
+    --                 },
+    --                 ignore_focus = {},
+    --                 always_divide_middle = true,
+    --                 globalstatus = false,
+    --                 refresh = {
+    --                     statusline = 1000,
+    --                     tabline = 1000,
+    --                     winbar = 1000,
+    --                 },
+    --             },
+    --             sections = {
+    --                 lualine_a = { "mode" },
+    --                 lualine_b = { "branch", "diff", "diagnostics" },
+    --                 lualine_c = { "filename" },
+    --                 lualine_x = { "encoding", "fileformat", "filetype" },
+    --                 lualine_y = { "progress" },
+    --                 lualine_z = { "location" },
+    --             },
+    --             inactive_sections = {
+    --                 lualine_a = {},
+    --                 lualine_b = {},
+    --                 lualine_c = { 'filename' },
+    --                 lualine_x = { 'location' },
+    --                 lualine_y = {},
+    --                 lualine_z = {}
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "Tsuzat/NeoSolarized.nvim",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000,
-        config = function()
-            vim.cmd [[ colorscheme NeoSolarized ]]
-        end,
+        -- config = function()
+        --     vim.cmd [[ colorscheme NeoSolarized ]]
+        -- end,
         opts = {
             style = "dark",         -- "dark" or "light"
             transparent = true,     -- true/false; Enable this to disable setting the background color
@@ -297,7 +295,6 @@ return {
     },
     {
         "folke/tokyonight.nvim",
-        lazy = false,
         -- priority = 999,
         opts = {
             style = "night",
@@ -434,4 +431,33 @@ return {
         end
 
     },
+    {
+        "alexmozaidze/palenight.nvim",
+        opts = {
+            italic = true,
+        },
+    },
+    {
+        "miikanissi/modus-themes.nvim",
+        opts = {
+            variant = "default", -- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
+            dim_inactive = true, -- "non-current" windows are dimmed
+            hide_inactive_statusline = false,
+            styles = {
+                comments = { italic = true, underline = true, },
+                keywords = { italic = true, bold = true, },
+                functions = { bold = true },
+                variables = {},
+            },
+            -- on_colors = function(colors)
+            --     colors.error = colors.red_faint -- Change error color to the "faint" variant
+            -- end,
+            -- on_highlights = function(highlight, color)
+            --     highlight.Boolean = { fg = color.green } -- Change Boolean highlight to use the green color
+            -- end,
+        },
+        config = function()
+            vim.cmd([[colorscheme modus]])
+        end
+    }
 }

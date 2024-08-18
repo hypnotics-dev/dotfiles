@@ -47,8 +47,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 250
 
 -- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 800
+vim.opt.timeoutlen = 250
 
 
 -- Set split directions
@@ -67,5 +66,8 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 20
+
+vim.opt.background = "dark"
+
 
 vim.keymap.set("n", "<C-A>", "<C-x>")

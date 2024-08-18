@@ -101,4 +101,4 @@ map('v', '<A-k>', '<cmd>MoveBlock(-1)<CR>', { desc = "Move line down", silent = 
 map('v', '<A-h>', '<cmd>MoveWord(-1)<CR>', { desc = "Move word left", silent = true, })
 map('v', '<A-l>', '<cmd>MoveWord(1)<CR>', { desc = "Move word right", silent = true, })
 
--- TODO: Add some <C-x> keybinds for stuff in insert mode
+map('n', '<leader>wcp', '<cmd>colorscheme palenight<CR>', { desc = "Swap to palenight" })
