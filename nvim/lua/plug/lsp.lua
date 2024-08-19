@@ -316,9 +316,6 @@ return {
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
                     { name = 'path' },
-                    -- NOTE: not sure if this is just for lua, but buf completion over runs lsp completions
-                    -- { name = 'fuzzy_buffer' },
-                    -- { name = 'fuzzy_path' },
                 },
             }
         end,
