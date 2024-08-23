@@ -19,8 +19,8 @@
 - [X] [[https://github.com/org-roam/org-roam][Roam]]
 - [X] [[https://github.com/alphapapa/org-super-agenda][Super Agenda]]
 - [X] [[https://github.com/alphapapa/org-ql][Ql]]
-* TODO Keys [80%]
-- [ ] [[https://github.com/emacs-evil/evil][Evil]]
+* TODO Keys [100%]
+- [X] [[https://github.com/emacs-evil/evil][Evil]]
 - [100%] [[https://github.com/emacs-evil/evil-collection][Evil Collection]]
   - [X] Configure calc
   - [X] Configure calender
@@ -34,8 +34,8 @@
   - [X] Configure org
   - [X] Configure org-roam
   - [X] Configure vterm
-- [ ] [[https://github.com/abo-abo/hydra][Hydra]]
-- [ ] [[https://github.com/noctuid/general.el][general.el]]
+- [X] [[https://github.com/abo-abo/hydra][Hydra]]
+- [X] [[https://github.com/noctuid/general.el][general.el]]
 
 * DONE Git [100%]
 CLOSED: [2024-08-10 Sat 17:43]
@@ -47,11 +47,8 @@ CLOSED: [2024-08-10 Sat 17:43]
   - [X] Add Github forge
   - [X] Add Gitlab forge
 
-* TODO Gui [0%]
-- [0%] [[https://github.com/gonewest818/dimmer.el][Dimmer.el]]
-  - [ ] Install plugin
-  - [ ] Configure Dimmed colors
-- [ ] [[https://github.com/rainstormstudio/nerd-icons.el][Nerd Icons]]
+* TODO Gui [4%]
+- [X] [[https://github.com/gonewest818/dimmer.el][Dimmer.el]]
 - [0%] [[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]]
   - [ ] Install
   - [0%] Add Life
