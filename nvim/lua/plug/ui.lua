@@ -2,7 +2,9 @@ return {
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {},
+        opts = {
+            signs = false,
+        },
     },
     "HiPhish/rainbow-delimiters.nvim",
 
@@ -53,6 +55,7 @@ return {
                         "Telescope Prompt",
                         "Telescope Result",
                         "yaml",
+                        "unix",
                     },
                 },
 
@@ -271,6 +274,7 @@ return {
     {
         'nvimdev/dashboard-nvim',
         -- TODO: Add locations to jump to instead of projects, also ad options for create file here and create tmp file.
+        -- TODO: Fix comments, they're underlined because of modus.
         event = 'VimEnter',
         opts = {
             theme = 'hyper',

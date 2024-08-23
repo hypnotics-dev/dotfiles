@@ -154,7 +154,17 @@ return {
 
                 bashls = {},
 
-                jdtls = {},
+                jdtls = {
+                    settings = {
+                        -- FIXME: this does not work, probably needs a real jdtls config file
+                        java = {
+                            format = {
+                                enabled = true,
+                                tabSize = 4,
+                            },
+                        },
+                    },
+                },
             }
 
             -- Setup for server managment

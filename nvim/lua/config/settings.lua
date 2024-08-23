@@ -9,7 +9,7 @@ vim.g.have_nerd_font = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 0
 
 -- Set line numbers to relative
 vim.opt.number = true
