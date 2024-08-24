@@ -1,0 +1,7 @@
+[user]
+	email = devhypnotics@proton.me
+	name = hypnotics
+[github]
+	user = hypnotics-dev
+[core]
+        excludesfile = /home/hypnotics/.gitignore
