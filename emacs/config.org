@@ -57,20 +57,20 @@ Configuration GUI elements
                   nov-mode-hook)) ;; add relative line numbers when necessary
     (add-hook mode (lambda() (display-line-numbers-mode 0))))
 
-  (tab-bar-mode)
-
   (use-package dimmer
     :config
     (dimmer-configure-which-key)
     (dimmer-mode t))
+
+  (use-package modus-themes
+    :init
+    (load-theme 'modus-vivendi 't))
 
 
 
 
 #+end_src
 
-#+RESULTS:
-: t
 
 ** Help
 Better emacs help system
@@ -175,9 +175,6 @@ Org mode is a formatted plain text writter.
                              "~/stuff/org/task.org"
                              "~/uni/"
                              )))
-  (use-package org-modern)
-  (add-hook 'org-mode-hook #'org-modern-mode)
-
 #+end_src
 
 org agenda 
@@ -185,7 +182,7 @@ org agenda
 
   (setq org-agenda-start-with-log-mode t) ;; create a log of tasks 
   (use-package org-super-agenda)
-  ;; (org-super-agenda-mode 1)
+  (org-super-agenda-mode 1)
 
 #+end_src
 
@@ -227,7 +224,7 @@ Org Roam, a Zettlekan system for emacs org mode.
   (use-package org-roam
     :ensure t
     :custom
-    (org-roam-directory (file-truename "~/org"))
+    (org-roam-directory (file-truename "~/stuff/org/roam/"))
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
            ("C-c n g" . org-roam-graph)
@@ -378,7 +375,7 @@ Dirvish is an improved version of the Emacs inbuilt package Dired. It not only g
 vertico, the vertical completion framework
 
 #+begin_src emacs-lisp
-  (use-package veritco
+  (use-package vertico
     :custom
     ;; (vertico-scroll-margin 0) ;; Different scroll margin
     ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
@@ -396,8 +393,8 @@ Ordlerless, used for orderless regex matching.
 #+begin_src emacs-lisp
   (use-package orderless
     :custom
-    (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
-    (orderless-component-separator #'orderless-escapable-split-on-space)
+    ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
+    ;; (orderless-component-separator #'orderless-escapable-split-on-space)
     (completion-styles '(orderless basic))
     (completion-category-defaults nil)
     (completion-category-overrides '((file (styles partial-completion)))))
@@ -555,7 +552,6 @@ Embark, key focused minibuffer manipulations
 - [ ] Add C-{j,k} to vert-next vert-prev
 - [ ] Look at vertico extensions
 
-
 * Cheatsheet
 * Smartparens
 * Modeline
@@ -581,17 +577,16 @@ Emacs VI Layer, Vim keybinds inside of emacs
     (setq evil-undo-system 'undo-redo)
 
     :hook (evil-mode . hyp/evil-hook)
-    :config
+    :init
     (evil-mode 1)
-
+    :config
     (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
     (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
     (evil-global-set-key 'motion "j" 'evil-next-visual-line)
     (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-    (evil-set-initial-state 'messages-buffer-mode 'normal)
-    (evil-set-initial-state 'dashboard-mode 'normal))
+    (evil-set-initial-state 'messages-buffer-mode 'normal))
 
   (use-package evil-collection
     :after evil
@@ -599,6 +594,7 @@ Emacs VI Layer, Vim keybinds inside of emacs
     (evil-collection-init '(calendar
                             dired
                             calc
+                            counsel
                             ediff
                             elfeed
                             magit

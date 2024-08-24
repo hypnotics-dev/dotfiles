@@ -41,12 +41,14 @@
                 nov-mode-hook)) ;; add relative line numbers when necessary
   (add-hook mode (lambda() (display-line-numbers-mode 0))))
 
-(tab-bar-mode)
-
 (use-package dimmer
   :config
   (dimmer-configure-which-key)
   (dimmer-mode t))
+
+(use-package modus-themes
+  :init
+  (load-theme 'modus-vivendi 't))
 
 (use-package helpful
   :bind
@@ -120,12 +122,10 @@
                            "~/stuff/org/task.org"
                            "~/uni/"
                            )))
-(use-package org-modern)
-(add-hook 'org-mode-hook #'org-modern-mode)
 
 (setq org-agenda-start-with-log-mode t) ;; create a log of tasks 
 (use-package org-super-agenda)
-;; (org-super-agenda-mode 1)
+(org-super-agenda-mode 1)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -155,7 +155,7 @@
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory (file-truename "~/org"))
+  (org-roam-directory (file-truename "~/stuff/org/roam/"))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
@@ -221,7 +221,7 @@
    ("M-j" . dirvish-fd-jump))
   )
 
-(use-package veritco
+(use-package vertico
   :custom
   ;; (vertico-scroll-margin 0) ;; Different scroll margin
   ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
@@ -237,8 +237,8 @@
 
 (use-package orderless
   :custom
-  (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
-  (orderless-component-separator #'orderless-escapable-split-on-space)
+  ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
+  ;; (orderless-component-separator #'orderless-escapable-split-on-space)
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion)))))
@@ -400,17 +400,16 @@
   (setq evil-undo-system 'undo-redo)
 
   :hook (evil-mode . hyp/evil-hook)
-  :config
+  :init
   (evil-mode 1)
-
+  :config
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
+  (evil-set-initial-state 'messages-buffer-mode 'normal))
 
 (use-package evil-collection
   :after evil
@@ -418,6 +417,7 @@
   (evil-collection-init '(calendar
                           dired
                           calc
+                          counsel
                           ediff
                           elfeed
                           magit
