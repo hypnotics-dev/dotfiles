@@ -41,11 +41,6 @@
                 nov-mode-hook)) ;; add relative line numbers when necessary
   (add-hook mode (lambda() (display-line-numbers-mode 0))))
 
-(use-package dimmer
-  :config
-  (dimmer-configure-which-key)
-  (dimmer-mode t))
-
 (use-package modus-themes
   :init
   (load-theme 'modus-vivendi 't))
@@ -395,6 +390,7 @@
   :init
 
   (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
   (setq evil-undo-system 'undo-redo)

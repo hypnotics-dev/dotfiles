@@ -3,6 +3,7 @@
 
 * Emacs
 General emacs configuration.
+
 ** Init
 Early configuration options for emacs
 #+begin_src emacs-lisp
@@ -29,9 +30,6 @@ Early configuration options for emacs
   (setq use-package-always-ensure t)
 #+end_src
 
-#+RESULTS:
-: t
-
 ** Gui
 Configuration GUI elements
 #+begin_src emacs-lisp
@@ -57,17 +55,9 @@ Configuration GUI elements
                   nov-mode-hook)) ;; add relative line numbers when necessary
     (add-hook mode (lambda() (display-line-numbers-mode 0))))
 
-  (use-package dimmer
-    :config
-    (dimmer-configure-which-key)
-    (dimmer-mode t))
-
   (use-package modus-themes
     :init
     (load-theme 'modus-vivendi 't))
-
-
-
 
 #+end_src
 
@@ -85,9 +75,6 @@ Better emacs help system
     ([remap describe-key]      . helpful-key))
 
 #+end_src
-
-#+RESULTS:
-: helpful-key
 
 ** Font
 Configuration for fonts and faces
@@ -572,6 +559,7 @@ Emacs VI Layer, Vim keybinds inside of emacs
     :init
 
     (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
     (setq evil-want-C-u-scroll t)
     (setq evil-want-C-i-jump nil)
     (setq evil-undo-system 'undo-redo)
