@@ -406,7 +406,7 @@ return {
             dim_inactive = true, -- "non-current" windows are dimmed
             hide_inactive_statusline = false,
             styles = {
-                comments = { underline = true, bold = false, italic = true, },
+                comments = { underline = false, bold = true, italic = true, },
                 keywords = { underline = false, bold = true, italic = true, },
                 functions = { underline = false, bold = true, italic = false, },
                 variables = { underline = false, bold = false, italic = true, },
