@@ -1,11 +1,7 @@
 * TODO Base [9%]
 - [X] [[https://github.com/alexluigit/dirvish][Dirvish]]
-- [ ] [[https://github.com/Fuco1/smartparens][Smartparens]]
 - [ ] [[https://github.com/iqbalansari/restart-emacs][Restart Emacs]]
 - [ ] [[https://github.com/mykyta-shyrin/cheatsheet][cheatsheet]]
-- [0%] [[https://github.com/narendraj9/hledger-mode][hledger]]
-  - [ ] Setup sane defaults
-  - [ ] Setup an system to encrypt files
 - [ ] [[https://github.com/dakra/speed-type][Speed Type]]
 - [ ] [[https://github.com/bcbcarl/emacs-wttrin][Wttrin]]
 - [ ] [[https://github.com/johanvts/emacs-fireplace][Fireplace]]
@@ -15,11 +11,13 @@
   - [ ] [[https://github.com/remyhonig/elfeed-org][Elfeed-org]]
   - [ ] [[https://github.com/manojm321/elfeed-dashboard][Elfeed Dashboard]]
 
-* TODO Org [100%]
+* DONE Org [100%]
+CLOSED: [2024-08-27 Tue 03:08]
 - [X] [[https://github.com/org-roam/org-roam][Roam]]
 - [X] [[https://github.com/alphapapa/org-super-agenda][Super Agenda]]
 - [X] [[https://github.com/alphapapa/org-ql][Ql]]
-* TODO Keys [100%]
+* DONE Keys [100%]
+CLOSED: [2024-08-27 Tue 03:08]
 - [X] [[https://github.com/emacs-evil/evil][Evil]]
 - [100%] [[https://github.com/emacs-evil/evil-collection][Evil Collection]]
   - [X] Configure calc
@@ -47,8 +45,7 @@ CLOSED: [2024-08-10 Sat 17:43]
   - [X] Add Github forge
   - [X] Add Gitlab forge
 
-* TODO Gui [4%]
-- [X] [[https://github.com/gonewest818/dimmer.el][Dimmer.el]]
+* TODO Gui [0%]
 - [0%] [[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]]
   - [ ] Install
   - [0%] Add Life
