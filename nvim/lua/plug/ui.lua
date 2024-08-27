@@ -273,8 +273,7 @@ return {
     },
     {
         'nvimdev/dashboard-nvim',
-        -- TODO: Add locations to jump to instead of projects, also ad options for create file here and create tmp file.
-        -- TODO: Fix comments, they're underlined because of modus.
+        -- TODO: Add locations to jump to instead of projects, also add options for create file here and create tmp file.
         event = 'VimEnter',
         opts = {
             theme = 'hyper',
