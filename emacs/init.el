@@ -41,6 +41,10 @@
                 nov-mode-hook)) ;; add relative line numbers when necessary
   (add-hook mode (lambda() (display-line-numbers-mode 0))))
 
+(use-package which-key
+  :init
+  (which-key-mode 1))
+
 (use-package modus-themes
   :init
   (load-theme 'modus-vivendi 't))
@@ -54,17 +58,6 @@
   ([remap describe-key]      . helpful-key))
 
 (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono")
-
-  (use-package hl-todo)
-
-  (setq hl-todo-keyword-faces ;; Add hl-todo-mode hook to org-mode
-        '(("TODO"   . "#02FF38")
-          ("FIXME"  . "#FF0000")
-          ("DEBUG"  . "#A020F0")
-          ("GOTCHA" . "#FF4500")
-          ("STUB"   . "#1E90FF")))
-
-(global-hl-todo-mode)
 
 (setq auth-sources '("~/.authinfo.gpg"))
 (setq epg-gpg-program "gpg2")
@@ -222,6 +215,12 @@
   ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
   (vertico-count 25) ;; Show more candidates
   (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  :bind (:map vertico-map
+              ("C-j" . vertico-next)
+              ("C-k" . vertico-previous)
+              ("C-f" . vertico-exit)
+              :map minibuffer-local-map
+              ("C-w" . backward-kill-word))
   :init
   (vertico-mode))
 
@@ -338,9 +337,12 @@
   (setq consult-narrow-key "<") )
 
 (use-package marginalia
+  :after vertico
   :ensure t
   :bind (:map minibuffer-local-map
               ("M-A" . marginalia-cycle))
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   :init
   (marginalia-mode))
 
@@ -350,6 +352,7 @@
                   nov-mode
                   term-mode))
     (add-to-list 'evil-emacs-state-modes mode)))
+
 
 (use-package evil
   :init
@@ -411,7 +414,7 @@
 
 
 (defhydra hydra-text-scale (:timeout 4)
-"scale text"
-("k" text-scale-increase 1 "in")
-("j" text-scale-decrease 1 "out")
-("f" nil "finished" :exit t))
+  "scale text"
+  ("k" text-scale-increase 1 "in")
+  ("j" text-scale-decrease 1 "out")
+  ("f" nil "finished" :exit t))

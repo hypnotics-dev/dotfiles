@@ -55,6 +55,10 @@ Configuration GUI elements
                   nov-mode-hook)) ;; add relative line numbers when necessary
     (add-hook mode (lambda() (display-line-numbers-mode 0))))
 
+  (use-package which-key
+    :init
+    (which-key-mode 1))
+
   (use-package modus-themes
     :init
     (load-theme 'modus-vivendi 't))
@@ -82,20 +86,8 @@ Configuration for fonts and faces
 
     (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono")
 
-    (use-package hl-todo)
-
-    (setq hl-todo-keyword-faces ;; Add hl-todo-mode hook to org-mode
-          '(("TODO"   . "#02FF38")
-            ("FIXME"  . "#FF0000")
-            ("DEBUG"  . "#A020F0")
-            ("GOTCHA" . "#FF4500")
-            ("STUB"   . "#1E90FF")))
-
-  (global-hl-todo-mode)
 #+end_src
 
-#+RESULTS:
-: t
 
 ** Variable
 #+begin_src emacs-lisp
@@ -368,6 +360,12 @@ vertico, the vertical completion framework
     ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
     (vertico-count 25) ;; Show more candidates
     (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+    :bind (:map vertico-map
+                ("C-j" . vertico-next)
+                ("C-k" . vertico-previous)
+                ("C-f" . vertico-exit)
+                :map minibuffer-local-map
+                ("C-w" . backward-kill-word))
     :init
     (vertico-mode))
 
@@ -492,9 +490,12 @@ Consult, completion stuff
 Embark, key focused minibuffer manipulations
 #+begin_src emacs-lisp
   (use-package marginalia
+    :after vertico
     :ensure t
     :bind (:map minibuffer-local-map
                 ("M-A" . marginalia-cycle))
+    :custom
+    (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
     :init
     (marginalia-mode))
 
@@ -520,6 +521,7 @@ Emacs VI Layer, Vim keybinds inside of emacs
                     nov-mode
                     term-mode))
       (add-to-list 'evil-emacs-state-modes mode)))
+
 
   (use-package evil
     :init
@@ -591,13 +593,14 @@ General keymap
 
 #+end_src
 
+
 Increase or decrease text
 #+begin_src emacs-lisp
-(defhydra hydra-text-scale (:timeout 4)
-"scale text"
-("k" text-scale-increase 1 "in")
-("j" text-scale-decrease 1 "out")
-("f" nil "finished" :exit t))
+  (defhydra hydra-text-scale (:timeout 4)
+    "scale text"
+    ("k" text-scale-increase 1 "in")
+    ("j" text-scale-decrease 1 "out")
+    ("f" nil "finished" :exit t))
 #+end_src
 
 ** TODO [0%]
