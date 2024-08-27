@@ -152,7 +152,8 @@ Org mode is a formatted plain text language.
     :config
     (setq org-ellipsis " ▾")
     (setq org-log-done 'time)
-    (setq org-log-into-drawer t) ; 
+    (setq org-log-into-drawer t)  
+    (setq org-fold-core-style 'overlays) 
     (setq org-checkbox-hierarchical-statistics nil)
     (setq org-agenda-files '(
                              "~/stuff/org/roam/"
@@ -168,6 +169,7 @@ Spell checking with ispell and flyspell
   (setq ispell-program-name "aspell")
   (setq ispell-dictionary "english")
 #+end_src
+
 ** Agenda
 org agenda 
 #+begin_src emacs-lisp
@@ -178,7 +180,7 @@ org agenda
 
 #+end_src
 
-** Bable
+** Babel
 Bable, used for code/src blocks in org mode
 
 #+begin_src emacs-lisp
@@ -219,13 +221,16 @@ Org Roam, a Zettlekan system for emacs org mode.
     :ensure t
     :custom
     (org-roam-directory (file-truename "~/stuff/org/roam/"))
+
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
            ("C-c n g" . org-roam-graph)
            ("C-c n i" . org-roam-node-insert)
            ("C-c n c" . org-roam-capture)
            ;; Dailies
-           ("C-c n j" . org-roam-dailies-capture-today))
+           ("C-c n j" . org-roam-dailies-capture-today)
+           :map org-mode-map
+           ("C-M-i" . completion-at-point))
     :config
     ;; If you're using a vertical completion framework, you might want a more informative completion interface
     (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
@@ -233,6 +238,26 @@ Org Roam, a Zettlekan system for emacs org mode.
     ;; If using org-roam-protocol
     (require 'org-roam-protocol))
 
+#+end_src
+
+Templates,
+Use %^{foo} to capture user input for foo.
+#+begin_src emacs-lisp
+  (setq org-roam-capture-templates
+   '(
+     ("d" "default" plain
+      "%?"
+      :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+      :unnarrowed t)
+   ("b" "Book" plain 
+    "* Metadata\n\nFull Name: %^{Name|${title}}\nAuthor: %^{author}\nReleased: %^{year}\nEdition: %^{edition}\nChapter Count: %^{chapters}\nPages: %^{pages}\n* Description\n\n%?\n\n* Thoughts\n\n* Links\n"
+      :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+      :unnarrowed t)
+   ("t" "Topic" plain
+    "#+TAGS: %^{status|Baby}\n\n* Body\n%?"
+      :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+      :unnarrowed t)
+   ))
 #+end_src
 
 ** Org QL
@@ -250,40 +275,48 @@ Orgit, Linking git repos and forge instances inside of org mode.
   (use-package orgit-forge)
 #+end_src
 
-** Commands
-| Command | key | Purpose |
-|         |     |         |
-
-** TODO Tasks [3%]
+** TODO Tasks [14%]
 - [X] Determine if log into drawer is nessecerary
-- [ ] Determine if agenda start with log mode is needed
+- [X] Determine if agenda start with log mode is needed
 - [ ] Build out org-agenda workflow
 - [ ] Configure org-super-agenda
-- [ ] Configure roam some more [0/15] [0%]
-  - [ ] Add capture template for [0/13]
-    - [ ] Journal
-    - [ ] Notes [0/7]
-      - [ ] CS [0/4]
+- [-] Configure roam some more [3/14] [21%]
+  - [-] Add capture template for [3/12] [25%]
+    - [-] Notes [1/7] [14%]
+      - [-] CS [1/4] [25%]
         - [ ] Security
         - [ ] Data structures and Algorithms
         - [ ] Intro to SWE (if registered)
-        - [ ] Generic Books
+        - [X] Generic Books
       - [ ] English
       - [ ] Econ
-    - [ ] Everyday thoughts
+    - [X] Journal
+      Covored by dailies
     - [ ] Worldbuilding
     - [ ] Task (TODO)
-    - [ ] Books
-  - [ ] Add way for backlink completion
+    - [X] Books
+  - [ ] Add way for roam link completion
 - [ ] Add Document properties to org files [0/5] [0%]
   - [ ] Set margins
   - [ ] Set font
   - [ ] Header and Footer info
   - [ ] Page numbers
   - [ ] Make a template for docs
+- [ ] Add keybind to add file links in org mode
+  org-insert-link asks for type before hand, make a keybind for files specifically
 - [ ] Add a way to autoconfigure gitconfigure orgit atributes (like in the readme)
 - [ ] Configure Org Keymap
 - [ ] Setup LanguageTool locally for gramar and parphrasing support.
+- [ ] Setup org tags for [0/5] [0%]
+  - [ ] Notes
+  - [ ] Books
+  - [ ] Uni
+  - [ ] Tasks
+  - [ ] Misc
+
+** Commands
+| Command | key | Purpose |
+|         |     |         |
 
 ** Dependencies 
 - aspell
@@ -305,13 +338,14 @@ Magit, a git client for emacs and forge a git instance tool.
 
 ** Commands
 | Command | Key | Purpose |
+|---------+-----+---------|
 |         |     |         |
 
 ** TODO Tasks [0%]
 - [ ] Make sure evil collection works on magit, forge and git-modes
 - [ ] Make sure gpg aut works well, i.e type password once per several hours or server lifetime?
 - [ ] Verify if system crafters magit configuration should be implemented
-- [ ] Add keybinds to summon magit
+- [ ] Add keybinds to summon magit in main buffer.
 - [0%] Add docs 
   - [ ] Common keys to acces magit in emacs
   - [ ] Keys for forge
@@ -374,6 +408,8 @@ Dirvish is an improved version of the Emacs inbuilt package Dired. It not only g
   - [ ] Config File
   - [ ] Dev Org files
 - [ ] Setup keymap to work with evil collection
+- [ ] Keep new dired buffer in the same buffer
+  prevents dired buffer spam
 
 ** Dependecies
 - poppler
@@ -383,6 +419,8 @@ Dirvish is an improved version of the Emacs inbuilt package Dired. It not only g
 - [[https://raw.githubusercontent.com/marianosimone/epub-thumbnailer/master/src/epub-thumbnailer.py][epub-thumbnail]] (need to add to ~/.local/bin remove .py and chmod 700)
   
 * Term
+** TODO Tasks [%]
+- [ ] Make sudo be more persistent in eshell
 * PDF
 ** TODO Tasks [0%]
 - [ ] Add PDF Tools
@@ -392,7 +430,9 @@ Dirvish is an improved version of the Emacs inbuilt package Dired. It not only g
 * Irc
 * Elfeed
 * Completion
-vertico, the vertical completion framework
+
+** vertico
+the vertical completion framework
 
 #+begin_src emacs-lisp
   (use-package vertico
@@ -415,7 +455,9 @@ vertico, the vertical completion framework
     :init
     (savehist-mode))
 #+end_src
-Ordlerless, used for orderless regex matching.
+
+** Ordlerless
+used for orderless regex matching.
 #+begin_src emacs-lisp
   (use-package orderless
     :custom
@@ -426,7 +468,8 @@ Ordlerless, used for orderless regex matching.
     (completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
 
-Consult, completion stuff
+** Consult
+completion stuff
 #+begin_src emacs-lisp
   (use-package consult
     :bind (;; C-c bindings in `mode-specific-map'
@@ -507,6 +550,14 @@ Consult, completion stuff
     ;; after lazily loading the package.
     :config
 
+    ;; Use `consult-completion-in-region' if Vertico is enabled.
+    ;; Otherwise use the default `completion--in-region' function.
+    (setq completion-in-region-function
+          (lambda (&rest args)
+            (apply (if vertico-mode
+                       #'consult-completion-in-region
+                     #'completion--in-region)
+                   args)))
     ;; Optionally configure preview. The default value
     ;; is 'any, such that any key triggers the preview.
     ;; (setq consult-preview-key 'any)
@@ -528,7 +579,8 @@ Consult, completion stuff
     (setq consult-narrow-key "<") )
 #+end_src
 
-Embark, key focused minibuffer manipulations
+** Marinalia
+key focused minibuffer manipulations
 #+begin_src emacs-lisp
   (use-package marginalia
     :after vertico
@@ -549,6 +601,10 @@ Embark, key focused minibuffer manipulations
   
 * Cheatsheet
 * Modeline
+** TODO Tasks [0/4] [0%]
+- [ ] Add TODO in current buffer tracker for org
+- [ ] Add pending git changes
+- [ ] Time in 24h format
 * Dashboard
 * Keys
 Emacs VI Layer, Vim keybinds inside of emacs
@@ -648,8 +704,10 @@ Increase or decrease text
     ("f" nil "finished" :exit t))
 #+end_src
 
-** TODO [0%]
-- [ ] Configure evil collection (add and remove supported modes)
+** TODO [16%]
+- [X] Configure evil collection (add and remove supported modes)
 - [ ] Implement the window hydra
+- [ ] Keymap switch [0/2] [0%]
+  - [ ] Add magit buffer
 - [ ] Add hydras for tedious and repetetive actions
   

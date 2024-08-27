@@ -105,7 +105,8 @@
   :config
   (setq org-ellipsis " ▾")
   (setq org-log-done 'time)
-  (setq org-log-into-drawer t) ; 
+  (setq org-log-into-drawer t)  
+  (setq org-fold-core-style 'overlays) 
   (setq org-checkbox-hierarchical-statistics nil)
   (setq org-agenda-files '(
                            "~/stuff/org/roam/"
@@ -149,19 +150,38 @@
   :ensure t
   :custom
   (org-roam-directory (file-truename "~/stuff/org/roam/"))
+
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
          ;; Dailies
-         ("C-c n j" . org-roam-dailies-capture-today))
+         ("C-c n j" . org-roam-dailies-capture-today)
+         :map org-mode-map
+         ("C-M-i" . completion-at-point))
   :config
   ;; If you're using a vertical completion framework, you might want a more informative completion interface
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
+
+(setq org-roam-capture-templates
+ '(
+   ("d" "default" plain
+    "%?"
+    :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+    :unnarrowed t)
+ ("b" "Book" plain 
+  "* Metadata\n\nFull Name: %^{Name|${title}}\nAuthor: %^{author}\nReleased: %^{year}\nEdition: %^{edition}\nChapter Count: %^{chapters}\nPages: %^{pages}\n* Description\n\n%?\n\n* Thoughts\n\n* Links\n"
+    :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+    :unnarrowed t)
+ ("t" "Topic" plain
+  "#+TAGS: %^{status|Baby}\n\n* Body\n%?"
+    :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+    :unnarrowed t)
+ ))
 
 (use-package org-ql)
 
@@ -321,6 +341,14 @@
   ;; after lazily loading the package.
   :config
 
+  ;; Use `consult-completion-in-region' if Vertico is enabled.
+  ;; Otherwise use the default `completion--in-region' function.
+  (setq completion-in-region-function
+        (lambda (&rest args)
+          (apply (if vertico-mode
+                     #'consult-completion-in-region
+                   #'completion--in-region)
+                 args)))
   ;; Optionally configure preview. The default value
   ;; is 'any, such that any key triggers the preview.
   ;; (setq consult-preview-key 'any)
