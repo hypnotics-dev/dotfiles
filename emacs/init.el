@@ -20,6 +20,8 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+
+
 (setq inhibit-startup-message t)
 (setq visible-bell t)
 
@@ -110,6 +112,9 @@
                            "~/stuff/org/task.org"
                            "~/uni/"
                            )))
+
+(setq ispell-program-name "aspell")
+(setq ispell-dictionary "english")
 
 (setq org-agenda-start-with-log-mode t) ;; create a log of tasks 
 (use-package org-super-agenda)
@@ -378,26 +383,29 @@
 (use-package evil-collection
   :after evil
   :config
-  (evil-collection-init '(calendar
-                          dired
+  (evil-collection-init '(apropos
+                          calendar
                           calc
                           counsel
+                          consult
+                          dired
+                          dashboard
                           ediff
                           elfeed
-                          magit
-                          forge
-                          mu4e
-                          org
-                          org-roam
                           eshell
-                          apropos
-                          consult
-                          dashboard
                           flymake
+                          forge
+                          magit
+                          magit-todos
+                          magit-section
+                          magit-repos
+                          mu4e
                           mu4e
                           mu4e-conversation
-                          tab-bar
-                          vertico)))
+                          nov
+                          org
+                          org-roam
+                          )))
 
 (use-package general
   :config

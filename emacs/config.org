@@ -30,6 +30,11 @@ Early configuration options for emacs
   (setq use-package-always-ensure t)
 #+end_src
 
+Dependency checks
+#+begin_src emacs-lisp
+
+#+end_src
+
 ** Gui
 Configuration GUI elements
 #+begin_src emacs-lisp
@@ -127,7 +132,7 @@ Emacs use-package sugested by vertico
 #+end_src
 
 * Org
-Org mode is a formatted plain text writter.
+Org mode is a formatted plain text language.
 
 #+begin_src emacs-lisp
 
@@ -156,6 +161,14 @@ Org mode is a formatted plain text writter.
                              )))
 #+end_src
 
+
+** Ispell
+Spell checking with ispell and flyspell
+#+begin_src emacs-lisp
+  (setq ispell-program-name "aspell")
+  (setq ispell-dictionary "english")
+#+end_src
+** Agenda
 org agenda 
 #+begin_src emacs-lisp
 
@@ -165,6 +178,7 @@ org agenda
 
 #+end_src
 
+** Bable
 Bable, used for code/src blocks in org mode
 
 #+begin_src emacs-lisp
@@ -196,6 +210,7 @@ Bable, used for code/src blocks in org mode
 
 #+end_src
 
+** Roam
 Org Roam, a Zettlekan system for emacs org mode.
 
 #+begin_src emacs-lisp
@@ -220,12 +235,14 @@ Org Roam, a Zettlekan system for emacs org mode.
 
 #+end_src
 
+** Org QL
 Org QL, query org files with a query language
 
 #+begin_src emacs-lisp
   (use-package org-ql)
 #+end_src
 
+** Orgit
 Orgit, Linking git repos and forge instances inside of org mode.
 
 #+begin_src emacs-lisp
@@ -237,17 +254,40 @@ Orgit, Linking git repos and forge instances inside of org mode.
 | Command | key | Purpose |
 |         |     |         |
 
-** TODO [11%]
+** TODO Tasks [3%]
 - [X] Determine if log into drawer is nessecerary
 - [ ] Determine if agenda start with log mode is needed
 - [ ] Build out org-agenda workflow
 - [ ] Configure org-super-agenda
-- [ ] Configure roam some more
+- [ ] Configure roam some more [0/15] [0%]
+  - [ ] Add capture template for [0/13]
+    - [ ] Journal
+    - [ ] Notes [0/7]
+      - [ ] CS [0/4]
+        - [ ] Security
+        - [ ] Data structures and Algorithms
+        - [ ] Intro to SWE (if registered)
+        - [ ] Generic Books
+      - [ ] English
+      - [ ] Econ
+    - [ ] Everyday thoughts
+    - [ ] Worldbuilding
+    - [ ] Task (TODO)
+    - [ ] Books
+  - [ ] Add way for backlink completion
+- [ ] Add Document properties to org files [0/5] [0%]
+  - [ ] Set margins
+  - [ ] Set font
+  - [ ] Header and Footer info
+  - [ ] Page numbers
+  - [ ] Make a template for docs
 - [ ] Add a way to autoconfigure gitconfigure orgit atributes (like in the readme)
-- [ ] Add a function to create a org feature to declare file as a document (margins,fonts and such)
-- [ ] Create a template system and a template manager
 - [ ] Configure Org Keymap
-   
+- [ ] Setup LanguageTool locally for gramar and parphrasing support.
+
+** Dependencies 
+- aspell
+- aspell-en
 * Git
 Magit, a git client for emacs and forge a git instance tool.
 
@@ -267,10 +307,11 @@ Magit, a git client for emacs and forge a git instance tool.
 | Command | Key | Purpose |
 |         |     |         |
 
-** TODO [0%]
+** TODO Tasks [0%]
 - [ ] Make sure evil collection works on magit, forge and git-modes
 - [ ] Make sure gpg aut works well, i.e type password once per several hours or server lifetime?
 - [ ] Verify if system crafters magit configuration should be implemented
+- [ ] Add keybinds to summon magit
 - [0%] Add docs 
   - [ ] Common keys to acces magit in emacs
   - [ ] Keys for forge
@@ -325,7 +366,7 @@ Dirvish is an improved version of the Emacs inbuilt package Dired. It not only g
     )
 #+end_src
 
-** TODO [0%]
+** TODO Tasks [0%]
 - [0%] Setup quick access entries
   - [ ] Org Files
   - [ ] Novels
@@ -343,7 +384,7 @@ Dirvish is an improved version of the Emacs inbuilt package Dired. It not only g
   
 * Term
 * PDF
-** TODO [0%]
+** TODO Tasks [0%]
 - [ ] Add PDF Tools
   - [ ] Configure vi binds for pdf
 - [ ] Add package to restore to last used location
@@ -502,71 +543,74 @@ Embark, key focused minibuffer manipulations
 #+end_src
 
 
-** TODO [0%]
+** TODO Tasks [0%]
 - [ ] Add C-{j,k} to vert-next vert-prev
 - [ ] Look at vertico extensions
-
+  
 * Cheatsheet
-* Smartparens
 * Modeline
 * Dashboard
 * Keys
 Emacs VI Layer, Vim keybinds inside of emacs
 
+** Setup
 #+begin_src emacs-lisp
 
-  (defun hyp/evil-hook ()
-    (dolist (mode '(custom-mode
-                    git-rebase-mode
-                    nov-mode
-                    term-mode))
-      (add-to-list 'evil-emacs-state-modes mode)))
+    (defun hyp/evil-hook ()
+      (dolist (mode '(custom-mode
+                      git-rebase-mode
+                      nov-mode
+                      term-mode))
+        (add-to-list 'evil-emacs-state-modes mode)))
 
 
-  (use-package evil
-    :init
+    (use-package evil
+      :init
 
-    (setq evil-want-integration t)
-    (setq evil-want-keybinding nil)
-    (setq evil-want-C-u-scroll t)
-    (setq evil-want-C-i-jump nil)
-    (setq evil-undo-system 'undo-redo)
+      (setq evil-want-integration t)
+      (setq evil-want-keybinding nil)
+      (setq evil-want-C-u-scroll t)
+      (setq evil-want-C-i-jump nil)
+      (setq evil-undo-system 'undo-redo)
 
-    :hook (evil-mode . hyp/evil-hook)
-    :init
-    (evil-mode 1)
-    :config
-    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+      :hook (evil-mode . hyp/evil-hook)
+      :init
+      (evil-mode 1)
+      :config
+      (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+      (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
-    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+      (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+      (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-    (evil-set-initial-state 'messages-buffer-mode 'normal))
+      (evil-set-initial-state 'messages-buffer-mode 'normal))
 
-  (use-package evil-collection
-    :after evil
-    :config
-    (evil-collection-init '(calendar
-                            dired
-                            calc
-                            counsel
-                            ediff
-                            elfeed
-                            magit
-                            forge
-                            mu4e
-                            org
-                            org-roam
-                            eshell
-                            apropos
-                            consult
-                            dashboard
-                            flymake
-                            mu4e
-                            mu4e-conversation
-                            tab-bar
-                            vertico))) 
+    (use-package evil-collection
+      :after evil
+      :config
+      (evil-collection-init '(apropos
+                              calendar
+                              calc
+                              counsel
+                              consult
+                              dired
+                              dashboard
+                              ediff
+                              elfeed
+                              eshell
+                              flymake
+                              forge
+                              magit
+                              magit-todos
+                              magit-section
+                              magit-repos
+                              mu4e
+                              mu4e
+                              mu4e-conversation
+                              nov
+                              org
+                              org-roam
+                              ))) 
 
 #+end_src
 
@@ -582,18 +626,19 @@ Emacs VI Layer, Vim keybinds inside of emacs
   (use-package hydra)
 #+end_src
 
+** SPC Prefix
 Prefix key mapping
 #+begin_src emacs-lisp
 
 #+end_src
 
-General keymap
+** Keymaps
 #+begin_src emacs-lisp
   
 
 #+end_src
 
-
+** Hydras
 Increase or decrease text
 #+begin_src emacs-lisp
   (defhydra hydra-text-scale (:timeout 4)
