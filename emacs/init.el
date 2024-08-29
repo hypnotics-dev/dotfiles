@@ -168,20 +168,24 @@
   (require 'org-roam-protocol))
 
 (setq org-roam-capture-templates
- '(
-   ("d" "default" plain
-    "%?"
-    :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
-    :unnarrowed t)
- ("b" "Book" plain 
-  "* Metadata\nFull Name: %^{Name|${title}}\nAuthor: %^{author}\nReleased: %^{year}\nEdition: %^{edition}\nChapter Count: %^{chapters}\nPages: %^{pages}\n* Description\n\n%?\n\n* Thoughts\n\n* Links\n"
-    :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
-    :unnarrowed t)
- ("t" "Topic" plain
-  "#+TAGS: %^{status|Baby}\n\n* Body\n%?"
-    :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
-    :unnarrowed t)
- ))
+      '(
+        ("d" "default" plain
+         "%?"
+         :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+         :unnarrowed t)
+        ("b" "Book" plain 
+         "* Metadata\nFull Name: %^{Name|${title}}\nAuthor: %^{author}\nReleased: %^{year}\nEdition: %^{edition}\nChapter Count: %^{chapters}\nPages: %^{pages}\n* Description\n\n%?\n\n* Thoughts\n\n* Links\n"
+         :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+         :unnarrowed t)
+        ("t" "Topic" plain
+         "#+TAGS: %^{status|Baby}\n\n* Body\n%?"
+         :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+         :unnarrowed t)
+        ("pc" "Programming Concepts" plain
+         "#+TAGS: Baby\n\n* Abstract\n\n%?\n* In Detail\n\n* Implementation in languages\n\n* References"
+         :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+         :unnarrowed t)
+        ))
 
 (use-package org-ql)
 
