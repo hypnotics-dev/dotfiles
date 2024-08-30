@@ -178,11 +178,11 @@
          :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
          :unnarrowed t)
         ("t" "Topic" plain
-         "\n * Status :Baby:\n\n* Abstract\n\n* %^{Main|Main}\n\n%?"
+         "\n* Status :Baby:\n\n* Synopsis\n\n* %^{Main|Main}\n\n%?"
          :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
          :unnarrowed t)
-        ("pc" "Programming Concepts" plain
-         "\n* Status :Baby:\n\n* Abstract\n\n%?\n* In Detail\n\n* Implementation in languages\n\n* References"
+        ("c" "Programming Concepts" plain
+         "\n* Status :Baby:\n\n* Synopsis\n\n%?\n* The Theory of %^{Name}\n\n* %^{Other|Implementation in Languages|In Emacs}\n\n* References"
          :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
          :unnarrowed t)
         ))
@@ -382,6 +382,8 @@
   (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   :init
   (marginalia-mode))
+
+(display-time)
 
 (defun hyp/evil-hook ()
   (dolist (mode '(custom-mode

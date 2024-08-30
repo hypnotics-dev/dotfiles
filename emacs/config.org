@@ -254,11 +254,11 @@ Use %^{foo} to capture user input for foo.
            :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
            :unnarrowed t)
           ("t" "Topic" plain
-           "\n * Status :Baby:\n\n* Abstract\n\n* %^{Main|Main}\n\n%?"
+           "\n* Status :Baby:\n\n* Synopsis\n\n* %^{Main|Main}\n\n%?"
            :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
            :unnarrowed t)
-          ("pc" "Programming Concepts" plain
-           "\n* Status :Baby:\n\n* Abstract\n\n%?\n* In Detail\n\n* Implementation in languages\n\n* References"
+          ("c" "Programming Concepts" plain
+           "\n* Status :Baby:\n\n* Synopsis\n\n%?\n* The Theory of %^{Name}\n\n* %^{Other|Implementation in Languages|In Emacs}\n\n* References"
            :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
            :unnarrowed t)
           ))
@@ -605,6 +605,9 @@ key focused minibuffer manipulations
   
 * Cheatsheet
 * Modeline
+#+begin_src emacs-lisp
+  (display-time)
+#+end_src
 ** TODO Tasks [0/4] [0%]
 - [ ] Add TODO in current buffer tracker for org
 - [ ] Add pending git changes
