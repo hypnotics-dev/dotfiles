@@ -174,15 +174,19 @@
          :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
          :unnarrowed t)
         ("b" "Book" plain 
-         "\n* Status :Baby:\n\n* Metadata\nFull Name: %^{Name|${title}}\nAuthor: %^{author}\nReleased: %^{year}\nEdition: %^{edition}\nChapter Count: %^{chapters}\nPages: %^{pages}\n* Description\n\n%?\n\n* Thoughts\n\n* Links\n"
+         "\nFull Name: %^{Name|${title}}\nAuthor: %^{author}\nReleased: %^{year}\nEdition: %^{edition}\nChapter Count: %^{chapters}\nPages: %^{pages}\n* Description\n\n%?\n\n* Thoughts\n\n* Links\n"
          :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
          :unnarrowed t)
         ("t" "Topic" plain
-         "\n* Status :Baby:\n\n* Synopsis\n\n* %^{Main|Main}\n\n%?"
+         "\n* Synopsis\n\n* %^{Main|${Main}}\n\n%?"
          :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
          :unnarrowed t)
-        ("c" "Programming Concepts" plain
-         "\n* Status :Baby:\n\n* Synopsis\n\n%?\n* The Theory of %^{Name}\n\n* %^{Other|Implementation in Languages|In Emacs}\n\n* References"
+        ("p" "Programming Concepts" plain
+         "\n* Synopsis\n\n%?\n* The Theory of %^{Name}\n\n* %^{Other|Implementation in Languages|In Emacs}\n\n* References"
+         :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+         :unnarrowed t)
+        ("c" "UNI Course" plain ;; Not working
+         "\nCourse Name: %^{name}\nCourse Id: %^{id}\nSection: %^{section}\nProfessor: %^{prof}\nLecture Classroom: %^{class}\nTutorial Classroom: %^{tutorial}\nLecture Times: %^{lecturetime}\nTutorial Time: %^{time}\nCredits: $^{cred}\nTerm Taken: $^{termtime}\n\n* Index of Topics\n\n\n* Homework\n\n%?\n\n* References\n"
          :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
          :unnarrowed t)
         ))
@@ -429,10 +433,10 @@
                           eshell
                           flymake
                           forge
+                          info
                           magit
                           magit-todos
                           magit-section
-                          magit-repos
                           mu4e
                           mu4e
                           mu4e-conversation

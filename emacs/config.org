@@ -250,15 +250,19 @@ Use %^{foo} to capture user input for foo.
            :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
            :unnarrowed t)
           ("b" "Book" plain 
-           "\n* Status :Baby:\n\n* Metadata\nFull Name: %^{Name|${title}}\nAuthor: %^{author}\nReleased: %^{year}\nEdition: %^{edition}\nChapter Count: %^{chapters}\nPages: %^{pages}\n* Description\n\n%?\n\n* Thoughts\n\n* Links\n"
+           "\nFull Name: %^{Name|${title}}\nAuthor: %^{author}\nReleased: %^{year}\nEdition: %^{edition}\nChapter Count: %^{chapters}\nPages: %^{pages}\n* Description\n\n%?\n\n* Thoughts\n\n* Links\n"
            :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
            :unnarrowed t)
           ("t" "Topic" plain
-           "\n* Status :Baby:\n\n* Synopsis\n\n* %^{Main|Main}\n\n%?"
+           "\n* Synopsis\n\n* %^{Main|${Main}}\n\n%?"
            :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
            :unnarrowed t)
-          ("c" "Programming Concepts" plain
-           "\n* Status :Baby:\n\n* Synopsis\n\n%?\n* The Theory of %^{Name}\n\n* %^{Other|Implementation in Languages|In Emacs}\n\n* References"
+          ("p" "Programming Concepts" plain
+           "\n* Synopsis\n\n%?\n* The Theory of %^{Name}\n\n* %^{Other|Implementation in Languages|In Emacs}\n\n* References"
+           :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+           :unnarrowed t)
+          ("c" "UNI Course" plain 
+           "\nCourse Name: %^{name}\nCourse Id: %^{id}\nSection: %^{section}\nProfessor: %^{prof}\nLecture Classroom: %^{class}\nTutorial Classroom: %^{tutorial}\nLecture Times: %^{lecturetime}\nTutorial Time: %^{time}\nCredits: $^{cred}\nTerm Taken: $^{termtime}\n\n* Index of Topics\n\n\n* Homework\n\n%?\n\n* References\n"
            :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
            :unnarrowed t)
           ))
@@ -279,9 +283,10 @@ Orgit, Linking git repos and forge instances inside of org mode.
   (use-package orgit-forge)
 #+end_src
 
-** TODO Tasks [14%]
+** TODO Tasks [13%]
 - [X] Determine if log into drawer is nessecerary
 - [X] Determine if agenda start with log mode is needed
+- [ ] Replace visual-fill mode with [[https://github.com/rnkn/olivetti][Olivetti]]
 - [ ] Build out org-agenda workflow
 - [ ] Configure org-super-agenda
 - [-] Configure roam some more [3/14] [21%]
@@ -358,6 +363,7 @@ Magit, a git client for emacs and forge a git instance tool.
 - git (for magit)
 - GnuPG (for decrypting authinfo file)
 * Mail
+* Elfeed
 * Latex
 * Markdown
 * Dirvish
@@ -432,7 +438,6 @@ Dirvish is an improved version of the Emacs inbuilt package Dired. It not only g
 - [ ] Add package to restore to last used location
 * hledger
 * Irc
-* Elfeed
 * Completion
 
 ** vertico
@@ -619,61 +624,61 @@ Emacs VI Layer, Vim keybinds inside of emacs
 ** Setup
 #+begin_src emacs-lisp
 
-    (defun hyp/evil-hook ()
-      (dolist (mode '(custom-mode
-                      git-rebase-mode
-                      nov-mode
-                      term-mode))
-        (add-to-list 'evil-emacs-state-modes mode)))
+  (defun hyp/evil-hook ()
+    (dolist (mode '(custom-mode
+                    git-rebase-mode
+                    nov-mode
+                    term-mode))
+      (add-to-list 'evil-emacs-state-modes mode)))
 
 
-    (use-package evil
-      :init
+  (use-package evil
+    :init
 
-      (setq evil-want-integration t)
-      (setq evil-want-keybinding nil)
-      (setq evil-want-C-u-scroll t)
-      (setq evil-want-C-i-jump nil)
-      (setq evil-undo-system 'undo-redo)
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump nil)
+    (setq evil-undo-system 'undo-redo)
 
-      :hook (evil-mode . hyp/evil-hook)
-      :init
-      (evil-mode 1)
-      :config
-      (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-      (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+    :hook (evil-mode . hyp/evil-hook)
+    :init
+    (evil-mode 1)
+    :config
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
-      (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-      (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-      (evil-set-initial-state 'messages-buffer-mode 'normal))
+    (evil-set-initial-state 'messages-buffer-mode 'normal))
 
-    (use-package evil-collection
-      :after evil
-      :config
-      (evil-collection-init '(apropos
-                              calendar
-                              calc
-                              counsel
-                              consult
-                              dired
-                              dashboard
-                              ediff
-                              elfeed
-                              eshell
-                              flymake
-                              forge
-                              magit
-                              magit-todos
-                              magit-section
-                              magit-repos
-                              mu4e
-                              mu4e
-                              mu4e-conversation
-                              nov
-                              org
-                              org-roam
-                              ))) 
+  (use-package evil-collection
+    :after evil
+    :config
+    (evil-collection-init '(apropos
+                            calendar
+                            calc
+                            counsel
+                            consult
+                            dired
+                            dashboard
+                            ediff
+                            elfeed
+                            eshell
+                            flymake
+                            forge
+                            info
+                            magit
+                            magit-todos
+                            magit-section
+                            mu4e
+                            mu4e
+                            mu4e-conversation
+                            nov
+                            org
+                            org-roam
+                            ))) 
 
 #+end_src
 
@@ -714,7 +719,8 @@ Increase or decrease text
 ** TODO [16%]
 - [X] Configure evil collection (add and remove supported modes)
 - [ ] Implement the window hydra
-- [ ] Keymap switch [0/2] [0%]
+- [ ] Keymap switch [0/1] [0%]
   - [ ] Add magit buffer
 - [ ] Add hydras for tedious and repetetive actions
+- [ ] Add keys for reverting buffer.
   
