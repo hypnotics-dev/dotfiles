@@ -69,6 +69,6 @@ vim.opt.scrolloff = 20
 
 vim.opt.background = "dark"
 
-vim.g.showtabline = 0
+vim.opt.showtabline = 0
 
 vim.keymap.set("n", "<C-A>", "<C-x>")
