@@ -5,3 +5,5 @@
 	user = hypnotics-dev
 [core]
         excludesfile = /home/hypnotics/.gitignore
+[init]
+	defaultBranch = main

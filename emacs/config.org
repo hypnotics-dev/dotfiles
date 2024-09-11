@@ -93,7 +93,6 @@ Configuration for fonts and faces
 
 #+end_src
 
-
 ** Variable
 #+begin_src emacs-lisp
   (setq auth-sources '("~/.authinfo.gpg"))
@@ -128,7 +127,7 @@ Emacs use-package sugested by vertico
           '(read-only t cursor-intangible t face minibuffer-prompt))
     (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
-  
+
 #+end_src
 
 * Org
@@ -161,7 +160,6 @@ Org mode is a formatted plain text language.
                              "~/uni/"
                              )))
 #+end_src
-
 
 ** Ispell
 Spell checking with ispell and flyspell
