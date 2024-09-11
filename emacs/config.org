@@ -70,7 +70,6 @@ Configuration GUI elements
 
 #+end_src
 
-
 ** Help
 Better emacs help system
 #+begin_src emacs-lisp
@@ -92,7 +91,6 @@ Configuration for fonts and faces
     (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono")
 
 #+end_src
-
 
 ** Variable
 #+begin_src emacs-lisp
@@ -131,6 +129,15 @@ Emacs use-package sugested by vertico
   
 #+end_src
 
+** Functions
+A list of random functions for doing miscellaneous tasks
+
+#+begin_src emacs-lisp
+  (defun date () 
+         "Prints the current date in message buffer"
+         (interactive)
+         (message (calendar-date-string (calendar-current-date))))
+#+end_src
 * Org
 Org mode is a formatted plain text language.
 
@@ -141,7 +148,6 @@ Org mode is a formatted plain text language.
   (defun hyp-org-mode-setup ()
     (org-indent-mode)
     (visual-line-mode 1)
-    (auto-fill-mode 1)
     (visual-fill-column-mode 1)
     (setq visual-fill-column-width 175 ;; n char of writing room
           visual-fill-column-center-text 1))
@@ -661,4 +667,3 @@ Increase or decrease text
   - [ ] Add magit buffer
 - [ ] Add hydras for tedious and repetetive actions
 - [ ] Add keys for reverting buffer.
-  
