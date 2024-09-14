@@ -89,12 +89,16 @@
         '(read-only t cursor-intangible t face minibuffer-prompt))
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
+(defun date () 
+       "Prints the current date in message buffer"
+       (interactive)
+       (message (calendar-date-string (calendar-current-date))))
+
 (use-package visual-fill-column)
 
 (defun hyp-org-mode-setup ()
   (org-indent-mode)
   (visual-line-mode 1)
-  (auto-fill-mode 1)
   (visual-fill-column-mode 1)
   (setq visual-fill-column-width 175 ;; n char of writing room
         visual-fill-column-center-text 1))
@@ -204,6 +208,20 @@
 (use-package git-modes
   :after magit)
 
+(use-package nov)
+(use-package justify-kp)
+
+(setq nov-unzip-program (executable-find "bsdtar")
+      nov-unzip-args '("-xC" directory "-f" filename))
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+(setq nov-text-width 120)
+(setq nov-text-width t)
+
+(setq visual-fill-column-center-text t)
+(add-hook 'nov-mode-hook 'visual-line-mode)
+(add-hook 'nov-mode-hook 'visual-fill-column-mode)
+
 (use-package vertico
   :custom
   ;; (vertico-scroll-margin 0) ;; Different scroll margin
@@ -265,7 +283,7 @@
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
          ;; M-s bindings in `search-map'
-         ("M-s d" . consult-find)                  ;; Alternative: consult-fd
+         ("M-s d" . consult-fd)                  ;; Alternative: consult-fd
          ("M-s c" . consult-locate)
          ("M-s g" . consult-grep)
          ("M-s G" . consult-git-grep)

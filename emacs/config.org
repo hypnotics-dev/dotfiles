@@ -138,6 +138,7 @@ A list of random functions for doing miscellaneous tasks
          (interactive)
          (message (calendar-date-string (calendar-current-date))))
 #+end_src
+
 * Org
 Org mode is a formatted plain text language.
 
@@ -374,11 +375,34 @@ Magit, a git client for emacs and forge a git instance tool.
 * Term
 ** TODO Tasks [%]
 - [ ] Make sudo be more persistent in eshell
-* PDF
+* Ebook
+EBUP And PDF Reading
+
+#+begin_src emacs-lisp
+  (use-package nov)
+  (use-package justify-kp)
+#+end_src
+
+Extra options
+#+begin_src emacs-lisp
+  (setq nov-unzip-program (executable-find "bsdtar")
+        nov-unzip-args '("-xC" directory "-f" filename))
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+  (setq nov-text-width 120)
+  (setq nov-text-width t)
+
+  (setq visual-fill-column-center-text t)
+  (add-hook 'nov-mode-hook 'visual-line-mode)
+  (add-hook 'nov-mode-hook 'visual-fill-column-mode)
+
+#+end_src
+
 ** TODO Tasks [0%]
 - [ ] Add PDF Tools
   - [ ] Configure vi binds for pdf
 - [ ] Add package to restore to last used location
+- [ ] Center Text from nov-mode
 * hledger
 * Irc
 * Completion
@@ -456,7 +480,7 @@ completion stuff
            ("M-g i" . consult-imenu)
            ("M-g I" . consult-imenu-multi)
            ;; M-s bindings in `search-map'
-           ("M-s d" . consult-find)                  ;; Alternative: consult-fd
+           ("M-s d" . consult-fd)                  ;; Alternative: consult-fd
            ("M-s c" . consult-locate)
            ("M-s g" . consult-grep)
            ("M-s G" . consult-git-grep)
@@ -645,7 +669,7 @@ Prefix key mapping
 
 ** Keymaps
 #+begin_src emacs-lisp
-  
+
 
 #+end_src
 
@@ -659,10 +683,12 @@ Increase or decrease text
     ("f" nil "finished" :exit t))
 #+end_src
 
-** TODO [16%]
+** TODO [14%]
 - [X] Configure evil collection (add and remove supported modes)
 - [ ] Implement the window hydra
 - [ ] Keymap switch [0/1] [0%]
   - [ ] Add magit buffer
 - [ ] Add hydras for tedious and repetetive actions
 - [ ] Add keys for reverting buffer.
+- [ ] Bind Info-follow-nearest-node to RET in info-evil mode
+  
