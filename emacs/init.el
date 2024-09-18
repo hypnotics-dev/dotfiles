@@ -209,8 +209,9 @@
   :after magit)
 
 (use-package nov)
-(use-package justify-kp)
+(use-package pdf-tools)
 
+(pdf-loader-install)
 (setq nov-unzip-program (executable-find "bsdtar")
       nov-unzip-args '("-xC" directory "-f" filename))
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
@@ -437,7 +438,11 @@
 
 
 
-
+(general-define-key 
+ :keymaps 'pdf-view-mode-map
+ "j" 'pdf-view-next-line-or-next-page
+ "k" 'pdf-view-previous-line-or-previous-page
+ )
 
 (defhydra hydra-text-scale (:timeout 4)
   "scale text"
