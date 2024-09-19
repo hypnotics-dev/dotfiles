@@ -67,6 +67,9 @@ return {
 
 
         config = function()
+            vim.diagnostic.config({
+                virtual_text = false,
+            })
             local n = "n"
             -- autocommand runs when lsp is attached
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -84,7 +87,7 @@ return {
                     map(n, "gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
                     map(n, "gI", require("telescope.builtin").lsp_implementations,
                         "[G]oto [I]mplementation")
-                    -- Jump to type definition, not sure this will be usefull
+                    -- Jump to type definition, not sure this will be useful
                     map(n, "g<C-d>", require("telescope.builtin").lsp_type_definitions,
                         "Type [D]efinition")
                     -- Fuzzy find symbols over documents and projects
@@ -132,8 +135,6 @@ return {
                 end,
             })
 
-            -- no need to expand capabilities because coq does it for us I think, this
-            -- might break so FIXME has been added
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = vim.tbl_deep_extend('force', capabilities,
                 require('cmp_nvim_lsp').default_capabilities())
@@ -330,4 +331,9 @@ return {
             }
         end,
     },
+    {
+
+        -- TODO: Add javafx support and some gradle helper utilities
+        'nvim-java/nvim-java',
+    }
 }

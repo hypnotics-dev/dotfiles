@@ -91,6 +91,15 @@ map("n", "<leader>ccp", "oPERF: <cmd>normal gccA<CR> ", { desc = "Add [P]ERF" })
 map("n", "<leader>cce", "oTEST: <cmd>normal gccA<CR> ", { desc = "Add T[E]ST" })
 map("n", "<leader>ccw", "oWARN: <cmd>normal gccA<CR> ", { desc = "Add [W]ARN" })
 
+map("n", "<leader>ccT", "OTODO: <cmd>normal gccA<CR> ", { desc = "Add [T]ODO Above" })
+map("n", "<leader>ccF", "OFIXME: <cmd>normal gccA<CR> ", { desc = "Add [F]IXME Above" })
+map("n", "<leader>ccB", "OBUG: <cmd>normal gccA<CR> ", { desc = "Add [B]UG Above" })
+map("n", "<leader>ccN", "ONOTE: <cmd>normal gccA<CR> ", { desc = "Add [N]OTE Above" })
+map("n", "<leader>ccH", "OHACK: <cmd>normal gccA<CR> ", { desc = "Add [H]ACK Above" })
+map("n", "<leader>ccP", "OPERF: <cmd>normal gccA<CR> ", { desc = "Add [P]ERF Above" })
+map("n", "<leader>ccE", "OTEST: <cmd>normal gccA<CR> ", { desc = "Add T[E]ST Above" })
+map("n", "<leader>ccW", "OWARN: <cmd>normal gccA<CR> ", { desc = "Add [W]ARN Above" })
+
 -- Move.nvim
 map('n', '<A-j>', '<cmd>MoveLine(1)<CR>', { desc = "Move line up", silent = true, })
 map('n', '<A-k>', '<cmd>MoveLine(-1)<CR>', { desc = "Move line down", silent = true, })
