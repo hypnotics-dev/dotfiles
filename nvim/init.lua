@@ -18,3 +18,4 @@ require("lazy").setup({
 -- Load post-plugin settings
 require("config.key")
 require("config.theme")
+require("config.autocmd")
