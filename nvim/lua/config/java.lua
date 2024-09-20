@@ -1,7 +1,5 @@
 -- Configuration file to be loaded whenever a java file is edited
 
-local M = {}
-
 local mason_path_jdtls = vim.fn.stdpath("data") .. "/mason/packages/jdtls/plugins/"
 local mason_path_java_debug = vim.fn.stdpath("data") .. "/mason/packages/java-debug-adapter/extension/server/"
 
@@ -21,7 +19,8 @@ for file in io.popen("dir " .. mason_path_java_debug .. " /b"):lines() do
     end
 end
 
-local data_dir = vim.fn.getcwd() .. "_jdtls_data"
+local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+local data_dir = '/path/to/workspace-root/' .. project_name
 local config_linux = vim.fn.stdpath("data") .. "/mason/packages/jdtls/config_linux"
 
 local config = {
@@ -66,12 +65,4 @@ local config = {
         },
     },
 }
-
-local function getConfig()
-    return config
-end
-
-M.getConfig = getConfig
-
-
-return M
+require("jdtls").start_or_attach(config)
