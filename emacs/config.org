@@ -371,6 +371,14 @@ Magit, a git client for emacs and forge a git instance tool.
 * Mail
 * Elfeed
 * Latex
+
+#+begin_src emacs-lisp
+
+#+end_src
+** TODO Task [0%]
+- [ ] Configure Auctex
+  - [ ] Tex buffers
+  - [ ] Org Buffers
 * Markdown
 * Term
 ** TODO Tasks [%]

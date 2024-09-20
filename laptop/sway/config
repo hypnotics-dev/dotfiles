@@ -14,7 +14,7 @@ set $menu wofi --show drun
 ### Output configuration
 
 output eDP-1 resolution 1920x1200 position 1920,0
-output eDP-1 bg ~/stuff/images/wallpaper/active/planet-1.png fill
+output eDP-1 bg ~/stuff/images/wallpaper/active/swww fill
 
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
@@ -45,7 +45,7 @@ seat seat0 hide_cursor 5000
     bindsym $mod+Control+Return exec $term --class float_term
     bindsym $mod+Shift+Return   exec emacsclient -c 
     bindsym $mod+d              exec $menu
-	bindsym $mod+Shift+alt+Control+return exec st
+    bindsym $mod+Shift+alt+Control+return exec st
 
 
     bindsym $mod+w kill
@@ -68,7 +68,9 @@ seat seat0 hide_cursor 5000
 
 # Custom Keybinds
 
-    bindsym Print                       exec zsh -c 'export XDG_CURRENT_DESKTOP=Sway && flameshot gui'
+    # bindsym Print                       exec zsh -c 'export XDG_CURRENT_DESKTOP=Sway && flameshot gui'
+    bindsym Print                       exec bash -c 'slurp | grim -g - '
+    bindsym $mod+Print                  exec grim
     bindsym $mod+semicolon              exec bash -c '~/.scripts/toggle-touchpad.sh'
     bindsym XF86AudioPlay               exec --no-startup-id playerctl play-pause
     bindsym XF86AudioRaiseVolume        exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
