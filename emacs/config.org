@@ -155,7 +155,9 @@ Org mode is a formatted plain text language.
 
   (use-package org
     :ensure t
-    :hook (org-mode . hyp-org-mode-setup)
+    :hook
+    (org-mode . hyp-org-mode-setup)
+    ;(org-mode . org-cdlatex-mode)
     :config
     (setq org-ellipsis " ▾")
     (setq org-log-done 'time)
@@ -374,11 +376,24 @@ Magit, a git client for emacs and forge a git instance tool.
 
 #+begin_src emacs-lisp
 
+  (use-package auctex
+    :config
+    (setq TeX-auto-save t)
+    (setq TeX-parse-self t)
+    (setq-default TeX-master nil)
+    (setq TeX-PDF-mode t)
+    )
+
+#+end_src
+
+Autex within org mode
+#+begin_src emacs-lisp
+  (use-package cdlatex)
 #+end_src
 ** TODO Task [0%]
 - [ ] Configure Auctex
   - [ ] Tex buffers
-  - [ ] Org Buffers
+  - [ ] Org Buffers (CDLatex)
 * Markdown
 * Term
 ** TODO Tasks [%]
