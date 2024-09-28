@@ -105,7 +105,9 @@
 
 (use-package org
   :ensure t
-  :hook (org-mode . hyp-org-mode-setup)
+  :hook
+  (org-mode . hyp-org-mode-setup)
+  ;(org-mode . org-cdlatex-mode)
   :config
   (setq org-ellipsis " ▾")
   (setq org-log-done 'time)
@@ -130,6 +132,7 @@
  '((emacs-lisp . t)
    (C          . t)
    (lisp       . t)
+   (java       . t)
    (shell      . t)
    (lua        . t)
    (latex      . t)
@@ -142,6 +145,7 @@
 
 ;; Is there a better way to do this?
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("jv" . "src java"))
 (add-to-list 'org-structure-template-alist '("cc" . "src C"))
 (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
 (add-to-list 'org-structure-template-alist '("mk" . "src makefile"))
@@ -195,6 +199,8 @@
          :unnarrowed t)
         ))
 
+(use-package gnuplot)
+
 (use-package org-ql)
 
 (use-package orgit)
@@ -208,20 +214,38 @@
 (use-package git-modes
   :after magit)
 
-(use-package nov)
-(use-package pdf-tools)
+(use-package auctex
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil)
+  (setq TeX-PDF-mode t)
+  )
 
-(pdf-loader-install)
-(setq nov-unzip-program (executable-find "bsdtar")
-      nov-unzip-args '("-xC" directory "-f" filename))
+(use-package cdlatex)
+
+(defun my-centre-width ()
+  "Return a fill column that makes centring pleasant regardless of screen size"
+  (setq fill-column 100)
+  (let ((window-width (window-width)))
+    (floor (if (<= window-width (* 1.1 fill-column))
+               (* 0.9 window-width)
+             (max (/ window-width 2) fill-column)))))
+(use-package nov
+  :init (defun my-nov-font-setup ()
+          (face-remap-add-relative 'variable-pitch :family "Liberation Serif"
+                                   :height 1.3)
+          (setq fill-column (my-centre-width)
+                nov-text-width (- fill-column 2)
+                visual-fill-column-center-text t))
+  :hook ((nov-mode . my-nov-font-setup)
+         (nov-mode . visual-line-mode)
+         (nov-mode . visual-fill-column-mode)))
+
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
-(setq nov-text-width 120)
-(setq nov-text-width t)
-
-(setq visual-fill-column-center-text t)
-(add-hook 'nov-mode-hook 'visual-line-mode)
-(add-hook 'nov-mode-hook 'visual-fill-column-mode)
+(use-package pdf-tools)
+(pdf-loader-install)
 
 (use-package vertico
   :custom
@@ -443,6 +467,17 @@
  "j" 'pdf-view-next-line-or-next-page
  "k" 'pdf-view-previous-line-or-previous-page
  )
+
+(general-define-key
+ :states 'normal
+ :keymaps 'nov-mode-map
+ "n" 'nov-next-document
+ "p" 'nov-previous-document
+ "j" '(lambda () (interactive) (evil-forward-paragraph) (recenter))
+ "k" '(lambda () (interactive) (evil-backward-paragraph) (recenter))
+ "C-j" '(lambda () (interactive) (evil-next-line) (recenter))
+ "C-k" '(lambda () (interactive) (evil-previous-line) (recenter))
+)
 
 (defhydra hydra-text-scale (:timeout 4)
   "scale text"

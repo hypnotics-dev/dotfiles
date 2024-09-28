@@ -198,6 +198,7 @@ Bable, used for code/src blocks in org mode
    '((emacs-lisp . t)
      (C          . t)
      (lisp       . t)
+     (java       . t)
      (shell      . t)
      (lua        . t)
      (latex      . t)
@@ -210,6 +211,7 @@ Bable, used for code/src blocks in org mode
 
   ;; Is there a better way to do this?
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("jv" . "src java"))
   (add-to-list 'org-structure-template-alist '("cc" . "src C"))
   (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
   (add-to-list 'org-structure-template-alist '("mk" . "src makefile"))
@@ -276,6 +278,11 @@ Use %^{foo} to capture user input for foo.
           ))
 #+end_src
 
+** Gnuplot
+Creating plots with ascii text and gnuplot
+#+begin_src emacs-lisp
+  (use-package gnuplot)
+#+end_src
 ** Org QL
 Org QL, query org files with a query language
 
@@ -402,23 +409,33 @@ Autex within org mode
 EBUP And PDF Reading
 
 #+begin_src emacs-lisp
-  (use-package nov)
-  (use-package pdf-tools)
+  (defun my-centre-width ()
+    "Return a fill column that makes centring pleasant regardless of screen size"
+    (setq fill-column 100)
+    (let ((window-width (window-width)))
+      (floor (if (<= window-width (* 1.1 fill-column))
+                 (* 0.9 window-width)
+               (max (/ window-width 2) fill-column)))))
+  (use-package nov
+    :init (defun my-nov-font-setup ()
+            (face-remap-add-relative 'variable-pitch :family "Liberation Serif"
+                                     :height 1.3)
+            (setq fill-column (my-centre-width)
+                  nov-text-width (- fill-column 2)
+                  visual-fill-column-center-text t))
+    :hook ((nov-mode . my-nov-font-setup)
+           (nov-mode . visual-line-mode)
+           (nov-mode . visual-fill-column-mode)))
+
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
 #+end_src
 
 Extra options
 #+begin_src emacs-lisp
+
+  (use-package pdf-tools)
   (pdf-loader-install)
-  (setq nov-unzip-program (executable-find "bsdtar")
-        nov-unzip-args '("-xC" directory "-f" filename))
-  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-
-  (setq nov-text-width 120)
-  (setq nov-text-width t)
-
-  (setq visual-fill-column-center-text t)
-  (add-hook 'nov-mode-hook 'visual-line-mode)
-  (add-hook 'nov-mode-hook 'visual-fill-column-mode)
 
 #+end_src
 
@@ -685,7 +702,7 @@ Emacs VI Layer, Vim keybinds inside of emacs
   (use-package hydra)
 #+end_src
 
-** SPC Prefix
+** Prefix
 Prefix key mapping
 #+begin_src emacs-lisp
 
@@ -701,6 +718,18 @@ Prefix key mapping
    "j" 'pdf-view-next-line-or-next-page
    "k" 'pdf-view-previous-line-or-previous-page
    )
+
+  (general-define-key
+   :states 'normal
+   :keymaps 'nov-mode-map
+   "n" 'nov-next-document
+   "p" 'nov-previous-document
+   "j" '(lambda () (interactive) (evil-forward-paragraph) (recenter))
+   "k" '(lambda () (interactive) (evil-backward-paragraph) (recenter))
+   "C-j" '(lambda () (interactive) (evil-next-line) (recenter))
+   "C-k" '(lambda () (interactive) (evil-previous-line) (recenter))
+  )
+
 
 #+end_src
 
