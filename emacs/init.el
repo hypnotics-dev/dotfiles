@@ -468,16 +468,25 @@
  "k" 'pdf-view-previous-line-or-previous-page
  )
 
+(defun nov-evil-scroll (up &optional count)
+  "Move the cursor up|down count times, making sure it is on a spacer line" 
+  (if up
+      (evil-next-line (or count 1)) 
+    (evil-previous-line (or count 1)))
+  (unless (looking-at-p "^[[:space:]]*$") (nov-evil-scroll up))
+  (recenter))
+
+
 (general-define-key
  :states 'normal
  :keymaps 'nov-mode-map
  "n" 'nov-next-document
  "p" 'nov-previous-document
- "j" '(lambda () (interactive) (evil-forward-paragraph) (recenter))
- "k" '(lambda () (interactive) (evil-backward-paragraph) (recenter))
+ "j" '(lambda () (interactive) (nov-evil-scroll t 6))
+ "k" '(lambda () (interactive) (nov-evil-scroll nil 6))
  "C-j" '(lambda () (interactive) (evil-next-line) (recenter))
  "C-k" '(lambda () (interactive) (evil-previous-line) (recenter))
-)
+ )
 
 (defhydra hydra-text-scale (:timeout 4)
   "scale text"
