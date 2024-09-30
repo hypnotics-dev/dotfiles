@@ -134,18 +134,13 @@ A list of random functions for doing miscellaneous tasks
 
 #+begin_src emacs-lisp
   (defun date () 
-    "Prints the current date in message buffer"
-    (interactive)
-    (message (calendar-date-string (calendar-current-date))))
+         "Prints the current date in message buffer"
+         (interactive)
+         (message (calendar-date-string (calendar-current-date))))
 
-  (defun hyp/eval-lisp-file (file)
-    "Execute FILE and return the result of the last expression."
-    (eval
-     (ignore-errors
-       (read-from-whole-string
-        (with-temp-buffer
-          (insert-file-contents file)
-          (buffer-string)))))) 
+  (defun hyp/average (list)
+    "Returns the average of the elements of a number list"
+    (/ (float (apply '+ list)) (length list)))
 #+end_src
 
 * Org
