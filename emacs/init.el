@@ -94,6 +94,10 @@
        (interactive)
        (message (calendar-date-string (calendar-current-date))))
 
+(defun hyp/average (list)
+  "Returns the average of the elements of a number list"
+  (/ (float (apply '+ list)) (length list)))
+
 (use-package visual-fill-column)
 
 (defun hyp-org-mode-setup ()

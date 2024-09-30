@@ -137,6 +137,10 @@ A list of random functions for doing miscellaneous tasks
          "Prints the current date in message buffer"
          (interactive)
          (message (calendar-date-string (calendar-current-date))))
+
+  (defun hyp/average (list)
+    "Returns the average of the elements of a number list"
+    (/ (float (apply '+ list)) (length list)))
 #+end_src
 
 * Org
