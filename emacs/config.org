@@ -134,9 +134,18 @@ A list of random functions for doing miscellaneous tasks
 
 #+begin_src emacs-lisp
   (defun date () 
-         "Prints the current date in message buffer"
-         (interactive)
-         (message (calendar-date-string (calendar-current-date))))
+    "Prints the current date in message buffer"
+    (interactive)
+    (message (calendar-date-string (calendar-current-date))))
+
+  (defun hyp/eval-lisp-file (file)
+    "Execute FILE and return the result of the last expression."
+    (eval
+     (ignore-errors
+       (read-from-whole-string
+        (with-temp-buffer
+          (insert-file-contents file)
+          (buffer-string)))))) 
 #+end_src
 
 * Org
@@ -407,7 +416,8 @@ Autex within org mode
 - [ ] Make sudo be more persistent in eshell
 * Ebook
 EBUP And PDF Reading
-
+** Ebooks
+Configuration
 #+begin_src emacs-lisp
   (defun my-centre-width ()
     "Return a fill column that makes centring pleasant regardless of screen size"
@@ -416,6 +426,7 @@ EBUP And PDF Reading
       (floor (if (<= window-width (* 1.1 fill-column))
                  (* 0.9 window-width)
                (max (/ window-width 2) fill-column)))))
+  
   (use-package nov
     :init (defun my-nov-font-setup ()
             (face-remap-add-relative 'variable-pitch :family "Liberation Serif"
@@ -431,6 +442,20 @@ EBUP And PDF Reading
 
 #+end_src
 
+#+begin_src emacs-lisp
+  (defun nov-evil-scroll (up &optional count)
+    "Move the cursor up|down count times, making sure it lands on an empty line"
+    (if up
+        (evil-next-line (or count 1)) 
+      (evil-previous-line (or count 1)))
+    (unless (looking-at-p "^[[:space:]]*$") (nov-evil-scroll up))
+    (recenter))
+
+  
+#+end_src
+
+** PDFs
+
 Extra options
 #+begin_src emacs-lisp
 
@@ -439,7 +464,7 @@ Extra options
 
 #+end_src
 
-** TODO Tasks [0%]
+*** TODO Tasks [0%]
 - [ ] Add PDF Tools
   - [ ] Configure vi binds for pdf
 - [ ] Add package to restore to last used location
@@ -726,22 +751,13 @@ Prefix key mapping
 
 #+begin_src emacs-lisp
 
-  (defun nov-evil-scroll (up &optional count)
-    "Move the cursor up|down count times, making sure it is on a spacer line" 
-    (if up
-        (evil-next-line (or count 1)) 
-      (evil-previous-line (or count 1)))
-    (unless (looking-at-p "^[[:space:]]*$") (nov-evil-scroll up))
-    (recenter))
-
-
   (general-define-key
    :states 'normal
    :keymaps 'nov-mode-map
    "n" 'nov-next-document
    "p" 'nov-previous-document
-   "j" '(lambda () (interactive) (nov-evil-scroll t 6))
-   "k" '(lambda () (interactive) (nov-evil-scroll nil 6))
+   "j" '(lambda () (interactive) (nov-evil-scroll t 8))
+   "k" '(lambda () (interactive) (nov-evil-scroll nil 8))
    "C-j" '(lambda () (interactive) (evil-next-line) (recenter))
    "C-k" '(lambda () (interactive) (evil-previous-line) (recenter))
    )
