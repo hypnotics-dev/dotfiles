@@ -84,6 +84,14 @@
           (cdr args)))
   (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
+  :custom
+  (completion-cycle-threshold 3) ;; In corfu github
+  (tab-always-indent 'complete)
+
+  ;; for emacs 30 and above
+  ;; (text-mode-ispell-word-completion nil)
+  (read-extended-command-predicate #'command-completion-default-include-p))
+
   ;; Do not allow the cursor in the minibuffer prompt
   (setq minibuffer-prompt-properties
         '(read-only t cursor-intangible t face minibuffer-prompt))
@@ -227,6 +235,10 @@
   )
 
 (use-package cdlatex)
+
+(use-package eshell
+  :hook
+  ((eshell-mode . (lambda () (setq-local corfu-auto nil)))))
 
 (defun my-centre-width ()
   "Return a fill column that makes centring pleasant regardless of screen size"
@@ -405,6 +417,44 @@
   :init
   (marginalia-mode))
 
+(use-package corfu
+  ;; Optional customizations
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-separator ?\s)          ;; Orderless field separator
+  (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  (corfu-quit-no-match t)        
+  (corfu-preview-current nil)    ;; Disable current candidate preview
+  (corfu-preselect 'prompt)      ;; Preselect the prompt
+  (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  (corfu-scroll-margin 2)        ;; Use scroll margin
+  :config
+  (keymap-unset corfu-map "RET")
+
+  :init
+  (global-corfu-mode))
+
+;; Use Dabbrev with Corfu!
+(use-package dabbrev
+  ;; Swap M-/ and C-M-/
+  :bind (("M-/" . dabbrev-completion)
+         ("C-M-/" . dabbrev-expand))
+  :config
+  (add-to-list 'dabbrev-ignored-buffer-regexps "\\` ")
+  (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
+
+(use-package cape
+  ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
+  ;; Press C-c p ? to for help.
+  :bind ("C-c p" . cape-prefix-map) ;; Alternative keys: M-p, M-+, ...
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+  )
+
 (display-time)
 
 (defun hyp/evil-hook ()
@@ -439,28 +489,19 @@
 (use-package evil-collection
   :after evil
   :config
-  (evil-collection-init '(apropos
-                          calendar
+  (evil-collection-init '(calendar
                           calc
                           counsel
                           consult
                           dired
                           dashboard
-                          ediff
-                          elfeed
                           eshell
-                          flymake
-                          forge
                           info
                           magit
                           magit-todos
                           magit-section
                           mu4e
-                          mu4e
                           mu4e-conversation
-                          nov
-                          org
-                          org-roam
                           )))
 
 (use-package general
@@ -490,6 +531,19 @@
  "k" '(lambda () (interactive) (nov-evil-scroll nil 8))
  "C-j" '(lambda () (interactive) (evil-next-line) (recenter))
  "C-k" '(lambda () (interactive) (evil-previous-line) (recenter))
+ )
+
+(general-define-key
+ :keymaps 'corfu-map
+ "C-f" 'corfu-insert
+ "C-j" 'corfu-next
+ "C-k" 'corfu-previous
+ "C-e" 'corfu-last
+ "C-a" 'corfu-first
+ "C-u" 'corfu-scroll-up
+ "C-d" 'corfu-scroll-down
+ "C-i" 'corfu-info-location
+ "M-g" 'corfu-quit
  )
 
 (defhydra hydra-text-scale (:timeout 4)
