@@ -1,0 +1,23 @@
+* Linux Dotfiles & Rices
+
+For tracking and sharring linux configuration files. 
+
+** How to use the repo
+
+Link the dotfiles that you want to use to there config locations
+
+*Example for nvim*
+#+begin_src sh
+  ln -s $(pwd)/editor/nvim ~/.config
+#+end_src
+
+
+
+  
+
+  
+
+
+
+
+
