@@ -1,4 +1,6 @@
 -- Configuration file to be loaded whenever a java file is edited
+--
+-- TODO: Stop jdtls from exiting at the start of every nvim session
 
 local mason_path_jdtls = vim.fn.stdpath("data") .. "/mason/packages/jdtls/plugins/"
 local mason_path_java_debug = vim.fn.stdpath("data") .. "/mason/packages/java-debug-adapter/extension/server/"

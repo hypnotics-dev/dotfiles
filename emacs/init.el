@@ -269,8 +269,11 @@
   (unless (looking-at-p "^[[:space:]]*$") (nov-evil-scroll up))
   (recenter))
 
-(use-package pdf-tools)
-(pdf-loader-install)
+(use-package pdf-tools
+  :hook
+  (pdf-view-mode . (lambda () (interactive) (display-line-numbers-mode -1)))
+  :init
+  (pdf-loader-install))
 
 (use-package vertico
   :custom

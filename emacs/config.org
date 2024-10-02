@@ -471,8 +471,11 @@ Configuration
 Extra options
 #+begin_src emacs-lisp
 
-  (use-package pdf-tools)
-  (pdf-loader-install)
+  (use-package pdf-tools
+    :hook
+    (pdf-view-mode . (lambda () (interactive) (display-line-numbers-mode -1)))
+    :init
+    (pdf-loader-install))
 
 #+end_src
 
@@ -835,6 +838,7 @@ Key rebinds for corfu
    )
 
 #+end_src
+
 ** Hydras
 Increase or decrease text
 #+begin_src emacs-lisp
