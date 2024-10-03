@@ -1,5 +1,5 @@
 -- Ensures that external dependencies are installed
-require("ensure-deps")
+require("scripts.ensure-deps")
 
 -- Load pre-plugin settings
 require("config.settings")
@@ -16,6 +16,4 @@ require("lazy").setup({
 })
 
 -- Load post-plugin settings
-require("config.key")
-require("config.theme")
-require("config.autocmd")
+require("config.init")

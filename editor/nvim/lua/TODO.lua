@@ -1,0 +1,5 @@
+-- TODO: Add plugin mini.files for quick file navigation
+--
+-- TODO: Add way to telescope though references to vars, functions and classes
+--
+-- TODO: Add dadbod package for db interface (https://github.com/tpope/vim-dadbod)
