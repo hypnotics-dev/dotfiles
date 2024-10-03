@@ -3,23 +3,49 @@
 set -e
 
 flags=(
-    "--enable-gcc-warnings=no"
-    "--enable-link-time-optimization"
-    "--with-mailutils"
-    "--with-sound=no"
     "--with-x-toolkit=no"
-    "--with-imagemagick"
+    "--with-native-compilation=aot"
+    "--sysconfdir=/etc"
+    "--prefix=/usr"
+    "--with-sound=no"
     "--with-pgtk"
     "--without-gsettings"
     "--without-selinux"
-    "--with-xwidgets"
-    "--with-native-compilation=aot"
-    "--program-suffix=30"
+    # "--with-xwidgets"
+    "--enable-link-time-optimization"
+    "--libexecdir=/usr/lib"
+    "--with-imagemagick"
+    "--with-tree-sitter"
+    "--localstatedir=/var"
+    "--with-cairo"
+    "--disable-build-details"
+    "--with-harfbuzz"
+    "--with-libsystemd"
+    "--with-modules" 
 )
 
+
+# echo ${flags[@]}
 ./autogen.sh
-if (( $( ls | grep -x build ) > 0));then mkdir build; cd build;else cd build;fi
-../configure ${flags[@]}
+if (ls | grep -x build );then
+    rm -r build
+    mkdir build 
+fi
+cd build
+
+CFLAGS='-march=x86-64 -O2 -pipe -fno-plt -fexceptions -Wp,-D_FORTIFY_SOURCE=3 -Wformat \
+-Werror=format-security -fstack-clash-protection -fcf-protection -fno-omit-frame-pointer \
+-mno-omit-leaf-frame-pointer -g -ffile-prefix-map=/build/emacs/src=/usr/src/debug/emacs \
+-flto=auto' \
+# LDFLAGS='-Wl,-O1 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now  \
+# -Wl,-z,pack-relative-relocs -flto=auto' \
+# CXXFLAGS='-march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions -Wp,-D_FORTIFY_SOURCE=3 \
+# -Wformat -Werror=format-security -fstack-clash-protection -fcf-protection \
+# -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer \
+# -Wp,-D_GLIBCXX_ASSERTIONS -g -ffile-prefix-map=/build/emacs/src=/usr/src/debug/emacs -flto=auto' \
+../configure "${flags[@]}"
+
 make -j 12
 sudo make -j 12 install 
+
 
