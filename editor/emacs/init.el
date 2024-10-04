@@ -106,6 +106,11 @@
   "Returns the average of the elements of a number list"
   (/ (float (apply '+ list)) (length list)))
 
+(use-package dash
+  :config
+  (with-eval-after-load 'info-look
+(dash-register-info-lookup)))
+
 (use-package visual-fill-column)
 
 (defun hyp-org-mode-setup ()
@@ -155,7 +160,7 @@
 (require 'org-tempo)
 
 
-;; Is there a better way to do this?
+;; Is there a better way to do this?  (use -union iterator function when it's done)
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("jv" . "src java"))
 (add-to-list 'org-structure-template-alist '("cc" . "src C"))
@@ -232,7 +237,20 @@
   (setq TeX-parse-self t)
   (setq-default TeX-master nil)
   (setq TeX-PDF-mode t)
-  )
+  :hook
+  (LaTeX-mode . turn-on-reftex))
+
+(use-package auctex-cluttex
+  :after auctex)
+
+(use-package auto-complete-auctex
+  :after auctex)
+
+(use-package auctex-latexmk
+  :after auctex)
+
+(use-package auctex-cont-latexmk
+  :after auctex-latexmk)
 
 (use-package cdlatex)
 
@@ -518,6 +536,11 @@
 (use-package hydra)
 
 
+
+(general-define-key
+ :states 'normal
+ "gc" 'evilnc-comment-or-uncomment-lines
+ )
 
 (general-define-key 
  :keymaps 'pdf-view-mode-map

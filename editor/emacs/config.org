@@ -151,6 +151,21 @@ A list of random functions for doing miscellaneous tasks
     (/ (float (apply '+ list)) (length list)))
 #+end_src
 
+** Libs
+Libraries used by this configuration file
+
+#+begin_src emacs-lisp
+  (use-package dash
+    :config
+    (with-eval-after-load 'info-look
+  (dash-register-info-lookup)))
+
+#+end_src
+
+** TODO Tasks [0%] [0/1]
+- [ ] Add a -union function that iterates over a list of lists and adds them to list 1
+
+
 * Org
 Org mode is a formatted plain text language.
 
@@ -221,7 +236,7 @@ Bable, used for code/src blocks in org mode
   (require 'org-tempo)
 
 
-  ;; Is there a better way to do this?
+  ;; Is there a better way to do this?  (use -union iterator function when it's done)
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("jv" . "src java"))
   (add-to-list 'org-structure-template-alist '("cc" . "src C"))
@@ -233,6 +248,7 @@ Bable, used for code/src blocks in org mode
   (add-to-list 'org-structure-template-alist '("sq" . "src sql"))
 
 #+end_src
+
 
 ** Roam
 Org Roam, a Zettlekan system for emacs org mode.
@@ -310,7 +326,7 @@ Orgit, Linking git repos and forge instances inside of org mode.
   (use-package orgit-forge)
 #+end_src
 
-** TODO Tasks [19%]
+** TODO Tasks [17%]
 - [X] Determine if log into drawer is nessecerary
 - [X] Determine if agenda start with log mode is needed
 - [ ] Replace visual-fill mode with [[https://github.com/rnkn/olivetti][Olivetti]]
@@ -349,11 +365,10 @@ Orgit, Linking git repos and forge instances inside of org mode.
   - [ ] Uni
   - [ ] Tasks
   - [ ] Misc
-
-** Commands
-| Command | key | Purpose |
-|         |     |         |
-
+- [ ] Add a org-babel-expand-src-block for
+  - [ ] other tab
+  - [ ] other window
+    
 ** Dependencies 
 - aspell
 - aspell-en
@@ -401,18 +416,45 @@ Magit, a git client for emacs and forge a git instance tool.
     (setq TeX-parse-self t)
     (setq-default TeX-master nil)
     (setq TeX-PDF-mode t)
-    )
+    :hook
+    (LaTeX-mode . turn-on-reftex))
+
+  (use-package auctex-cluttex
+    :after auctex)
 
 #+end_src
 
-Autex within org mode
+** Completion
+#+begin_src emacs-lisp
+
+  (use-package auto-complete-auctex
+    :after auctex)
+
+#+end_src
+** LaTeXMK
+#+begin_src emacs-lisp
+
+  (use-package auctex-latexmk
+    :after auctex)
+
+  (use-package auctex-cont-latexmk
+    :after auctex-latexmk)
+
+#+end_src
+
+** CDLaTeX
+package for org latex 
 #+begin_src emacs-lisp
   (use-package cdlatex)
 #+end_src
 ** TODO Task [0%]
 - [ ] Configure Auctex
-  - [ ] Tex buffers
-  - [ ] Org Buffers (CDLatex)
+  - [ ] Auctex
+  - [ ] REFTeX
+  - [ ] Auctex-latexmk
+  - [ ] auctex-cont-latexmk
+  - [ ] auctex-cluttex
+
 * Markdown
 * Term
 ** eshell
@@ -523,7 +565,6 @@ used for orderless regex matching.
     (completion-styles '(orderless basic))
     (completion-category-defaults nil)
     (completion-category-overrides '((file (styles partial-completion)))))
-
 #+end_src
 
 ** Consult
@@ -702,8 +743,8 @@ Cape, completion functions for emacs. More configurations can be found @ [[https
 
 #+end_src
 
-** TODO Tasks [0%]
-- [ ] Add C-{j,k} to vert-next vert-prev
+** TODO Tasks [50%]
+- [X] Add C-{j,k} to vert-next vert-prev
 - [ ] Look at vertico extensions
   
 * Cheatsheet
@@ -720,58 +761,65 @@ Cape, completion functions for emacs. More configurations can be found @ [[https
 Emacs VI Layer, Vim keybinds inside of emacs
 
 ** Setup
+*** Evil
 #+begin_src emacs-lisp
 
-  (defun hyp/evil-hook ()
-    (dolist (mode '(custom-mode
-                    git-rebase-mode
-                    nov-mode
-                    term-mode))
-      (add-to-list 'evil-emacs-state-modes mode)))
+    (defun hyp/evil-hook ()
+      (dolist (mode '(custom-mode
+                      git-rebase-mode
+                      nov-mode
+                      term-mode))
+        (add-to-list 'evil-emacs-state-modes mode)))
 
 
-  (use-package evil
-    :init
+    (use-package evil
+      :init
 
-    (setq evil-want-integration t)
-    (setq evil-want-keybinding nil)
-    (setq evil-want-C-u-scroll t)
-    (setq evil-want-C-i-jump nil)
-    (setq evil-undo-system 'undo-redo)
+      (setq evil-want-integration t)
+      (setq evil-want-keybinding nil)
+      (setq evil-want-C-u-scroll t)
+      (setq evil-want-C-i-jump nil)
+      (setq evil-undo-system 'undo-redo)
 
-    :hook (evil-mode . hyp/evil-hook)
-    :init
-    (evil-mode 1)
-    :config
-    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+      :hook (evil-mode . hyp/evil-hook)
+      :init
+      (evil-mode 1)
+      :config
+      (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+      (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
-    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+      (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+      (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-    (evil-set-initial-state 'messages-buffer-mode 'normal))
+      (evil-set-initial-state 'messages-buffer-mode 'normal))
 
-  (use-package evil-collection
-    :after evil
-    :config
-    (evil-collection-init '(calendar
-                            calc
-                            counsel
-                            consult
-                            dired
-                            dashboard
-                            eshell
-                            info
-                            magit
-                            magit-todos
-                            magit-section
-                            mu4e
-                            mu4e-conversation
-                            ))) 
 
 #+end_src
 
 #+begin_src emacs-lisp
+    (use-package evil-collection
+      :after evil
+      :config
+      (evil-collection-init '(calendar
+                              calc
+                              counsel
+                              consult
+                              dired
+                              dashboard
+                              eshell
+                              info
+                              magit
+                              magit-todos
+                              magit-section
+                              mu4e
+                              mu4e-conversation
+                              ))) 
+
+#+end_src
+
+*** General
+#+begin_src emacs-lisp
+  
   (use-package general
     :config
     (general-evil-setup t)
@@ -781,6 +829,7 @@ Emacs VI Layer, Vim keybinds inside of emacs
       :global-prefix "C-SPC"))
 
   (use-package hydra)
+
 #+end_src
 
 ** Prefix
@@ -790,6 +839,15 @@ Prefix key mapping
 #+end_src
 
 ** Keymaps
+
+*** Evil
+Some evil keybinds to try and mimic my neovim keybinds
+#+begin_src emacs-lisp
+  (general-define-key
+   :states 'normal
+   "gc" 'evilnc-comment-or-uncomment-lines
+   )
+#+end_src
 
 *** PDFs
 #+begin_src emacs-lisp
@@ -849,7 +907,7 @@ Increase or decrease text
     ("f" nil "finished" :exit t))
 #+end_src
 
-** TODO [14%]
+** TODO [12%]
 - [X] Configure evil collection (add and remove supported modes)
 - [ ] Implement the window hydra
 - [ ] Keymap switch [0/1] [0%]
@@ -857,4 +915,5 @@ Increase or decrease text
 - [ ] Add hydras for tedious and repetetive actions
 - [ ] Add keys for reverting buffer.
 - [ ] Bind Info-follow-nearest-node to RET in info-evil mode
+- [ ] Add spc keymap for flyspell-{buffer,region} 
   
