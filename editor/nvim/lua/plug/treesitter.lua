@@ -157,9 +157,12 @@ return {
     {
         "kylechui/nvim-surround",
         event = "VeryLazy",
+        branch = "main",
         config = function()
-            -- TODO: add cheatsheet for surround binds
-            require("nvim-surround").setup()
+            -- TODO: add cheatsheet for surround bindsk
+            require("nvim-surround").setup({
+
+            })
         end,
     },
 }

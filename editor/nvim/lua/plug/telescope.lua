@@ -100,6 +100,7 @@ return {
 
             local blt = require 'telescope.builtin'
             vim.keymap.set('n', '<leader>sh', blt.help_tags, { desc = '[S]earch [H]elp' })
+            vim.keymap.set('n', '<leader>sc', blt.help_tags, { desc = '[S]earch [H]elp' })
             vim.keymap.set('n', '<leader>sk', blt.keymaps, { desc = '[S]earch [K]eymaps' })
             vim.keymap.set('n', '<leader>sf', blt.find_files, { desc = '[S]earch [F]iles' })
             vim.keymap.set('n', '<leader>so', blt.builtin, { desc = '[S]earch [S]elect Telescope' })
@@ -108,6 +109,10 @@ return {
             vim.keymap.set('n', '<leader>sd', blt.diagnostics, { desc = '[S]earch [D]iagnostics' })
             vim.keymap.set('n', '<leader>sr', blt.resume, { desc = '[S]earch [R]esume' })
             vim.keymap.set('n', '<leader>sb', blt.buffers, { desc = '[S]earch existing [B]uffers' })
+            vim.keymap.set('n', '<leader>gsf', blt.git_files, { desc = '[G]it [S]earch [F]iles' })
+            vim.keymap.set('n', '<leader>gss', blt.git_status, { desc = '[G]it [S]earch [S]tatus' })
+            vim.keymap.set('n', '<leader>gsc', blt.git_commits, { desc = '[G]it [S]earch [C]ommits' })
+            vim.keymap.set('n', '<leader>gsb', blt.git_branches, { desc = '[G]it [S]earch [B]ranches' })
             vim.keymap.set('n', '<leader>s.', blt.oldfiles,
                 { desc = '[S]earch Recent Files ("." for repeat)' })
             vim.keymap.set('n', '<leader>fu', ":Telescope undo<CR>", { desc = 'Open [U]ndo' })

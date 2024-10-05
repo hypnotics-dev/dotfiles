@@ -21,6 +21,7 @@ return {
                 { "<leader>cp", group = "[C]ode [P]eek" },
                 { "<leader>cc", group = "[C]ode [C]omments" },
                 { "<leader>s",  group = "[S]earch" },
+                { "<leader>sv", group = "[S]earch [V]ersion Control" },
                 { "<leader>w",  group = "[W]orkspace" },
                 { "<leader>d",  group = "[D]ebug" },
                 { "<leader>f",  group = "[F]ile" },
