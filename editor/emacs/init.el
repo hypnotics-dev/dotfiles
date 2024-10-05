@@ -159,17 +159,15 @@
 
 (require 'org-tempo)
 
+(unbind-key "C-v" org-babel-map)
+(unbind-key "v" org-babel-map)
 
-;; Is there a better way to do this?  (use -union iterator function when it's done)
-(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-(add-to-list 'org-structure-template-alist '("jv" . "src java"))
-(add-to-list 'org-structure-template-alist '("cc" . "src C"))
-(add-to-list 'org-structure-template-alist '("sh" . "src sh"))
-(add-to-list 'org-structure-template-alist '("mk" . "src makefile"))
-(add-to-list 'org-structure-template-alist '("ll" . "src lua"))
-(add-to-list 'org-structure-template-alist '("ls" . "src lisp"))
-(add-to-list 'org-structure-template-alist '("lx" . "src latex"))
-(add-to-list 'org-structure-template-alist '("sq" . "src sql"))
+(-union org-structure-template-alist
+	'(("sq" . "src sql") ("lx" . "src latex")
+	  ("ls" . "src lisp") ("ll" . "src lua")
+	  ("mk" . "src makefile") ("sh" . "src sh")
+	  ("cc" . "src C") ("jv" . "src java")
+	  ("el" . "src emacs-lisp")))
 
 (use-package org-roam
   :ensure t
@@ -570,6 +568,20 @@
  "C-d" 'corfu-scroll-down
  "C-i" 'corfu-info-location
  "M-g" 'corfu-quit
+ )
+
+(general-define-key
+ :keymaps 'org-mode-map
+ "C-c C-v C-v" '(lambda () (interactive)
+		(tab-new) (org-edit-special) (delete-other-windows)) 
+ "C-c C-v v" 'org-edit-special
+ )
+
+(which-key-add-key-based-replacements "C-c C-v C-v" "open-src-block-in-new-tab")
+
+(general-define-key
+ :keymaps 'org-src-mode-map
+ "C-c k" '(lambda () (interactive) (org-edit-src-exit) (tab-close))
  )
 
 (defhydra hydra-text-scale (:timeout 4)

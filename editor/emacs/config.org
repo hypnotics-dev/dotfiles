@@ -164,8 +164,6 @@ Libraries used by this configuration file
 #+end_src
 
 ** TODO Tasks [0%] [0/1]
-
-
 * Org
 Org mode is a formatted plain text language.
 
@@ -235,6 +233,9 @@ Bable, used for code/src blocks in org mode
 
   (require 'org-tempo)
 
+  (unbind-key "C-v" org-babel-map)
+  (unbind-key "v" org-babel-map)
+
   (-union org-structure-template-alist
   	'(("sq" . "src sql") ("lx" . "src latex")
   	  ("ls" . "src lisp") ("ll" . "src lua")
@@ -243,8 +244,6 @@ Bable, used for code/src blocks in org mode
   	  ("el" . "src emacs-lisp")))
 
 #+end_src
-
-
 
 ** Roam
 Org Roam, a Zettlekan system for emacs org mode.
@@ -322,7 +321,7 @@ Orgit, Linking git repos and forge instances inside of org mode.
   (use-package orgit-forge)
 #+end_src
 
-** TODO Tasks [17%]
+** TODO Tasks [26%]
 - [X] Determine if log into drawer is nessecerary
 - [X] Determine if agenda start with log mode is needed
 - [ ] Replace visual-fill mode with [[https://github.com/rnkn/olivetti][Olivetti]]
@@ -353,17 +352,16 @@ Orgit, Linking git repos and forge instances inside of org mode.
 - [X] Add keybind to add file links in org mode
   org-insert-link asks for type before hand, make a keybind for files specifically
 - [ ] Add a way to autoconfigure gitconfigure orgit atributes (like in the readme)
-- [ ] Configure Org Keymap
-- [ ] Setup LanguageTool locally for gramar and parphrasing support.
+- [X] Configure Org Keymap
+- [ ] Setup LanguageTool locally for grammar and paraphrasing support.
 - [ ] Setup org tags for [0/5] [0%]
   - [ ] Notes
   - [ ] Books
   - [ ] Uni
   - [ ] Tasks
   - [ ] Misc
-- [ ] Add a org-babel-expand-src-block for
-  - [ ] other tab
-  - [ ] other window
+- [X] Add a org-babel-expand-src-block for
+  - [X] other tab
     
 ** Dependencies 
 - aspell
@@ -872,6 +870,8 @@ Some evil keybinds to try and mimic my neovim keybinds
 
 #+end_src
 
+#+RESULTS:
+
 *** Completion
 Key rebinds for corfu
 #+begin_src emacs-lisp
@@ -891,6 +891,25 @@ Key rebinds for corfu
 
 #+end_src
 
+*** Org
+**** Babel
+#+begin_src emacs-lisp
+  (general-define-key
+   :keymaps 'org-mode-map
+   "C-c C-v C-v" '(lambda () (interactive)
+  		(tab-new) (org-edit-special) (delete-other-windows)) 
+   "C-c C-v v" 'org-edit-special
+   )
+
+  (which-key-add-key-based-replacements "C-c C-v C-v" "open-src-block-in-new-tab")
+#+end_src
+
+#+begin_src emacs-lisp
+  (general-define-key
+   :keymaps 'org-src-mode-map
+   "C-c k" '(lambda () (interactive) (org-edit-src-exit) (tab-close))
+   )
+#+end_src
 ** Hydras
 Increase or decrease text
 #+begin_src emacs-lisp
