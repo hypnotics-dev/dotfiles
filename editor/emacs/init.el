@@ -449,7 +449,7 @@
   (corfu-scroll-margin 2)        ;; Use scroll margin
   :config
   (keymap-unset corfu-map "RET")
-  
+
   :init
   (global-corfu-mode))
 
@@ -589,3 +589,16 @@
   ("k" text-scale-increase 1 "in")
   ("j" text-scale-decrease 1 "out")
   ("f" nil "finished" :exit t))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(cape corfu gnuplot which-key visual-fill-column vertico pdf-tools orgit-forge org-roam org-ql orderless nov modus-themes marginalia hydra hl-todo helpful git-modes general evil-collection embark-consult dirvish deadgrep cdlatex auctex all-the-icons)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
