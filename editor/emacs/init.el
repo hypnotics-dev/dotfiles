@@ -170,12 +170,12 @@
 (unbind-key "C-v" org-babel-map)
 (unbind-key "v" org-babel-map)
 
-(-union org-structure-template-alist
-	'(("sq" . "src sql") ("lx" . "src latex")
-	  ("ls" . "src lisp") ("ll" . "src lua")
-	  ("mk" . "src makefile") ("sh" . "src sh")
-	  ("cc" . "src C") ("jv" . "src java")
-	  ("el" . "src emacs-lisp")))
+(setq org-structure-template-alist (-union org-structure-template-alist
+      '(("sq" . "src sql") ("lx" . "src latex")
+        ("ls" . "src lisp") ("ll" . "src lua")
+        ("mk" . "src makefile") ("sh" . "src sh")
+        ("cc" . "src C") ("jv" . "src java")
+        ("el" . "src emacs-lisp"))))
 
 (use-package org-roam
   :ensure t
@@ -454,15 +454,15 @@
   (global-corfu-mode))
 
 ;; Use Dabbrev with Corfu!
-(use-package dabbrev
-  ;; Swap M-/ and C-M-/
-  :bind (("M-/" . dabbrev-completion)
-         ("C-M-/" . dabbrev-expand))
-  :config
-  (add-to-list 'dabbrev-ignored-buffer-regexps "\\` ")
-  (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
-  (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
-  (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
+ (use-package dabbrev
+   ;; Swap M-/ and C-M-/
+   :bind (("M-/" . dabbrev-completion)
+          ("C-M-/" . dabbrev-expand))
+   :config
+   (add-to-list 'dabbrev-ignored-buffer-regexps "\\` ")
+   (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
+   (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
+   (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
 
 (use-package cape
   ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
@@ -573,7 +573,7 @@
 (general-define-key
  :keymaps 'org-mode-map
  "C-c C-v C-v" '(lambda () (interactive)
-		(tab-new) (org-edit-special) (delete-other-windows)) 
+  	      (tab-new) (org-edit-special) (delete-other-windows)) 
  "C-c C-v v" 'org-edit-special
  )
 
@@ -589,16 +589,3 @@
   ("k" text-scale-increase 1 "in")
   ("j" text-scale-decrease 1 "out")
   ("f" nil "finished" :exit t))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(cape corfu gnuplot which-key visual-fill-column vertico pdf-tools orgit-forge org-roam org-ql orderless nov modus-themes marginalia hydra hl-todo helpful git-modes general evil-collection embark-consult dirvish deadgrep cdlatex auctex all-the-icons)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

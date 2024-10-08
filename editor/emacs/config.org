@@ -135,7 +135,9 @@ Emacs use-package sugested by vertico
     (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
 
+
 #+end_src
+
 
 ** Functions
 A list of random functions for doing miscellaneous tasks
@@ -244,12 +246,12 @@ Bable, used for code/src blocks in org mode
   (unbind-key "C-v" org-babel-map)
   (unbind-key "v" org-babel-map)
 
-  (-union org-structure-template-alist
-  	'(("sq" . "src sql") ("lx" . "src latex")
-  	  ("ls" . "src lisp") ("ll" . "src lua")
-  	  ("mk" . "src makefile") ("sh" . "src sh")
-  	  ("cc" . "src C") ("jv" . "src java")
-  	  ("el" . "src emacs-lisp")))
+  (setq org-structure-template-alist (-union org-structure-template-alist
+        '(("sq" . "src sql") ("lx" . "src latex")
+          ("ls" . "src lisp") ("ll" . "src lua")
+          ("mk" . "src makefile") ("sh" . "src sh")
+          ("cc" . "src C") ("jv" . "src java")
+          ("el" . "src emacs-lisp"))))
 
 #+end_src
 
@@ -314,6 +316,7 @@ Creating plots with ascii text and gnuplot
 #+begin_src emacs-lisp
   (use-package gnuplot)
 #+end_src
+
 ** Org QL
 Org QL, query org files with a query language
 
@@ -388,6 +391,10 @@ Magit, a git client for emacs and forge a git instance tool.
     :after magit)
 
 #+end_src
+
+** Functions 
+Supplemental functions for magit
+
 
 ** TODO Tasks [33%]
 - [X] Make sure evil collection works on magit, forge and git-modes
@@ -511,7 +518,6 @@ Extra options
 - [ ] Add package to restore to last used location
 - [ ] Center Text from nov-mode
 * Completion
-
 ** vertico
 the vertical completion framework
 
@@ -691,14 +697,14 @@ Corfu provides a ui for completion (for elisp)
     (corfu-scroll-margin 2)        ;; Use scroll margin
     :config
     (keymap-unset corfu-map "RET")
-    
+  
     :init
     (global-corfu-mode))
 #+end_src
 
 Configuration for dabbrev
 #+begin_src emacs-lisp
-  ;; Use Dabbrev with Corfu!
+ ;; Use Dabbrev with Corfu!
   (use-package dabbrev
     ;; Swap M-/ and C-M-/
     :bind (("M-/" . dabbrev-completion)
@@ -708,7 +714,7 @@ Configuration for dabbrev
     (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
     (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
     (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
-
+  
 #+end_src
 
 Cape, completion functions for emacs. More configurations can be found @ [[https://github.com/minad/cape][Cape]]
@@ -722,7 +728,7 @@ Cape, completion functions for emacs. More configurations can be found @ [[https
     (add-hook 'completion-at-point-functions #'cape-file)
     (add-hook 'completion-at-point-functions #'cape-elisp-block)
     )
-
+  
 #+end_src
 
 ** TODO Tasks [50%]
