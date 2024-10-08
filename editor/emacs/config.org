@@ -150,6 +150,14 @@ A list of random functions for doing miscellaneous tasks
     "Returns the average of the elements of a number list"
     (/ (float (apply '+ list)) (length list)))
 
+  (defun hyp/evil-scroll (up &optional count)
+    "Move the cursor up|down count times, making sure it lands on an empty line"
+    (if up
+        (evil-next-line (or count 1)) 
+      (evil-previous-line (or count 1)))
+    (unless (looking-at-p "^[[:space:]]*$") (nov-evil-scroll up))
+    (recenter))
+
 #+end_src
 
 ** Libs
@@ -381,20 +389,13 @@ Magit, a git client for emacs and forge a git instance tool.
 
 #+end_src
 
-** Commands
-| Command | Key | Purpose |
-|---------+-----+---------|
-|         |     |         |
-
-** TODO Tasks [0%]
-- [ ] Make sure evil collection works on magit, forge and git-modes
-- [ ] Make sure gpg aut works well, i.e type password once per several hours or server lifetime?
+** TODO Tasks [33%]
+- [X] Make sure evil collection works on magit, forge and git-modes
+- [-] Make sure gpg aut works well, i.e type password once per several hours or server lifetime?
+  - [X] On Laptop
+  - [ ] Dekstop
 - [ ] Verify if system crafters magit configuration should be implemented
 - [ ] Add keybinds to summon magit in main buffer.
-- [0%] Add docs 
-  - [ ] Common keys to acces magit in emacs
-  - [ ] Keys for forge
-  - [ ] Keys for accessing git modes files
 ** Dependencies
 - git (for magit)
 - GnuPG (for decrypting authinfo file)
@@ -490,17 +491,6 @@ Configuration
 
 #+end_src
 
-#+begin_src emacs-lisp
-  (defun nov-evil-scroll (up &optional count)
-    "Move the cursor up|down count times, making sure it lands on an empty line"
-    (if up
-        (evil-next-line (or count 1)) 
-      (evil-previous-line (or count 1)))
-    (unless (looking-at-p "^[[:space:]]*$") (nov-evil-scroll up))
-    (recenter))
-
-  
-#+end_src
 
 ** PDFs
 
@@ -862,8 +852,8 @@ Some evil keybinds to try and mimic my neovim keybinds
    :keymaps 'nov-mode-map
    "n" 'nov-next-document
    "p" 'nov-previous-document
-   "j" '(lambda () (interactive) (nov-evil-scroll t 8))
-   "k" '(lambda () (interactive) (nov-evil-scroll nil 8))
+   "j" '(lambda () (interactive) (hyp/evil-scroll t 8))
+   "k" '(lambda () (interactive) (hyp/evil-scroll nil 8))
    "C-j" '(lambda () (interactive) (evil-next-line) (recenter))
    "C-k" '(lambda () (interactive) (evil-previous-line) (recenter))
    )
@@ -910,6 +900,7 @@ Key rebinds for corfu
    "C-c k" '(lambda () (interactive) (org-edit-src-exit) (tab-close))
    )
 #+end_src
+
 ** Hydras
 Increase or decrease text
 #+begin_src emacs-lisp

@@ -106,6 +106,14 @@
   "Returns the average of the elements of a number list"
   (/ (float (apply '+ list)) (length list)))
 
+(defun hyp/evil-scroll (up &optional count)
+  "Move the cursor up|down count times, making sure it lands on an empty line"
+  (if up
+      (evil-next-line (or count 1)) 
+    (evil-previous-line (or count 1)))
+  (unless (looking-at-p "^[[:space:]]*$") (nov-evil-scroll up))
+  (recenter))
+
 (use-package dash
   :config
   (with-eval-after-load 'info-look
@@ -276,14 +284,6 @@
          (nov-mode . visual-fill-column-mode)))
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-
-(defun nov-evil-scroll (up &optional count)
-  "Move the cursor up|down count times, making sure it lands on an empty line"
-  (if up
-      (evil-next-line (or count 1)) 
-    (evil-previous-line (or count 1)))
-  (unless (looking-at-p "^[[:space:]]*$") (nov-evil-scroll up))
-  (recenter))
 
 (use-package pdf-tools
   :hook
@@ -551,8 +551,8 @@
  :keymaps 'nov-mode-map
  "n" 'nov-next-document
  "p" 'nov-previous-document
- "j" '(lambda () (interactive) (nov-evil-scroll t 8))
- "k" '(lambda () (interactive) (nov-evil-scroll nil 8))
+ "j" '(lambda () (interactive) (hyp/evil-scroll t 8))
+ "k" '(lambda () (interactive) (hyp/evil-scroll nil 8))
  "C-j" '(lambda () (interactive) (evil-next-line) (recenter))
  "C-k" '(lambda () (interactive) (evil-previous-line) (recenter))
  )
