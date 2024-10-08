@@ -316,9 +316,8 @@ return {
     {
         "mfussenegger/nvim-jdtls",
         ft = "java",
-        lazy = false,
-        init = function()
-            require("config.java")
+        config = function()
+            require("jdtls").start_or_attach(require("config.java").config)
         end,
     },
 }
