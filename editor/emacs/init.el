@@ -229,13 +229,21 @@
 (use-package orgit)
 (use-package orgit-forge)
 
-(use-package magit)
+(use-package magit
+  :custom
+  (magit-repository-directories
+   '(("~/dev/git/" . 3)
+     ("~/dev/dotfiles/" . 1)
+     ("~/stuff/org/" . 1)))
+  )
 
-(use-package forge
-  :after magit)
+    (use-package forge
+      :after magit)
 
-(use-package git-modes
-  :after magit)
+    (use-package git-modes
+      :after magit)
+
+(defun hyp/magit-dir (dir) (interactive "DOpen with git:") (magit-status dir))
 
 (use-package auctex
   :config
@@ -533,7 +541,15 @@
 
 (use-package hydra)
 
+(hyp/leader-keys
+  "w" 'hyp/window-hydra/body
+  )
 
+(hyp/leader-keys
+  "vrf" 'hyp/magit-dir
+  )
+(which-key-add-key-based-replacements "SPC v" "Version Control")
+(which-key-add-key-based-replacements "SPC v r" "Repo Functions")
 
 (general-define-key
  :states 'normal
@@ -585,7 +601,37 @@
  )
 
 (defhydra hydra-text-scale (:timeout 4)
-  "scale text"
-  ("k" text-scale-increase 1 "in")
-  ("j" text-scale-decrease 1 "out")
-  ("f" nil "finished" :exit t))
+    "scale text"
+    ("k" text-scale-increase 1 "in")
+    ("j" text-scale-decrease 1 "out")
+    ("f" nil "finished" :exit t))
+
+(defhydra hyp/window-hydra (:colour amaranth
+                              :hint nil) ; warn on foreign keys?
+    "
+      ^Focus^         ^Move^         ^Mod Size^            ^Other^
+  ^^^^^^^^-----------------------------------------------------------------
+  _j_: Focus Down _J_: Move Down _s_: Increase Vert _-_: Split Horizontal  
+  _k_: Focus Up   _K_: Move Up   _w_: Decrease Vert _|_: Split Vertical
+  _l_: Focus ->   _L_: Move ->   _a_: Increase Hori _c_: Close
+  _h_: Focus <-   _H_: Move <-   _d_: Decrease Hori _x_: Kill
+"
+    ("j" evil-window-down)
+    ("k" evil-window-up)
+    ("h" evil-window-left)
+    ("l" evil-window-right)
+    ("J" evil-window-move-very-top)
+    ("K" evil-window-move-very-bottom)
+    ("H" evil-window-move-far-left)
+    ("L" evil-window-move-far-right)
+    ("s" evil-window-increase-height)
+    ("w" evil-window-decrease-height)
+    ("a" evil-window-increase-width)
+    ("d" evil-window-decrease-width)
+    ("-" evil-window-split)
+    ("\\" evil-window-vsplit)
+    ("|" evil-window-vsplit)
+    ("c" evil-window-delete)
+    ("x" kill-buffer-and-window)
+    ("q" nil "quit" :exit t)
+    )
