@@ -101,7 +101,7 @@ return {
                     )
 
                     -- Rename a symbol
-                    map(n, "<leader>cn", vim.lsp.buf.rename, "[C]ode [R]ename")
+                    map(n, "<leader>cr", vim.lsp.buf.rename, "[C]ode [R]ename")
                     -- map(ni, "<C-x>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
                     -- Perform a code action

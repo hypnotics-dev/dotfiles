@@ -56,7 +56,7 @@ vim.opt.splitright = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", nbsp = "␣" }
+vim.opt.listchars = { tab = "» ", nbsp = "␣", lead = "." }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
