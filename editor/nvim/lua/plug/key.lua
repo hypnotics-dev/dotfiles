@@ -20,6 +20,7 @@ return {
                 { "<leader>c",  group = "[C]ode" },
                 { "<leader>cp", group = "[C]ode [P]eek" },
                 { "<leader>cc", group = "[C]ode [C]omments" },
+                { "<leader>cs", group = "[C]ode [S]nippets" },
                 { "<leader>s",  group = "[S]earch" },
                 { "<leader>sv", group = "[S]earch [V]ersion Control" },
                 { "<leader>w",  group = "[W]orkspace" },

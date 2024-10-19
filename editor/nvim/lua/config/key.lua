@@ -75,8 +75,7 @@ map("n", "<leader>wp", function()
     harpoon:list():next()
 end, { desc = "Harpoon [P]revious buffer" })
 
--- Toggle Zen mode
-map("n", "<leader>wz", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
+
 
 -- Invoke oil
 map("n", "<leader>fo", "<cmd>Oil<CR>", { desc = "Open [O]il" })
@@ -110,4 +109,12 @@ map('v', '<A-k>', '<cmd>MoveBlock(-1)<CR>', { desc = "Move line down", silent = 
 map('v', '<A-h>', '<cmd>MoveWord(-1)<CR>', { desc = "Move word left", silent = true, })
 map('v', '<A-l>', '<cmd>MoveWord(1)<CR>', { desc = "Move word right", silent = true, })
 
-map('n', '<leader>wcp', '<cmd>colorscheme palenight<CR>', { desc = "Swap to palenight" })
+map('n', '<leader>wCp', '<cmd>colorscheme palenight<CR>', { desc = "Swap to [P]alenight" })
+map('n', '<leader>wCm', '<cmd>colorscheme modus_vivendi<CR>', { desc = "Swap to [M]odus" })
+
+-- Evaluate line with :lua
+map('n', '<leader>ce', 'yyq:ilua <Esc>p<BS><CR>', { desc = "[E]valuate line" })
+
+-- TODO: SPC-z keyspace (folding and screen navigations)
+
+map("n", "<leader>zw", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
