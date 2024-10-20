@@ -104,11 +104,7 @@ return {
             local blt = require 'telescope.builtin'
             vim.keymap.set('n', '<leader>sh', blt.help_tags, { desc = '[S]earch [H]elp' })
             vim.keymap.set('n', '<leader>sc', blt.commands, { desc = '[S]earch [C]ommands' })
-            vim.keymap.set('n', '<leader>skn', blt.keymaps({ "n" }), { desc = '[S]earch [N]ormal Mode' })
-            vim.keymap.set('n', '<leader>ski', blt.keymaps({ "i" }), { desc = '[S]earch [I]nsert Mode' })
-            vim.keymap.set('n', '<leader>skv', blt.keymaps({ "c" }), { desc = '[S]earch [V]isual Mode' })
-            vim.keymap.set('n', '<leader>skc', blt.keymaps({ "x" }), { desc = '[S]earch [C]ommands Mode' })
-            vim.keymap.set('n', '<leader>skm', blt.keymaps, { desc = '[S]earch All [M]odes' })
+            vim.keymap.set('n', '<leader>sk', blt.keymaps, { desc = '[S]earch [K]eymaps' })
             vim.keymap.set('n', '<leader>sf', blt.find_files, { desc = '[S]earch [F]iles' })
             vim.keymap.set('n', '<leader>sF', blt.oldfiles, { desc = '[S]earch Old [F]iles' })
             vim.keymap.set('n', '<leader>sT', blt.builtin, { desc = '[S]earch [T]elescope' })
@@ -130,8 +126,7 @@ return {
             vim.keymap.set({ 'n', 'i' }, '<C-x>b', blt.buffers, { desc = 'Search existing [B]uffers' })
             vim.keymap.set('n', "<leader>cR", blt.lsp_references, { desc = "[C]ode [R]eference" })
             vim.keymap.set('n', "<leader>sT", blt.treesitter, { desc = "[S]earch [T]reesitter of Buffer" })
-            vim.keymap.set('n', "<leader>wT", blt.tags({ cwd = functions.fs.projectRoot() }),
-                { desc = "[W]orkspace Search [T]ags" })
+            vim.keymap.set('n', "<leader>wT", blt.tags, { desc = "[W]orkspace Search [T]ags" })
             vim.keymap.set('n', "<leader>wm", blt.lsp_references, { desc = "[W]orkspace [M]arks" })
             vim.keymap.set('n', "<leader>wr", blt.registers, { desc = "[W]orkspace [R]egisters" })
 
