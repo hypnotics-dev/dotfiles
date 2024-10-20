@@ -1,3 +1,4 @@
+local functions = require("config.functions")
 return {
     {
         'nvim-telescope/telescope.nvim',
@@ -98,25 +99,41 @@ return {
             pcall(require('telescope').load_extension 'ui-select')
             pcall(require('telescope').load_extension 'undo')
 
+            -- NOTE: new search functions added here
+            -- Search references
             local blt = require 'telescope.builtin'
             vim.keymap.set('n', '<leader>sh', blt.help_tags, { desc = '[S]earch [H]elp' })
-            vim.keymap.set('n', '<leader>sc', blt.help_tags, { desc = '[S]earch [H]elp' })
-            vim.keymap.set('n', '<leader>sk', blt.keymaps, { desc = '[S]earch [K]eymaps' })
+            vim.keymap.set('n', '<leader>sc', blt.commands, { desc = '[S]earch [C]ommands' })
+            vim.keymap.set('n', '<leader>skn', blt.keymaps({ "n" }), { desc = '[S]earch [N]ormal Mode' })
+            vim.keymap.set('n', '<leader>ski', blt.keymaps({ "i" }), { desc = '[S]earch [I]nsert Mode' })
+            vim.keymap.set('n', '<leader>skv', blt.keymaps({ "c" }), { desc = '[S]earch [V]isual Mode' })
+            vim.keymap.set('n', '<leader>skc', blt.keymaps({ "x" }), { desc = '[S]earch [C]ommands Mode' })
+            vim.keymap.set('n', '<leader>skm', blt.keymaps, { desc = '[S]earch All [M]odes' })
             vim.keymap.set('n', '<leader>sf', blt.find_files, { desc = '[S]earch [F]iles' })
-            vim.keymap.set('n', '<leader>so', blt.builtin, { desc = '[S]earch [S]elect Telescope' })
+            vim.keymap.set('n', '<leader>sF', blt.oldfiles, { desc = '[S]earch Old [F]iles' })
+            vim.keymap.set('n', '<leader>sT', blt.builtin, { desc = '[S]earch [T]elescope' })
             vim.keymap.set('n', '<leader>sw', blt.grep_string, { desc = '[S]earch current [W]ord' })
             vim.keymap.set('n', '<leader>sg', blt.live_grep, { desc = '[S]earch by [G]rep' })
             vim.keymap.set('n', '<leader>sd', blt.diagnostics, { desc = '[S]earch [D]iagnostics' })
             vim.keymap.set('n', '<leader>sr', blt.resume, { desc = '[S]earch [R]esume' })
+            vim.keymap.set('n', '<leader>sm', blt.man_pages, { desc = '[S]earch [M]an' })
             vim.keymap.set('n', '<leader>sb', blt.buffers, { desc = '[S]earch existing [B]uffers' })
             vim.keymap.set('n', '<leader>gsf', blt.git_files, { desc = '[G]it [S]earch [F]iles' })
             vim.keymap.set('n', '<leader>gss', blt.git_status, { desc = '[G]it [S]earch [S]tatus' })
+            vim.keymap.set('n', '<leader>gsS', blt.git_stash, { desc = '[G]it [S]earch [S]tash' })
             vim.keymap.set('n', '<leader>gsc', blt.git_commits, { desc = '[G]it [S]earch [C]ommits' })
+            vim.keymap.set('n', '<leader>gsC', blt.git_bcommits, { desc = '[G]it [S]earch Buffer [C]ommits' })
             vim.keymap.set('n', '<leader>gsb', blt.git_branches, { desc = '[G]it [S]earch [B]ranches' })
             vim.keymap.set('n', '<leader>s.', blt.oldfiles,
                 { desc = '[S]earch Recent Files ("." for repeat)' })
             vim.keymap.set('n', '<leader>fu', ":Telescope undo<CR>", { desc = 'Open [U]ndo' })
             vim.keymap.set({ 'n', 'i' }, '<C-x>b', blt.buffers, { desc = 'Search existing [B]uffers' })
+            vim.keymap.set('n', "<leader>cR", blt.lsp_references, { desc = "[C]ode [R]eference" })
+            vim.keymap.set('n', "<leader>sT", blt.treesitter, { desc = "[S]earch [T]reesitter of Buffer" })
+            vim.keymap.set('n', "<leader>wT", blt.tags({ cwd = functions.fs.projectRoot() }),
+                { desc = "[W]orkspace Search [T]ags" })
+            vim.keymap.set('n', "<leader>wm", blt.lsp_references, { desc = "[W]orkspace [M]arks" })
+            vim.keymap.set('n', "<leader>wr", blt.registers, { desc = "[W]orkspace [R]egisters" })
 
             -- Complex telescope behaviour
             vim.keymap.set('n', '<leader>/', function()

@@ -309,13 +309,12 @@ return {
                         end
                     end)
 
-                    map('n', '<leader>gs', gitsigns.stage_hunk, { desc = "[S]tage Hunk" })
+                    map('n', '<leader>gS', gitsigns.stage_hunk, { desc = "[S]tage Hunk" })
                     map('n', '<leader>gr', gitsigns.reset_hunk, { desc = "[R]eset Hunk" })
                     map('v', 'gs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
                         { desc = "[S]tage Hunk" })
                     map('v', 'gr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
                         { desc = "[R]eset Hunk" })
-                    map('n', '<leader>gS', gitsigns.stage_buffer, { desc = "[S]tage Buffer" })
                     map('n', '<leader>gu', gitsigns.undo_stage_hunk, { desc = "[U]ndo Stage Hunk" })
                     map('n', '<leader>gR', gitsigns.reset_buffer, { desc = "[R]eset Buffer" })
                     map('n', '<leader>gp', gitsigns.preview_hunk, { desc = "[P]review Hunk" })

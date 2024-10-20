@@ -115,6 +115,5 @@ map('n', '<leader>wCm', '<cmd>colorscheme modus_vivendi<CR>', { desc = "Swap to 
 -- Evaluate line with :lua
 map('n', '<leader>ce', 'yyq:ilua <Esc>p<BS><CR>', { desc = "[E]valuate line" })
 
--- TODO: SPC-z keyspace (folding and screen navigations)
-
 map("n", "<leader>zw", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode On/Off" })
+map("n", "<leader>z=", "<cmd>Telescope spell_suggest<CR>", { desc = "Spell Check with Telescope" })

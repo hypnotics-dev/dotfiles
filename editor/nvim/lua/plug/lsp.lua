@@ -1,3 +1,4 @@
+local functions = require("config.functions")
 return {
     {
         "neovim/nvim-lspconfig",
