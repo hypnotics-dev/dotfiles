@@ -6,8 +6,6 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- TODO: setup a system to check if all external deps are installed
-
 local var = require("config.vars")
 
 if vim.fn.findfile(var.sys.confPath .. "lua/config/hardware.lua") == nil then

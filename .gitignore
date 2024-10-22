@@ -81,5 +81,7 @@ tags
 
 # NVIM #
 ########
-
 editor/nvim/lazy-lock.json
+editor/nvim/lua/config/hardware.lua
+*doc/
+*.log

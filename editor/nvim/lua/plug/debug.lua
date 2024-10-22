@@ -65,6 +65,7 @@ return {
 
             -- Dap UI setup
             -- For more information, see |:help nvim-dap-ui|
+            -- FIXME:  breaking change in DAP UI, there are some missing fields
             dapui.setup {
                 -- Set icons to characters that are more likely to work in every terminal.
                 --    Feel free to remove or use ones that you like more! :)

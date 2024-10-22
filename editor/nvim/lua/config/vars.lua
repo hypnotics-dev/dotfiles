@@ -13,7 +13,6 @@ return {
                 "gzip",
                 "gcc",
                 "gcc-libs",
-                "qtile",
             },
             void = {
 
