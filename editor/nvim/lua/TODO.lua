@@ -1,3 +1,2 @@
 -- TODO: Add dadbod package for db interface (https://github.com/tpope/vim-dadbod)
--- TODO: add keybinds to scroll telescope preview
--- TODO: add keybinds to expand telescope preview to a tmp buffer.
+-- TODO: Change rust.wrap() function to support "WORD" as well as 'X'
