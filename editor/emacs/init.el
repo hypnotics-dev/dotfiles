@@ -98,9 +98,9 @@
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
 (defun date () 
-       "Prints the current date in message buffer"
-       (interactive)
-       (message (calendar-date-string (calendar-current-date))))
+  "Prints the current date in message buffer"
+  (interactive)
+  (message (calendar-date-string (calendar-current-date))))
 
 (defun hyp/average (list)
   "Returns the average of the elements of a number list"
@@ -111,8 +111,15 @@
   (if up
       (evil-next-line (or count 1)) 
     (evil-previous-line (or count 1)))
-  (unless (looking-at-p "^[[:space:]]*$") (nov-evil-scroll up))
+  (unless (looking-at-p "^[[:space:]]*$") (hyp/evil-scroll up))
   (recenter))
+
+(defun hyp/html-babel-src-template ()
+  "Insert a template for an HTML source block in Org-mode."
+  (interactive)
+  (insert "#+begin_src html\n\n#+end_src")
+  (forward-line -1)
+  (indent-for-tab-command))
 
 (use-package dash
   :config
@@ -126,12 +133,14 @@
   (visual-line-mode 1)
   (visual-fill-column-mode 1)
   (setq visual-fill-column-width 175 ;; n char of writing room
+	org-hierarchical-todo-statistics nil
         visual-fill-column-center-text 1))
 
 (use-package org
   :ensure t
   :hook
   (org-mode . hyp-org-mode-setup)
+  (org-mode . flyspell-mode)
   ;(org-mode . org-cdlatex-mode)
   :config
   (setq org-ellipsis " ▾")
@@ -158,6 +167,7 @@
    (C          . t)
    (lisp       . t)
    (java       . t)
+   (sqlite     . t)
    (shell      . t)
    (lua        . t)
    (latex      . t)
@@ -171,7 +181,7 @@
 (unbind-key "v" org-babel-map)
 
 (setq org-structure-template-alist (-union org-structure-template-alist
-      '(("sq" . "src sql") ("lx" . "src latex")
+      '(("sq" . "src sqlite") ("lx" . "src latex")
         ("ls" . "src lisp") ("ll" . "src lua")
         ("mk" . "src makefile") ("sh" . "src sh")
         ("cc" . "src C") ("jv" . "src java")
@@ -232,18 +242,21 @@
 (use-package magit
   :custom
   (magit-repository-directories
-   '(("~/dev/git/" . 3)
+   '(("~/dev/git/" . 2)
+     ("~/dev/proj/" . 2)
      ("~/dev/dotfiles/" . 1)
      ("~/stuff/org/" . 1)))
+  :hook
+  (git-commit-mode . flyspell-mode)
   )
 
-    (use-package forge
-      :after magit)
+(use-package forge
+  :after magit)
 
-    (use-package git-modes
-      :after magit)
+(use-package git-modes
+  :after magit)
 
-(defun hyp/magit-dir (dir) (interactive "DOpen with git:") (magit-status dir))
+(defun hyp/magit-dir (dir) (interactive "Open with git:") (magit-status dir))
 
 (use-package auctex
   :config
@@ -268,9 +281,9 @@
 
 (use-package cdlatex)
 
-(use-package eshell
-  :hook
-  ((eshell-mode . (lambda () (setq-local corfu-auto nil)))))
+;; (use-package eshell
+;;   :hook
+;;   ((eshell-mode . (lambda () (setq-local corfu-auto nil)))))
 
 (defun my-centre-width ()
   "Return a fill column that makes centring pleasant regardless of screen size"
@@ -298,6 +311,11 @@
   (pdf-view-mode . (lambda () (interactive) (display-line-numbers-mode -1)))
   :init
   (pdf-loader-install))
+
+(setf dired-kill-when-opening-new-dired-buffer t)
+
+(add-hook 'prog-mode-hook #'flyspell-prog-mode)
+(add-hook 'html-mode-hook #'flyspell-mode)
 
 (use-package vertico
   :custom
@@ -444,22 +462,27 @@
   :init
   (marginalia-mode))
 
-(use-package corfu
-  ;; Optional customizations
-  :custom
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-separator ?\s)          ;; Orderless field separator
-  (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-  (corfu-quit-no-match t)        
-  (corfu-preview-current nil)    ;; Disable current candidate preview
-  (corfu-preselect 'prompt)      ;; Preselect the prompt
-  (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-  (corfu-scroll-margin 2)        ;; Use scroll margin
-  :config
-  (keymap-unset corfu-map "RET")
+;; (use-package corfu
+;;   ;; Optional customizations
+;;   :custom
+;;   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+;;   (corfu-separator ?\s)          ;; Orderless field separator
+;;   (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+;;   (corfu-quit-no-match t)        
+;;   (corfu-preview-current nil)    ;; Disable current candidate preview
+;;   (corfu-preselect 'prompt)      ;; Preselect the prompt
+;;   (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+;;   (corfu-scroll-margin 2)        ;; Use scroll margin
+;;   :config
+;;   (keymap-unset corfu-map "RET")
 
-  :init
-  (global-corfu-mode))
+;;   :init
+;;   (global-corfu-mode))
+
+(use-package company
+  :ensure t
+  :hook
+  (prog-mode-hook . company-mode))
 
 ;; Use Dabbrev with Corfu!
  (use-package dabbrev
@@ -476,11 +499,10 @@
   ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
   ;; Press C-c p ? to for help.
   :bind ("C-c p" . cape-prefix-map) ;; Alternative keys: M-p, M-+, ...
-  :init
-  (add-hook 'completion-at-point-functions #'cape-dabbrev)
-  (add-hook 'completion-at-point-functions #'cape-file)
-  (add-hook 'completion-at-point-functions #'cape-elisp-block)
-  )
+  :hook
+  (completion-at-point-functions . cape-elisp-block)
+  (completion-at-point-functions . cape-file)
+  (completion-at-point-functions . cape-dabbrev))
 
 (display-time)
 
@@ -518,8 +540,6 @@
   :config
   (evil-collection-init '(calendar
                           calc
-                          counsel
-                          consult
                           dired
                           dashboard
                           eshell
@@ -551,6 +571,11 @@
 (which-key-add-key-based-replacements "SPC v" "Version Control")
 (which-key-add-key-based-replacements "SPC v r" "Repo Functions")
 
+;; (hyp/leader-key
+;;  :keymaps 'nov-mode-map
+;;  "c}" '(lambda () (interactive) (setq hyp/nov-mode))
+;;  "c
+
 (general-define-key
  :states 'normal
  "gc" 'evilnc-comment-or-uncomment-lines
@@ -574,22 +599,23 @@
  )
 
 (general-define-key
- :keymaps 'corfu-map
- "C-f" 'corfu-insert
- "C-j" 'corfu-next
- "C-k" 'corfu-previous
- "C-e" 'corfu-last
- "C-a" 'corfu-first
- "C-u" 'corfu-scroll-up
- "C-d" 'corfu-scroll-down
- "C-i" 'corfu-info-location
- "M-g" 'corfu-quit
+ :keymaps 'company-active-map
+ "C-j" 'company-select-next-or-abort
+ "C-k" 'company-select-previous-or-abort
+ "M-f" 'company-show-location
+ "C-f" 'company-complete-selection
+ "C-w" 'evil-delete-backward-word
  )
+
+(general-define-key
+ :states 'insert
+ :keymaps 'prog-mode-map
+ "<tab>" 'company-complete)
 
 (general-define-key
  :keymaps 'org-mode-map
  "C-c C-v C-v" '(lambda () (interactive)
-  	      (tab-new) (org-edit-special) (delete-other-windows)) 
+		(tab-new) (org-edit-special) (delete-other-windows)) 
  "C-c C-v v" 'org-edit-special
  )
 
@@ -599,6 +625,22 @@
  :keymaps 'org-src-mode-map
  "C-c k" '(lambda () (interactive) (org-edit-src-exit) (tab-close))
  )
+
+(general-define-key
+ :keymaps 'org-mode-map
+ :states 'insert
+ "C-<" 'hyp/html-babel-src-template ;; I want to replace this with some sort of selector at some point
+ "<tab>" 'tempo-complete-tag)
+
+(general-define-key
+ :keymaps 'ctl-x-map
+ "C-b" 'ibuffer
+ )
+
+(general-define-key
+ :keymaps 'ibuffer-mode-map
+ "j"  'evil-next-line
+ "k" 'evil-previous-line)
 
 (defhydra hydra-text-scale (:timeout 4)
     "scale text"

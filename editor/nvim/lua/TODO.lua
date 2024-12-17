@@ -1,2 +1,18 @@
 -- TODO: Add dadbod package for db interface (https://github.com/tpope/vim-dadbod)
 -- TODO: Change rust.wrap() function to support "WORD" as well as 'X'
+-- TODO: Build a better Workflow around quick fix lists (TJ DeVris made a good video on it)
+--
+-- TODO: Potentialaly prune these plugins
+--
+-- actions-preview
+-- Comment.nvim
+-- dashboard-nvim
+-- mason.nvim
+-- mason-tool-installer.nvim
+-- mason-lspconfig.nvim
+-- move.nvim
+-- nvim-lspconfig
+-- nvim-surround
+-- nvim-nio
+-- todo-comments
+-- zen-mode

@@ -87,7 +87,7 @@ editor/nvim/lua/config/hardware.lua
 *.log
 
 
-*hardware.lua
+*hardware.*
 
 
 

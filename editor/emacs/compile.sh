@@ -26,11 +26,9 @@ flags=(
 
 
 # echo ${flags[@]}
+git clean -fdx
 ./autogen.sh
-if (ls | grep -x build );then
-    rm -r build
-    mkdir build 
-fi
+mkdir build
 cd build
 
 CFLAGS='-march=x86-64 -O2 -pipe -fno-plt -fexceptions -Wp,-D_FORTIFY_SOURCE=3 -Wformat \
