@@ -1,0 +1,7 @@
+-- TODO: Register treesitter queries here
+--
+-- TODO: Queries go in querie/language/*
+--
+-- TODO: Check out treesitter-utils
+--
+-- TODO: See what we can do with
