@@ -195,7 +195,7 @@ return {
                     cpp = true,
                 }
                 return {
-                    timeout_ms = 500,
+                    timeout_ms = 1000,
                     lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
                 }
             end,

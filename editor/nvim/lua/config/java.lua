@@ -1,4 +1,6 @@
 -- Configuration file to be loaded whenever a java file is edited
+--
+-- TODO: Add command to clear jdtls cache (~/.cache/jdtls/) to solve jdtls exit code 13 (as per https://github.com/LunarVim/LunarVim/issues/2090#issuecomment-2153699079)
 
 local mason_path_jdtls = vim.fn.stdpath("data") .. "/mason/packages/jdtls/plugins/"
 local mason_path_java_debug = vim.fn.stdpath("data") .. "/mason/packages/java-debug-adapter/extension/server/"
