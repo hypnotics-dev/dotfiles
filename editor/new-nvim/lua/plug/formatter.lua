@@ -25,7 +25,7 @@
 --
 return {
   {
-    "stevearc/conform.nvim",
+    "stevearc/conform.nvim", -- replace with vim.lsp.buf.format
     opts = {
       formatter_by_ft = {
         -- TODO: Install stylua,google-java-format,clang-format,nixfmt and rustfmt
