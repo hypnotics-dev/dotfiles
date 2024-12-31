@@ -15,7 +15,7 @@ git checkout nightly
 
 
 echo "Building neovim with commit $(git log --oneline --shortstat | head -n1 | awk '{print $1}')"
-echo "$(git log --oneline --shorstat | awk '{for (i=2;i<=NF;i++) print $i}')"
+#echo "$(git log --oneline --shortstat | awk '{for (i=2;i<=NF;i++) print $i}')" # This seems to be broken
 sleep 1
 
 make CMAKE_BUILD_TYPE=RelWithDebInfo
