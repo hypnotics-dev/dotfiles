@@ -316,6 +316,7 @@
 
 (add-hook 'prog-mode-hook #'flyspell-prog-mode)
 (add-hook 'html-mode-hook #'flyspell-mode)
+(add-hook 'markdown-mode-hook #'flyspell-mode)
 
 (use-package vertico
   :custom
@@ -539,16 +540,10 @@
   :after evil
   :config
   (evil-collection-init '(calendar
-                          calc
                           dired
-                          dashboard
                           eshell
                           info
                           magit
-                          magit-todos
-                          magit-section
-                          mu4e
-                          mu4e-conversation
                           )))
 
 (use-package general
@@ -630,7 +625,8 @@
  :keymaps 'org-mode-map
  :states 'insert
  "C-<" 'hyp/html-babel-src-template ;; I want to replace this with some sort of selector at some point
- "<tab>" 'tempo-complete-tag)
+ "<tab>" 'tempo-complete-tag ;; This screws up table, make a function that does org-cycle or if tempo-complete-tag
+ )
 
 (general-define-key
  :keymaps 'ctl-x-map
