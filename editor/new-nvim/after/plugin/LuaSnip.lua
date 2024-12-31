@@ -6,13 +6,13 @@ vim.keymap.set({ "i", "s" }, "<C-H>", function() ls.jump(-1) end, { silent = tru
 
 -- NOTE: Not sure if we need these
 vim.keymap.set({ "i", "s" }, "<C-j>", function()
-    if ls.choice_active() then
-        ls.change_choice(1)
-    end
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
 end, { silent = true })
 
 vim.keymap.set({ "i", "s" }, "<C-K>", function()
-    if ls.choice_active() then
-        ls.change_choice(-1)
-    end
+  if ls.choice_active() then
+    ls.change_choice(-1)
+  end
 end, { silent = true })

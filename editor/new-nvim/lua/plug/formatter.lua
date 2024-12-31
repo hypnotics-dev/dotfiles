@@ -24,27 +24,27 @@
 -- Configure to read opts from a file or default
 --
 return {
-    {
-        "stevearc/conform.nvim",
-        opts = {
-            formatter_by_ft = {
-                -- TODO: Install stylua,google-java-format,clang-format,nixfmt and rustfmt
-                lua = { "stylua" },
-                java = { "google-java-format" },
-                rust = { "rustfmt", lsp_format = "fallback" },
-                c = { "clang-format" },
-                cpp = { "clang-format" },
-                nix = { "nixfmt" },
-                -- TODO: Not sure if I want to use this, will investigate other spell check options as well
-                --
-                -- ["*"] = {"codespell"},
-            },
-            default_format_opts = {
-                lsp_format = "fallback"
-            },
-            log_level = vim.log.levels.ERROR,
-            notify_on_error = true,
-            notify_no_formatters = false,
-        },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatter_by_ft = {
+        -- TODO: Install stylua,google-java-format,clang-format,nixfmt and rustfmt
+        lua = { "stylua" },
+        java = { "google-java-format" },
+        rust = { "rustfmt", lsp_format = "fallback" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        nix = { "nixfmt" },
+        -- TODO: Not sure if I want to use this, will investigate other spell check options as well
+        --
+        -- ["*"] = {"codespell"},
+      },
+      default_format_opts = {
+        lsp_format = "fallback"
+      },
+      log_level = vim.log.levels.ERROR,
+      notify_on_error = true,
+      notify_no_formatters = false,
     },
+  },
 }
