@@ -1,0 +1,1 @@
+-- Java LSP is configured in after/ftplugin/java.lua
