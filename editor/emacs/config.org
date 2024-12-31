@@ -862,6 +862,20 @@ Maybe use projectile.
 * Dashboard
 * Modes
 Mode specific configuration 
+* Fun
+** Fireplace
+Creates a fireplace animation in emacs
+
+#+begin_src emacs-lisp
+  (use-package fireplace
+    :hook
+    (fireplace-mode .  fireplace--disable-minor-modes)
+    :init
+    (add-hook 'fireplace-mode-hook (lambda () (display-line-numbers-mode -1)))
+    )
+
+#+end_src
+
 * Keys
 Emacs VI Layer, Vim keybinds inside of emacs
 
@@ -869,34 +883,35 @@ Emacs VI Layer, Vim keybinds inside of emacs
 *** Evil
 #+begin_src emacs-lisp
 
-    (defun hyp/evil-hook ()
-      (dolist (mode '(custom-mode
-                      git-rebase-mode
-                      nov-mode
-                      term-mode))
-        (add-to-list 'evil-emacs-state-modes mode)))
+  (defun hyp/evil-hook ()
+    (dolist (mode '(custom-mode
+                    git-rebase-mode
+                    nov-mode
+                    fireplace-mode
+                    term-mode))
+      (add-to-list 'evil-emacs-state-modes mode)))
 
 
-    (use-package evil
-      :init
+  (use-package evil
+    :init
 
-      (setq evil-want-integration t)
-      (setq evil-want-keybinding nil)
-      (setq evil-want-C-u-scroll t)
-      (setq evil-want-C-i-jump nil)
-      (setq evil-undo-system 'undo-redo)
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump nil)
+    (setq evil-undo-system 'undo-redo)
 
-      :hook (evil-mode . hyp/evil-hook)
-      :init
-      (evil-mode 1)
-      :config
-      (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-      (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+    :hook (evil-mode . hyp/evil-hook)
+    :init
+    (evil-mode 1)
+    :config
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
-      (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-      (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-      (evil-set-initial-state 'messages-buffer-mode 'normal))
+    (evil-set-initial-state 'messages-buffer-mode 'normal))
 
 
 #+end_src
