@@ -200,7 +200,7 @@ return {
                 }
             end,
             formatters_by_ft = {
-                lua = { "luaformatter" },
+                lua = { "stylua" },
                 java = { "google-java-format" },
                 bash = { "beautysh" },
                 rust = { "rust_analyzer" },
