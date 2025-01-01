@@ -17,4 +17,9 @@ return {
     },
   },
   "anuvyklack/hydra.nvim",
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
+  },
 }

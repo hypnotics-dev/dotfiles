@@ -1,6 +1,7 @@
 return {
   { -- Might Remove
     "folke/todo-comments.nvim",
+    event = "BufEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       keywords = {
@@ -139,6 +140,14 @@ return {
         -- map('n', '<leader>gtd', gitsigns.toggle_deleted, { desc = "[D]eleted" })
         -- map('n', '<leader>gth', '<cmd>Gitsigns toggle_linehl<CR>', { desc = "[H]ighlts Lines" })
         -- map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+        --
+        -- vim.keymap.set("n", "]t", function()
+        --   require("todo-comments").jump_next()
+        -- end, { desc = "Next todo comment" })
+        --
+        -- vim.keymap.set("n", "[t", function()
+        --   require("todo-comments").jump_prev()
+        -- end, { desc = "Previous todo comment" })
       }
     end
   },
