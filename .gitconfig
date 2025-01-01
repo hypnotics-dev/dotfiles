@@ -6,4 +6,4 @@
 [core]
         excludesfile = /home/hypnotics/.gitignore
 [init]
-	defaultBranch = main
+	defaultBranch = master
