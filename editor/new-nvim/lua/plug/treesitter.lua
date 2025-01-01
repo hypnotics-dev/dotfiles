@@ -91,7 +91,7 @@ return {
         -- TODO: Fix existing jumps
         -- TODO: Make keybind to add all moves to QuickFix List
         enable = true,
-        set_jumps = true,         -- whether to set jumps in the jumplist
+        set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
           ["]m"] = { query = "@function.outer", desc = "Next function" },
           ["]]"] = { query = "@class.outer", desc = "Next class" },
@@ -139,6 +139,11 @@ return {
       },
     },
   },
+  {
+    "Wansmer/treesj",
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {
 
-
+    },
+  }
 }
