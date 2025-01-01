@@ -5,5 +5,4 @@ require('config.lazy')
 -- https://github.com/stevearc/quicker.nvim
 --
 -- flash.nvim
--- mini.surround Using gs as prefix instead of s
 -- treesj
