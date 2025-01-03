@@ -24,8 +24,9 @@ flags=(
     "--with-modules" 
 )
 
-
+EMACS_DIR="$HOME/dev/git/emacs/"
 # echo ${flags[@]}
+cd $EMACS_DIR
 git clean -fdx
 ./autogen.sh
 mkdir build

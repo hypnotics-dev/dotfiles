@@ -9,6 +9,7 @@ cd "$NVIM_GIT_PATH"
 echo "Updating nvim repo"
 
 git switch master
+sudo make distclean
 git pull
 sleep 1
 git checkout nightly
