@@ -8,7 +8,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    { import = "plugs" },
+    { import = "plug" },
   },
   checker = { enabled = true },
 })

@@ -22,7 +22,6 @@ return {
           ['<C-u>'] = 'preview_scrolling_up',
           ['<C-d>'] = 'preview_scrolling_down',
           ['<enter>'] = 'select_default',
-          ['<c-t>'] = require("trouble.sources.telescope").open,
           ['<c-x>'] = 'delete_buffer',
         },
         n = {
@@ -35,7 +34,6 @@ return {
           ['u'] = 'results_scrolling_up',
           ['d'] = 'results_scrolling_down',
           ['enter'] = 'select_default',
-          ['<c-t>'] = require("trouble.sources.telescope").open,
           ['<c-x>'] = 'delete_buffer',
         }
       },
@@ -44,25 +42,25 @@ return {
       ['ui-select'] = {
         require('telescope.themes').get_dropdown(),
       },
-      undo = {
-        side_by_side = true,
-        layout_strategy = 'vertical', -- TODO: Might change
-        layout_config = {
-          preview_height = 0.8,
-        },
-        mappings = {
-          i = {
-            ['<cr>'] = require('telescope-undo.actions').restore,
-            ['<C-a'] = require('telescope-undo.actions').yank_additions,
-            ['<C-d'] = require('telescope-undo.actions').yank_deletions,
-          },
-          n = {
-            ["a"] = require("telescope-undo.actions").yank_additions,
-            ["d"] = require("telescope-undo.actions").yank_deletions,
-            ["<cr>"] = require("telescope-undo.actions").restore,
-          }
-        }
-      },
+      -- undo = { -- Broken ?
+      --   side_by_side = true,
+      --   layout_strategy = 'vertical', -- TODO: Might change
+      --   layout_config = {
+      --     preview_height = 0.8,
+      --   },
+      --   mappings = {
+      --     i = {
+      --       ['<cr>'] = require('telescope-undo.actions').restore,
+      --       ['<C-a'] = require('telescope-undo.actions').yank_additions,
+      --       ['<C-d'] = require('telescope-undo.actions').yank_deletions,
+      --     },
+      --     n = {
+      --       ["a"] = require("telescope-undo.actions").yank_additions,
+      --       ["d"] = require("telescope-undo.actions").yank_deletions,
+      --       ["<cr>"] = require("telescope-undo.actions").restore,
+      --     }
+      --   }
+      -- },
       fzf = {
         fuzzy = true,
         override_generic_sorter = true,
