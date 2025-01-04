@@ -3,53 +3,52 @@
 -- https://github.com/L3MON4D3/LuaSnip
 return {
   {
-    "Saghen/blink.cm",
+    "Saghen/blink.cmp",
+    enabled = false, -- Reanable when plugin becomes more stable
     dependencies = {
-      {
-        -- TODO: Learn how to make luasnips
-        "L3MON4D3/LuaSnip",
-        version = 'v2.*',
-        dependencies = {
-          -- NOTE: may have to lazy load these
-          "rafamadriz/friendly-snippets",
-        },
-        opts = {
-          loaders = {
-            from_vscode = {
-              load = {
-                include = {
-                  "rust",
-                  "c",
-                  "lua",
-                  "java",
-                  "perl",
-                  "make",
-                  "nix",
-                  "perl",
-                  "sql",
-                  "editorconfig",
-                  -- "cpp",
-                  -- "ocaml",
-                  -- "haskell",
-                }
+      -- TODO: Learn how to make luasnips
+      "L3MON4D3/LuaSnip",
+      version = 'v2.*',
+      dependencies = {
+        -- NOTE: may have to lazy load these
+        "rafamadriz/friendly-snippets",
+      },
+      opts = {
+        loaders = {
+          from_vscode = {
+            load = {
+              include = {
+                "rust",
+                "c",
+                "lua",
+                "java",
+                "perl",
+                "make",
+                "nix",
+                "perl",
+                "sql",
+                "editorconfig",
+                -- "cpp",
+                -- "ocaml",
+                -- "haskell",
               }
             }
-          },
+          }
         },
-      }
+      },
     },
 
     opts = {
-      snippet = {
-        expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
-        active = function(filter)
-          if filter and filter.direction then
-            return require('luasnip').jumpable(filter.direction)
-          end
-          return require('luasnip').in_snippet()
-        end,
-        jump = function(direction) require('luasnip').jump(direction) end,
-      },
+      -- snippet = {
+      --   expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
+      --   active = function(filter)
+      --     if filter and filter.direction then
+      --       return require('luasnip').jumpable(filter.direction)
+      --     end
+      --     return require('luasnip').in_snippet()
+      --   end,
+      --   jump = function(direction) require('luasnip').jump(direction) end,
+      -- },
       sources = {
         default = { 'lsp', 'path', 'luasnip', 'buffer' },
         per_filetype = {
@@ -81,9 +80,9 @@ return {
         min_keyword_length = 0,
         -- Example for setting a minimum keyword length for markdown files
         -- min_keyword_length = function()
-        --   return vim.bo.filetype == 'markdown' and 2 or 0
-        -- end,
-        -- Please see https://github.com/Saghen/blink.compat for using `nvim-cmp` sources
+          --   return vim.bo.filetype == 'markdown' and 2 or 0
+          -- end,
+          -- Please see https://github.com/Saghen/blink.compat for using `nvim-cmp` sources
 
         providers = { -- TODO: Figure out a way to filter on providers
           lsp = {
@@ -141,9 +140,9 @@ return {
             }
             --- Example usage for disabling the snippet provider after pressing trigger characters (i.e. ".")
             -- enabled = function(ctx)
-            --   return ctx ~= nil and ctx.trigger.kind == vim.lsp.protocol.CompletionTriggerKind.TriggerCharacter
-            -- end,
-          },
+              --   return ctx ~= nil and ctx.trigger.kind == vim.lsp.protocol.CompletionTriggerKind.TriggerCharacter
+              -- end,
+            },
 
           luasnip = {
             name = 'Luasnip',
@@ -164,10 +163,10 @@ return {
               -- default to all visible buffers
               get_bufnrs = function()
                 return vim
-                    .iter(vim.api.nvim_list_wins())
-                    :map(function(win) return vim.api.nvim_win_get_buf(win) end)
-                    :filter(function(buf) return vim.bo[buf].buftype ~= 'nofile' end)
-                    :totable()
+                .iter(vim.api.nvim_list_wins())
+                :map(function(win) return vim.api.nvim_win_get_buf(win) end)
+                :filter(function(buf) return vim.bo[buf].buftype ~= 'nofile' end)
+                :totable()
               end,
             },
           },
@@ -190,9 +189,9 @@ return {
           -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
           range = 'prefix',
           -- Regex used to get the text when fuzzy matching
-          regex = '[-_]\\|\\k',
+          -- regex = '[-_]\\|\\k',
           -- After matching with regex, any characters matching this regex at the prefix will be excluded
-          exclude_from_prefix_regex = '[\\-]',
+          -- exclude_from_prefix_regex = '[\\-]',
         },
 
         trigger = {
@@ -312,8 +311,6 @@ return {
         ['<C-f>'] = { 'select_and_accept' },
         ['<C-e>'] = { 'hide' },
         ['<C-g>'] = { 'cancel' },
-        ['<Tab>'] = { 'snippet_forward', 'fallback' },
-        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
         ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
@@ -322,8 +319,8 @@ return {
       -- Example for blocking multiple filetypes
       enabled = function()
         return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
-            and vim.bo.buftype ~= "prompt"
-            and vim.b.completion ~= false
+        and vim.bo.buftype ~= "prompt"
+        and vim.b.completion ~= false
       end,
 
       fuzzy = {
@@ -338,40 +335,111 @@ return {
         -- you may pass a function instead of a string to customize the sorting
         sorts = { 'score', 'sort_text' },
       },
-    },
-  },
 
-  appearance = {
-    highlight_ns = vim.api.nvim_create_namespace('blink_cmp'),
-    -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-    -- Adjusts spacing to ensure icons are aligned
-    nerd_font_variant = 'mono',
-    kind_icons = {
-      Text = '󰉿',
-      Method = '󰊕',
-      Function = '󰊕',
-      Constructor = '󰒓',
-      Field = '󰜢',
-      Variable = '󰆦',
-      Property = '󰖷',
-      Class = '󱡠',
-      Interface = '󱡠',
-      Struct = '󱡠',
-      Module = '󰅩',
-      Unit = '󰪚',
-      Value = '󰦨',
-      Enum = '󰦨',
-      EnumMember = '󰦨',
-      Keyword = '󰻾',
-      Constant = '󰏿',
-      Snippet = '󱄽',
-      Color = '󰏘',
-      File = '󰈔',
-      Reference = '󰬲',
-      Folder = '󰉋',
-      Event = '󱐋',
-      Operator = '󰪚',
-      TypeParameter = '󰬛',
+      appearance = {
+        highlight_ns = vim.api.nvim_create_namespace('blink_cmp'),
+        -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- Adjusts spacing to ensure icons are aligned
+        nerd_font_variant = 'mono',
+        kind_icons = {
+          Text = '󰉿',
+          Method = '󰊕',
+          Function = '󰊕',
+          Constructor = '󰒓',
+          Field = '󰜢',
+          Variable = '󰆦',
+          Property = '󰖷',
+          Class = '󱡠',
+          Interface = '󱡠',
+          Struct = '󱡠',
+          Module = '󰅩',
+          Unit = '󰪚',
+          Value = '󰦨',
+          Enum = '󰦨',
+          EnumMember = '󰦨',
+          Keyword = '󰻾',
+          Constant = '󰏿',
+          Snippet = '󱄽',
+          Color = '󰏘',
+          File = '󰈔',
+          Reference = '󰬲',
+          Folder = '󰉋',
+          Event = '󱐋',
+          Operator = '󰪚',
+          TypeParameter = '󰬛',
+        },
+      },
     },
   },
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      {
+        'L3MON4D3/LuaSnip',
+        build = (function()
+            if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+                return
+            end
+            return 'make install_jsregexp'
+        end)(),
+        dependencies = {
+            -- `friendly-snippets` contains a variety of premade snippets.
+            --    See the README about individual language/framework/plugin snippets:
+            --    https://github.com/rafamadriz/friendly-snippets
+            {
+              'rafamadriz/friendly-snippets',
+              config = function()
+                require('luasnip.loaders.from_vscode').lazy_load()
+              end,
+            },
+        },
+      },
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      -- 'ray-x/cmp-treesitter',
+    },
+    config = function()
+      local cmp = require 'cmp'
+      local luasnip = require 'luasnip'
+      luasnip.config.setup {}
+
+      cmp.setup {
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        completion = { completeopt = 'menu,menuone,noinsert' },
+
+        mapping = cmp.mapping.preset.insert {
+          ['<C-j>'] = cmp.mapping.select_next_item(),
+          ['<C-k>'] = cmp.mapping.select_prev_item(),
+          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+
+          ['<C-f>'] = cmp.mapping.confirm { select = true },
+          ['<C-Space>'] = cmp.mapping.complete {},
+
+          ['<C-l>'] = cmp.mapping(function()
+            if luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            end
+          end, { 'i', 's' }),
+          ['<C-h>'] = cmp.mapping(function()
+            if luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+            end
+          end, { 'i', 's' }),
+        },
+        sources = {
+          -- { name = 'treesiter' },
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+          { name = 'path' },
+        },
+      }
+    end,
+  }
 }
