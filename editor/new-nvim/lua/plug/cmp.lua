@@ -436,8 +436,9 @@ return {
         sources = {
           -- { name = 'treesiter' },
           { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'path' },
+          { name = "lazydev", group_index = 0},
+          { name = 'luasnip'  },
+          { name = 'path'     },
         },
       }
     end,

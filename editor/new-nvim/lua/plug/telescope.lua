@@ -11,6 +11,7 @@ return {
     pcall(require('telescope').load_extension 'ui-select')
     pcall(require('telescope').load_extension 'undo')
     pcall(require('telescope').load_extension 'fzf')
+    require("config.keymap.telescope")
   end,
   opts = {
     defaults = {
@@ -42,25 +43,25 @@ return {
       ['ui-select'] = {
         require('telescope.themes').get_dropdown(),
       },
-      -- undo = { -- Broken ?
-      --   side_by_side = true,
-      --   layout_strategy = 'vertical', -- TODO: Might change
-      --   layout_config = {
-      --     preview_height = 0.8,
-      --   },
-      --   mappings = {
-      --     i = {
-      --       ['<cr>'] = require('telescope-undo.actions').restore,
-      --       ['<C-a'] = require('telescope-undo.actions').yank_additions,
-      --       ['<C-d'] = require('telescope-undo.actions').yank_deletions,
-      --     },
-      --     n = {
-      --       ["a"] = require("telescope-undo.actions").yank_additions,
-      --       ["d"] = require("telescope-undo.actions").yank_deletions,
-      --       ["<cr>"] = require("telescope-undo.actions").restore,
-      --     }
-      --   }
-      -- },
+      undo = { -- Broken ?
+        side_by_side = true,
+        layout_strategy = 'vertical', -- TODO: Might change
+        layout_config = {
+          preview_height = 0.8,
+        },
+        -- mappings = {
+        --   i = {
+        --     ['<cr>'] = require('telescope-undo.actions').restore,
+        --     ['<C-a'] = require('telescope-undo.actions').yank_additions,
+        --     ['<C-d'] = require('telescope-undo.actions').yank_deletions,
+        --   },
+        --   n = {
+        --     ["a"] = require("telescope-undo.actions").yank_additions,
+        --     ["d"] = require("telescope-undo.actions").yank_deletions,
+        --     ["<cr>"] = require("telescope-undo.actions").restore,
+        --   }
+        -- }
+      },
       fzf = {
         fuzzy = true,
         override_generic_sorter = true,
