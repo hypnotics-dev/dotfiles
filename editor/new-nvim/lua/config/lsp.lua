@@ -2,8 +2,8 @@
 vim.lsp.enable({
   "lua_ls",
   "clangd",
-  "rust_analyzer", 
-   "bashls",
+  "rust_analyzer",
+  "bash_ls",
 })
 
 vim.lsp.config('*', {
