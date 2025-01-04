@@ -1,10 +1,9 @@
 -- Enable lsps here
 vim.lsp.enable({
-  "luals", 
-  "clangd", 
-  "jdtls", 
+  "lua_ls",
+  "clangd",
   "rust_analyzer", 
-  "bashls"
+   "bashls",
 })
 
 vim.lsp.config('*', {
@@ -12,9 +11,9 @@ vim.lsp.config('*', {
     textDocument = {
       semanticTokens = {
         multilineTokenSupport = true
-      }
-    }
-  }
+      },
+    },
+  },
 })
 
 -- NOTE: If auto imports unfold the folds, then either create a new autocmd or remove this one
