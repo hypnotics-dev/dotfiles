@@ -231,10 +231,15 @@ Org mode is a formatted plain text language.
     (setq org-log-into-drawer t)  
     (setq org-fold-core-style 'overlays) 
     (setq org-checkbox-hierarchical-statistics nil)
+    (setq org-todo-keywords '(
+  	  (sequence "TODO" "|" "DONE")
+  	  (sequence "REPORT" "BUG" "ISSUE" "|" "FIXED")
+  	  (sequence "CLASS" "|" "COMPLETED" "CANCELLED")
+  	  (sequence "HOMEWORK" "|" "SUBMITTED")))
     (setq org-agenda-files '(
-                             "~/stuff/org/roam/"
-                             "~/stuff/org/task.org"
-                             "~/uni/"
+  			   "~/stuff/org/agenda/uni.org"
+  			   "~/stuff/org/agenda/life.org"
+  			   "~/stuff/org/agenda/linux.org"
                              )))
 #+end_src
 
@@ -916,21 +921,19 @@ Emacs VI Layer, Vim keybinds inside of emacs
 
 #+end_src
 
-
 #+begin_src emacs-lisp
-    (use-package evil-collection
-      :after evil
-      :config
-      (evil-collection-init '(calendar
-                              dired
-                              eshell
-                              info
-                              magit
-                              ))) 
+  (use-package evil-collection
+    :after evil
+    :config
+    (evil-collection-init '(calendar
+                            dired
+                            eshell
+                            info
+                            magit
+                            ))) 
+
 
 #+end_src
-
-
 *** General
 #+begin_src emacs-lisp
   
@@ -945,8 +948,6 @@ Emacs VI Layer, Vim keybinds inside of emacs
   (use-package hydra)
 
 #+end_src
-
-
 
 ** Prefix
 SPC keybinds
@@ -979,7 +980,6 @@ SPC keybinds
 
 
 #+end_src
-
 
 
 ** Keymaps
@@ -1072,7 +1072,7 @@ Some evil keybinds to try and mimic my neovim keybinds
    :keymaps 'org-mode-map
    :states 'insert
    "C-<" 'hyp/html-babel-src-template ;; I want to replace this with some sort of selector at some point
-   "<tab>" 'tempo-complete-tag ;; This screws up table, make a function that does org-cycle or if tempo-complete-tag
+   "<tab>" '(lambda () (interactive) (tempo-expand-if-complete) (org-cycle));; This screws up table, make a function that does org-cycle or if tempo-complete-tag
    )
 #+end_src
 *** Buffers
@@ -1141,7 +1141,6 @@ Increase or decrease text
 
 
 #+end_src
-
 
 ** TODO Tasks [8%]
 - [X] Configure evil collection (add and remove supported modes)
