@@ -576,13 +576,9 @@
 (hyp/leader-keys
   "vrf" 'hyp/magit-dir
   )
-(which-key-add-key-based-replacements "SPC v" "Version Control")
-(which-key-add-key-based-replacements "SPC v r" "Repo Functions")
-
-;; (hyp/leader-key
-;;  :keymaps 'nov-mode-map
-;;  "c}" '(lambda () (interactive) (setq hyp/nov-mode))
-;;  "c
+(which-key-add-key-based-replacements
+  "SPC v" "Version Control"
+  "SPC v r" "Repo Functions")
 
 (general-define-key
  :states 'normal
@@ -640,6 +636,25 @@
  "C-<" 'hyp/html-babel-src-template ;; I want to replace this with some sort of selector at some point
  "<tab>" '(lambda () (interactive) (tempo-expand-if-complete) (org-cycle));; This screws up table, make a function that does org-cycle or if tempo-complete-tag
  )
+
+(unbind-key "C-c C-t" 'org-mode-map)
+(general-define-key
+ :keymaps 'org-mode-map
+ "C-c C-t <ret>" 'org-todo
+ "C-c C-t C-<ret>" 'org-todo
+ "C-c C-t t" '(lambda () (interactive) (insert "TODO"))
+ "C-c C-t c" '(lambda () (interactive) (insert "CLASS"))
+ "C-c C-t a" '(lambda () (interactive) (insert "HOMEWORK"))
+ "C-c C-t h" '(lambda () (interactive) (insert "HOMEWORK"))
+ "C-c C-t r" '(lambda () (interactive) (insert "REPORT")))
+
+(which-key-add-key-based-replacements
+  "C-c C-t" "Todo Prefix"
+  "C-c C-t t" "Insert TODO"
+  "C-c C-t c" "Insert CLASS"
+  "C-c C-t a" "Insert HOMEWORK"
+  "C-c C-t h" "Insert HOMEWORK"
+  "C-c C-t r" "Insert REPORT")
 
 (general-define-key
  :keymaps 'ctl-x-map
