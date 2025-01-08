@@ -398,7 +398,7 @@ return {
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
-      -- 'ray-x/cmp-treesitter',
+      'ray-x/cmp-treesitter',
     },
     config = function()
       local cmp = require 'cmp'
@@ -419,7 +419,7 @@ return {
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
 
-          ['<C-f>'] = cmp.mapping.confirm { select = true },
+          ['<C-f>'] = cmp.mapping.confirm { select = true, behavior = cmp.ConfirmBehavior.Replace},
           ['<C-Space>'] = cmp.mapping.complete {},
 
           ['<C-l>'] = cmp.mapping(function()
@@ -434,10 +434,9 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
-          -- { name = 'treesiter' },
-          { name = 'nvim_lsp' },
-          { name = "lazydev", group_index = 0},
           { name = 'luasnip'  },
+          { name = 'nvim_lsp' },
+          { name = 'treesiter' },
           { name = 'path'     },
         },
       }

@@ -11,7 +11,6 @@ return {
     pcall(require('telescope').load_extension 'ui-select')
     pcall(require('telescope').load_extension 'undo')
     pcall(require('telescope').load_extension 'fzf')
-    require("config.keymap.telescope")
   end,
   opts = {
     defaults = {
