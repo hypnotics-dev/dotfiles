@@ -4,10 +4,10 @@
 (require 'package)
 
 
-(setq package-archives '(
-                         ("melpa". "https://melpa.org/packages/"  )
-                         ("org"  . "https://orgmode.org/elpa/"    )
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
+(setq package-archives
+      '(("melpa". "https://melpa.org/packages/"  )
+        ("org"  . "https://orgmode.org/elpa/"    )
+        ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
 (unless package-archive-contents
@@ -152,6 +152,8 @@
 	  (sequence "TODO" "|" "DONE")
 	  (sequence "REPORT" "BUG" "ISSUE" "|" "FIXED")
 	  (sequence "CLASS" "|" "COMPLETED" "CANCELLED")
+	  (sequence "STUDY" "|" "DONE" )
+	  (sequence "EXAM" "|" "COMPLETED" )
 	  (sequence "HOMEWORK" "|" "SUBMITTED")))
   (setq org-agenda-files '(
 			   "~/stuff/org/agenda/uni.org"
@@ -616,6 +618,12 @@
  :keymaps 'prog-mode-map
  "<tab>" 'company-complete)
 
+(which-key-add-key-based-replacements
+  "C-c C-v" "Babel Prefix"
+  "C-c C-x" "Org Extras"
+  "C-c \"" "Gnuplot Prefix"
+  "C-c n" "Org Roam Prefix")
+
 (general-define-key
  :keymaps 'org-mode-map
  "C-c C-v C-v" '(lambda () (interactive)
@@ -637,16 +645,34 @@
  "<tab>" '(lambda () (interactive) (tempo-expand-if-complete) (org-cycle));; This screws up table, make a function that does org-cycle or if tempo-complete-tag
  )
 
+(defun hyp/insert-org-header (head)
+  "Inserts HEAD as an org header"
+  (interactive)
+  (if (not (org-at-heading-p))
+      ((funcall-interactively 'org-insert-heading-respect-content) (insert head))
+    (insert head)))
+
+
 (unbind-key "C-c C-t" 'org-mode-map)
 (general-define-key
  :keymaps 'org-mode-map
- "C-c C-t <ret>" 'org-todo
- "C-c C-t C-<ret>" 'org-todo
- "C-c C-t t" '(lambda () (interactive) (insert "TODO"))
- "C-c C-t c" '(lambda () (interactive) (insert "CLASS"))
- "C-c C-t a" '(lambda () (interactive) (insert "HOMEWORK"))
- "C-c C-t h" '(lambda () (interactive) (insert "HOMEWORK"))
- "C-c C-t r" '(lambda () (interactive) (insert "REPORT")))
+ :prefix "C-c C-t"
+ "<RET>" 'org-todo
+ "C-<return>" 'org-todo
+ "t" '(lambda () (interactive) (insert "TODO"))
+ "c" '(lambda () (interactive) (insert "CLASS"))
+ "a" '(lambda () (interactive) (insert "HOMEWORK"))
+ "h" '(lambda () (interactive) (insert "HOMEWORK"))
+ "s" '(lambda () (interactive) (insert "STUDY"))
+ "e" '(lambda () (interactive) (insert "EXAM"))
+ "r" '(lambda () (interactive) (insert "REPORT"))
+ "C-t" '(lambda () (interactive) (insert "TODO"))
+ "C-c" '(lambda () (interactive) (insert "CLASS"))
+ "C-a" '(lambda () (interactive) (insert "HOMEWORK"))
+ "C-h" '(lambda () (interactive) (insert "HOMEWORK"))
+ "C-s" '(lambda () (interactive) (insert "STUDY"))
+ "C-e" '(lambda () (interactive) (insert "EXAM"))
+ "C-r" '(lambda () (interactive) (insert "REPORT")))
 
 (which-key-add-key-based-replacements
   "C-c C-t" "Todo Prefix"
@@ -654,7 +680,18 @@
   "C-c C-t c" "Insert CLASS"
   "C-c C-t a" "Insert HOMEWORK"
   "C-c C-t h" "Insert HOMEWORK"
-  "C-c C-t r" "Insert REPORT")
+  "C-c C-t e" "Insert EXAM"
+  "C-c C-t s" "Insert STUDY"
+  "C-c C-t r" "Insert REPORT"
+  "C-c C-t C-t" "Insert TODO"
+  "C-c C-t C-c" "Insert CLASS"
+  "C-c C-t C-a" "Insert HOMEWORK"
+  "C-c C-t C-h" "Insert HOMEWORK"
+  "C-c C-t C-e" "Insert EXAM"
+  "C-c C-t C-s" "Insert STUDY"
+  "C-c C-t C-r" "Insert REPORT")
+
+
 
 (general-define-key
  :keymaps 'ctl-x-map
