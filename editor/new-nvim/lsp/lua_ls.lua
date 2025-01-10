@@ -1,8 +1,9 @@
+local lsp = require("custom.lsp")
 return {
   cmd = { "lua-language-server" },
   root_markers = { ".git", ".editorconfig" },
   filetypes = { "lua" },
-  capabilities = {},
+  capabilities = lsp.get_lsp_snippets(),
   on_attach = function()
   end,
   on_init = function()
