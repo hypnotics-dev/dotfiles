@@ -9,7 +9,4 @@ function M.map(map, key, func, opt)
   end
 
   vim.keymap.set(map,key,func,opt)
-
 end
-
-
