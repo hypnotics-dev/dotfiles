@@ -1,6 +1,7 @@
 return {
   {
     'stevearc/quicker.nvim',
+    disabled =false,
     event = "FileType qf",
     ---@module "quicker"
     ---@diagnostic disable-next-line: undefined-doc-name
