@@ -9,4 +9,11 @@ return {
   on_init = function()
     vim.notify("LuaLS Started", vim.log.levels.INFO)
   end,
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Replace",
+      },
+    },
+  }
 }

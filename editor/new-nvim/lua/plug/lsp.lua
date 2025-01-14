@@ -20,19 +20,19 @@ return {
           '--add-opens', 'java.base/java.util=ALL-UNNAMED',
           '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
-          '-jar', function()
-          local files = vim.fs.find("org.eclipse.equinox.launcher_*.jar",
-            { path = "/usr/share/java/jdtls/plugins/", depth = 1 })
-
-          for _, file in ipairs(files) do
-            if file:match("org.eclipse.equinox.launcher_.*%.jar$") then
-              return file
-            end
-          end
-
-          vim.notify("Failed to find jdtls jar", vim.log.levels.ERROR)
-          return ""
-        end,
+        --   '-jar', function()
+        --   local files = vim.fs.find("org.eclipse.equinox.launcher_*.jar",
+        --     { path = "/usr/share/java/jdtls/plugins/", depth = 1 })
+        --
+        --   for _, file in ipairs(files) do
+        --     if file:match("org.eclipse.equinox.launcher_.*%.jar$") then
+        --       return file
+        --     end
+        --   end
+        --
+        --   vim.notify("Failed to find jdtls jar", vim.log.levels.ERROR)
+        --   return ""
+        -- end,
 
 
           '-configuration', '/usr/share/java/jdtls/config_linux',
