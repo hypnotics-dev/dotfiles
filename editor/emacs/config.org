@@ -1011,6 +1011,13 @@ Some evil keybinds to try and mimic my neovim keybinds
 #+end_src
 
 *** Org
+#+begin_src emacs-lisp
+  (general-define-key
+   :keymap 'org-mode-map
+   :prefix "C-c"
+   "C-<return>" 'org-ctrl-c-ret
+   )
+#+end_src
 **** Prefix Renames
 #+begin_src emacs-lisp
   (which-key-add-key-based-replacements

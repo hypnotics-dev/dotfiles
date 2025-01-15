@@ -618,6 +618,12 @@
  :keymaps 'prog-mode-map
  "<tab>" 'company-complete)
 
+(general-define-key
+ :keymap 'org-mode-map
+ :prefix "C-c"
+ "C-<return>" 'org-ctrl-c-ret
+ )
+
 (which-key-add-key-based-replacements
   "C-c C-v" "Babel Prefix"
   "C-c C-x" "Org Extras"
@@ -646,50 +652,50 @@
  )
 
 (defun hyp/insert-org-header (head)
-  "Inserts HEAD as an org header"
-  (interactive)
-  (if (not (org-at-heading-p))
-      ((funcall-interactively 'org-insert-heading-respect-content) (insert head))
-    (insert head)))
+    "Inserts HEAD as an org header"
+    (interactive)
+    (if (not (org-at-heading-p))
+        ((funcall-interactively 'org-insert-heading-respect-content) (insert head))
+      (insert head)))
 
 
-(unbind-key "C-c C-t" 'org-mode-map)
-(general-define-key
- :keymaps 'org-mode-map
- :prefix "C-c C-t"
- "<RET>" 'org-todo
- "C-<return>" 'org-todo
- "t" '(lambda () (interactive) (insert "TODO"))
- "c" '(lambda () (interactive) (insert "CLASS"))
- "a" '(lambda () (interactive) (insert "HOMEWORK"))
- "h" '(lambda () (interactive) (insert "HOMEWORK"))
- "s" '(lambda () (interactive) (insert "STUDY"))
- "e" '(lambda () (interactive) (insert "EXAM"))
- "r" '(lambda () (interactive) (insert "REPORT"))
- "C-t" '(lambda () (interactive) (insert "TODO"))
- "C-c" '(lambda () (interactive) (insert "CLASS"))
- "C-a" '(lambda () (interactive) (insert "HOMEWORK"))
- "C-h" '(lambda () (interactive) (insert "HOMEWORK"))
- "C-s" '(lambda () (interactive) (insert "STUDY"))
- "C-e" '(lambda () (interactive) (insert "EXAM"))
- "C-r" '(lambda () (interactive) (insert "REPORT")))
-
-(which-key-add-key-based-replacements
-  "C-c C-t" "Todo Prefix"
-  "C-c C-t t" "Insert TODO"
-  "C-c C-t c" "Insert CLASS"
-  "C-c C-t a" "Insert HOMEWORK"
-  "C-c C-t h" "Insert HOMEWORK"
-  "C-c C-t e" "Insert EXAM"
-  "C-c C-t s" "Insert STUDY"
-  "C-c C-t r" "Insert REPORT"
-  "C-c C-t C-t" "Insert TODO"
-  "C-c C-t C-c" "Insert CLASS"
-  "C-c C-t C-a" "Insert HOMEWORK"
-  "C-c C-t C-h" "Insert HOMEWORK"
-  "C-c C-t C-e" "Insert EXAM"
-  "C-c C-t C-s" "Insert STUDY"
-  "C-c C-t C-r" "Insert REPORT")
+  (unbind-key "C-c C-t" 'org-mode-map)
+  (general-define-key
+   :keymaps 'org-mode-map
+   :prefix "C-c C-t"
+   "<RET>" 'org-todo
+   "C-<return>" 'org-todo
+   "t" '(lambda () (interactive) (insert "TODO"))
+   "c" '(lambda () (interactive) (insert "CLASS"))
+   "a" '(lambda () (interactive) (insert "HOMEWORK"))
+   "h" '(lambda () (interactive) (insert "HOMEWORK"))
+   "s" '(lambda () (interactive) (insert "STUDY"))
+   "e" '(lambda () (interactive) (insert "EXAM"))
+   "r" '(lambda () (interactive) (insert "REPORT"))
+   "C-t" '(lambda () (interactive) (insert "TODO"))
+   "C-c" '(lambda () (interactive) (insert "CLASS"))
+   "C-a" '(lambda () (interactive) (insert "HOMEWORK"))
+   "C-h" '(lambda () (interactive) (insert "HOMEWORK"))
+   "C-s" '(lambda () (interactive) (insert "STUDY"))
+   "C-e" '(lambda () (interactive) (insert "EXAM"))
+   "C-r" '(lambda () (interactive) (insert "REPORT")))
+;; TODO move this to an org hook
+  (which-key-add-key-based-replacements 
+    "C-c C-t" "Todo Prefix"
+    "C-c C-t t" "Insert TODO"
+    "C-c C-t c" "Insert CLASS"
+    "C-c C-t a" "Insert HOMEWORK"
+    "C-c C-t h" "Insert HOMEWORK"
+    "C-c C-t e" "Insert EXAM"
+    "C-c C-t s" "Insert STUDY"
+    "C-c C-t r" "Insert REPORT"
+    "C-c C-t C-t" "Insert TODO"
+    "C-c C-t C-c" "Insert CLASS"
+    "C-c C-t C-a" "Insert HOMEWORK"
+    "C-c C-t C-h" "Insert HOMEWORK"
+    "C-c C-t C-e" "Insert EXAM"
+    "C-c C-t C-s" "Insert STUDY"
+    "C-c C-t C-r" "Insert REPORT")
 
 
 
@@ -708,6 +714,21 @@
 ;;  :states 'normal
 ;;  "m" 'dired-mark
 ;;  )
+
+(unbind-key "g" 'bookmark-bmenu-mode-map)
+(general-define-key ; Normal Remap
+ :keymaps 'bookmark-bmenu-mode-map
+ "G" 'evil-goto-last-line
+ "j" 'evil-next-line
+ "k" 'evil-previous-line)
+
+(general-define-key ; Old functionality goes in the g prefix
+ :keymaps 'bookmark-bmenu-mode-map
+ :prefix "g"
+ "j" 'bookmark-bmenu-this-window
+ "k" 'bookmark-bmenu-delete
+ "r" 'revert-buffer
+ "g" 'evil-goto-first-line)
 
 (defhydra hydra-text-scale (:timeout 4)
     "scale text"
