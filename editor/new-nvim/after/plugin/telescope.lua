@@ -5,7 +5,7 @@ local helpers = require("custom.helpers")
 
 helpers.map("n","<leader>sb", tlb.buffers, "[S]earch [B]uffers")
 helpers.map("n","<leader>sc", tlb.commands, "[S]earch [C]ommands")
-helpers.map("n","<leader>sC", vim.notify("TODO: implement cheatsheat", vim.log.levels.WARN), "[S]earch [C]eatsheat")
+helpers.map("n","<leader>sC", function () vim.notify("TODO: implement cheatsheat", vim.log.levels.WARN) end, "[S]earch [C]eatsheat")
 helpers.map("n","<leader>sd", tlb.diagnostics, "[S]earch [D]iagnostics")
 helpers.map("n","<leader>sf", tlb.find_files, "[S]earch [F]iles")
 helpers.map("n","<leader>sgb",tlb.git_branches, "[G]it [B]ranch")
@@ -21,12 +21,13 @@ helpers.map("n","<leader>sm", tlb.marks,"[S]earch [M]arks")
 helpers.map("n","<leader>sn", function () tlb.find_files {cwd = vim.fn.stdpath('config')} end, "[S]earch [N]eovim Files")
 helpers.map("n","<leader>so", tlb.oldfiles, "[S]earch [O]ldfiles")
 helpers.map("n","<leader>sq", tlb.quickfix, "[S]earch [Q]uickFix List")
-helpers.map("n","<leader>sr", tlb.resume, "[S]earch [R]esume")
+helpers.map("n","<leader>s.", tlb.resume, "[S]earch [O]ld")
 helpers.map("n","<leader>sR", tlb.registers, "[S]earch [R]egisters")
 helpers.map("n","<leader>ss", tlb.live_grep, "[S]earch with grep")
 helpers.map("n","<leader>sS", tlb.symbols, "[S]earch [S]ymbols")
-helpers.map("n","<leader>st", vim.notify("TODO: implement todo search", vim.log.levels.WARN),"[S]earch [T]odo")
+helpers.map("n","<leader>st", function () vim.notify("TODO: implement todo search", vim.log.levels.WARN) end,"[S]earch [T]odo")
 helpers.map("n","<leader>sT", tlb.treesitter,"[S]earch [T]reesitter")
+-- TODO: In buffer fuzzy search
 
 
 --------------------------------------------------------------------------------
