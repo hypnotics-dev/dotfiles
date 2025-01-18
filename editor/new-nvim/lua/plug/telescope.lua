@@ -7,11 +7,6 @@ return {
     "debugloop/telescope-undo.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
-  config = function()
-    pcall(require("telescope").load_extension("ui-select"))
-    pcall(require("telescope").load_extension("undo"))
-    pcall(require("telescope").load_extension("fzf"))
-  end,
   opts = {
     defaults = {
       mappings = {
@@ -23,6 +18,7 @@ return {
           ["<C-d>"] = "preview_scrolling_down",
           ["<enter>"] = "select_default",
           ["<c-x>"] = "delete_buffer",
+          ["<c-g>"] = "close"
         },
         n = {
           ["j"] = "move_selection_next",
@@ -35,19 +31,20 @@ return {
           ["d"] = "results_scrolling_down",
           ["enter"] = "select_default",
           ["<c-x>"] = "delete_buffer",
+          ["<c-g>"] = "close"
         },
       },
     },
-    extensions = { -- configs go here
+    extensions = {
       ["ui-select"] = {
         require("telescope.themes").get_dropdown(),
       },
-      undo = { -- Broken ?
+      undo = { 
         side_by_side = true,
         layout_strategy = "vertical", -- TODO: Might change
         layout_config = {
           preview_height = 0.8,
-        },
+        },-- Broken, why? 
         -- mappings = {
         --   i = {
         --     ['<cr>'] = require('telescope-undo.actions').restore,
@@ -69,4 +66,11 @@ return {
       },
     },
   },
+  config = function(_,opts)
+    require("telescope").setup(opts)
+
+    pcall(require("telescope").load_extension("ui-select"))
+    pcall(require("telescope").load_extension("undo"))
+    pcall(require("telescope").load_extension("fzf"))
+  end,
 }

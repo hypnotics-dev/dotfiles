@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd('LSPAttach', {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client.server_capabilities.inlayHintProvider and lsp.inlay_hint then
       -- TODO: the nil values are for filters, we should implemnt a way to build a filter list for inlay hints at some point
-      map("n", "<leader>ch", function ()lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled(nil),nil) end, "[C]ode [F]ormat (Conform)")
+      map("n", "<leader>ch", function ()lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled(nil),nil) end, "[C]ode [H]ints")
     end
   end
 })

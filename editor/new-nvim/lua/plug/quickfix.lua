@@ -1,7 +1,7 @@
 return {
   {
     'stevearc/quicker.nvim',
-    disabled =false,
+    enabled = false,
     event = "FileType qf",
     ---@module "quicker"
     ---@diagnostic disable-next-line: undefined-doc-name
@@ -78,6 +78,7 @@ return {
   },
   {
     'kevinhwang91/nvim-bqf',
+    enabled = false,
     ft = 'qf',
     opts = { -- Look into opts later
 

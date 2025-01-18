@@ -5,6 +5,7 @@
 - [S]earch: For fuzzy finding things
 	- [b] search buffers
 	- [c] search commands
+	- [C] search cheatsheat
 	- [d] search diagnostics
 	- [f] search files
 	- [g] Git search
@@ -16,7 +17,6 @@
 		- [a] search stash
 	- [h] search help files
 	- [k] search keymaps
-	- [K] search cheatsheat
 	- [M] search man files
 	- [m] search workspace marks
 	- [n] search neovim config files
@@ -68,7 +68,7 @@
 	- [%] reset buffer
 - [<Space>]Language: For language specific keybinds
 	- This will not have a standardised keymap as it is language specific
-- [D]ebug: For debugging
+- [D]iagnostics: For debugging and diagnostics
 	- [b] Toggle break point
 	- [i] step into 
 	- [o] step over
@@ -85,10 +85,6 @@
 - [q]uickfix: open quickfix list
 - [l]ocaltion: open location list
 
-
-
-
-	
 ## Workspace
 Quickly set up project specific tabs and files.
 ### Keybinds
@@ -97,3 +93,8 @@ Quickly set up project specific tabs and files.
 - <A-2>: Terminal
 - <A-3>: Open debug tab
 
+
+# Look into
+## vim.lsp.diagnostic
+vim.lsp.diagnostics could be builtin linting?
+basically the stuff that controlls error information
