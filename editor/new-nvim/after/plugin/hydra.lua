@@ -87,7 +87,7 @@ hydra({
 
     },
   },
-  body = "<leader>wt",
+  body = "<leader>tn",
   heads = {
     { "j",       "]m" },
     { "l",       "]]" },
