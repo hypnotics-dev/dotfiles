@@ -1,8 +1,8 @@
 local M = {}
 
 M.data = {
-  job_id = 0,
-  bufnr = 0,
+  job_id = nil,
+  bufnr = nil,
 }
 
 function M.make_small_term()
@@ -16,8 +16,8 @@ function M.make_small_term()
 end
 
 function M.deconstructor()
-  M.data.bufnr = 0
-  M.data.job_id = 0
+  M.data.bufnr = nil
+  M.data.job_id = nil
 end
 
 return M

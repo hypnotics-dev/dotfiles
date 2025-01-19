@@ -1,4 +1,5 @@
 local augroup = vim.api.nvim_create_augroup("custom-term-autocmds", {clear = true})
+local term = require("helpers.term")
 
 vim.api.nvim_create_autocmd("TermOpen", {
   group = augroup,
@@ -10,9 +11,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 vim.api.nvim_create_autocmd("TermClose", {
   group = augroup,
-  buffer = vim.t.term_bufnr,
+  buffer = term.data.bufnr,
   callback = function (args)
-    vim.t.jobs = nil
-    vim.t.term_bufnr = nil
+    term.data.job_id = nil
+    term.data.bufnr = nil
   end
 })
