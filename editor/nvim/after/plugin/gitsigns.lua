@@ -30,9 +30,8 @@ map('n', '<leader>gdd', gitsigns.toggle_deleted, { desc = "[D]eleted" })
 map('n', '<leader>gh', '<cmd>Gitsigns toggle_linehl<CR>', { desc = "[H]ighlts Lines" })
 map('n', '<leader>g%', gitsigns.reset_buffer, { desc = "[R]eset Buffer" })
 
-
-map('v', 'gs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+map('v', 'ggs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
   { desc = "[S]tage Hunk" })
-map('v', 'gr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+map('v', 'ggr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
   { desc = "[R]eset Hunk" })
 map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')

@@ -1,19 +1,10 @@
--- Ensures that external dependencies are installed
-require("scripts.ensure-deps")
+require('config.settings')
+require('config.lazy')
+require('config.lsp')
+require('config.keymap')
 
--- Load pre-plugin settings
-require("config.settings")
-
--- Load plugins
-require("lazy").setup({
-
-    require("plug.treesitter"),
-    require("plug.lsp"),
-    require("plug.debug"),
-    require("plug.telescope"),
-    require("plug.ui"),
-    require("plug.key"),
-})
-
--- Load post-plugin settings
-require("config.init")
+-- Plugs
+-- https://github.com/stevearc/quicker.nvim
+--
+-- flash.nvim
+-- treesj

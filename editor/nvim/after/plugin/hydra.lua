@@ -65,7 +65,7 @@ hydra({
 -- Treesitter Navigator
 
 hydra({
-  name = "[T]reesitter Navigation",
+  name = "[T]reesitter",
   hint = [[
 					_j_ _k_      : function
 					_l_ _h_      : class
