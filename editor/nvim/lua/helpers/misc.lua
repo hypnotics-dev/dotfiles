@@ -42,14 +42,4 @@ function M.build_telescope_from_files(files, prompt)
   }):find()
 end
 
-function M.make_small_term()
-  vim.cmd.split()
-  vim.cmd.term()
-  vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, 15)
-  vim.cmd.startinsert()
-  vim.t.term_job = vim.bo.channel
-  vim.t.term_bufnr = vim.api.nvim_get_current_buf()
-end
-
 return M

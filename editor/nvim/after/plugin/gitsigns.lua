@@ -1,4 +1,4 @@
-local helpers = require("custom.helpers")
+local helpers = require("helpers.misc")
 local map = helpers.map
 
 local gitsigns = require("gitsigns")

@@ -1,4 +1,4 @@
-local lsp = require("custom.lsp")
+local lsp = require("helpers.lsp")
 return {
   cmd = { "lua-language-server" },
   root_markers = { ".git", ".editorconfig" },

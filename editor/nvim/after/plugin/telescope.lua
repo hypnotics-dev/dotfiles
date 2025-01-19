@@ -1,7 +1,7 @@
 ------------------------------------ Keymap ------------------------------------
 local tl = require("telescope")
 local tlb = require("telescope.builtin")
-local helpers = require("custom.helpers")
+local helpers = require("helpers.misc")
 
 helpers.map("n","<leader>sb", tlb.buffers, "[S]earch [B]uffers")
 helpers.map("n","<leader>sc", tlb.commands, "[S]earch [C]ommands")
