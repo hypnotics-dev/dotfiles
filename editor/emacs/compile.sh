@@ -27,7 +27,7 @@ flags=(
 EMACS_DIR="$HOME/dev/git/emacs/"
 # echo ${flags[@]}
 cd $EMACS_DIR
-git clean -fdx
+sudo git clean -fdx
 git pull
 sleep 5
 ./autogen.sh
