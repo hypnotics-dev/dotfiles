@@ -40,3 +40,10 @@ vim.opt.listchars = { tab = "» ", nbsp = "␣", lead = "." }
 vim.opt.showtabline = 0
 
 vim.opt.background = "dark"
+
+vim.lsp.enable({
+  "lua_ls",
+  "clangd",
+  "rust_analyzer",
+  "bash_ls",
+})

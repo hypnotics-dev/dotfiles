@@ -6,10 +6,9 @@ local M = {}
 ---@param func string|function
 ---@param opt string|table|nil
 function M.map(map, key, func, opt)
+  opt = opt or {}
   if (type(opt) == "string") then
     opt = { desc = opt, silent = true }
-  elseif (opt == nil) then
-    opt = {}
   end
 
   if (type(key) == "string") then
@@ -40,6 +39,14 @@ function M.build_telescope_from_files(files, prompt)
     previewer = conf.file_previewer({}),
     sorter = conf.generic_sorter({}),
   }):find()
+end
+
+---Returns all root dirs that matches the patern
+---@param patterns table|nil
+---@return string dirname Name of the root dir
+function M.root_dir(patterns)
+  patterns = patterns or {".git"}
+  return vim.fs.dirname(vim.fs.find(patterns, { upward = true })[1])
 end
 
 return M
