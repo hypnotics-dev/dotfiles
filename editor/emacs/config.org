@@ -228,11 +228,15 @@ Org mode is a formatted plain text language.
   	  (sequence "CLASS" "|" "COMPLETED" "CANCELLED")
   	  (sequence "STUDY" "|" "DONE" )
   	  (sequence "EXAM" "|" "COMPLETED" )
+  	  (sequence "RESEARCH" "STARTED RESEARCH" "KNOWLEDGEABLE" "|" "FINISHED RESEARCH")
   	  (sequence "HOMEWORK" "|" "SUBMITTED")))
     (setq org-agenda-files '(
   			   "~/stuff/org/agenda/uni.org"
   			   "~/stuff/org/agenda/life.org"
   			   "~/stuff/org/agenda/linux.org"
+  			   "~/uni/CS/3/Operating_Systems_1-3413/Notes.org"
+  			   "~/uni/CS/3/Computer_Architecture_and_Organisation-3853/notes.org"
+  			   "~/uni/CS/3/Net_Centric_Computing-3873/Notes.org"
                              )))
 #+end_src
 
@@ -932,7 +936,10 @@ Emacs VI Layer, Vim keybinds inside of emacs
   (use-package hydra)
 
 #+end_src
-
+*** Windows
+#+begin_src emacs-lisp
+  (windmove-default-keybindings)
+#+end_src
 ** Prefix
 SPC keybinds
 #+begin_src emacs-lisp

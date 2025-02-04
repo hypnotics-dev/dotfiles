@@ -154,11 +154,15 @@
 	  (sequence "CLASS" "|" "COMPLETED" "CANCELLED")
 	  (sequence "STUDY" "|" "DONE" )
 	  (sequence "EXAM" "|" "COMPLETED" )
+	  (sequence "RESEARCH" "STARTED RESEARCH" "KNOWLEDGEABLE" "|" "FINISHED RESEARCH")
 	  (sequence "HOMEWORK" "|" "SUBMITTED")))
   (setq org-agenda-files '(
 			   "~/stuff/org/agenda/uni.org"
 			   "~/stuff/org/agenda/life.org"
 			   "~/stuff/org/agenda/linux.org"
+			   "~/uni/CS/3/Operating_Systems_1-3413/Notes.org"
+			   "~/uni/CS/3/Computer_Architecture_and_Organisation-3853/notes.org"
+			   "~/uni/CS/3/Net_Centric_Computing-3873/Notes.org"
                            )))
 
 (setq ispell-program-name "aspell")
@@ -571,6 +575,8 @@
 
 (use-package hydra)
 
+(windmove-default-keybindings)
+
 (hyp/leader-keys
   "w" 'hyp/window-hydra/body
   )
@@ -765,17 +771,3 @@
     ("x" kill-buffer-and-window)
     ("q" nil "quit" :exit t)
     )
-(put 'set-goal-column 'disabled nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(company which-key visual-fill-column vertico pdf-tools orgit-forge org-roam org-ql orderless nov modus-themes marginalia hydra hl-todo helpful gnuplot git-modes general fireplace evil-collection embark-consult dirvish deadgrep corfu cdlatex cape auto-complete-auctex auctex-latexmk auctex-cont-latexmk auctex-cluttex all-the-icons)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
