@@ -3,12 +3,18 @@ return {
     "mfussenegger/nvim-jdtls",
     ft = { "java" },
     config = function()
+      local jdtls_path = "/home/hypnotics/.local/share/java/jdtls/"
+      -- local jdtls_path = "/usr/share/java/jdtls/"
+      local cache = "/home/hypnotics/.cache/jdtls/workspace/"
+      local root_dir = require("jdtls.setup").find_root({ ".git", "gradlew", "build.gradle" })
+
+      local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
       local config = {
         -- The command that starts the language server
         -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
         cmd = {
 
-          'java',
+          '/usr/lib/jvm/java-21-openjdk/bin/java',
 
           '-Declipse.application=org.eclipse.jdt.ls.core.id1',
           '-Dosgi.bundles.defaultStartLevel=4',
@@ -19,37 +25,27 @@ return {
           '--add-modules=ALL-SYSTEM',
           '--add-opens', 'java.base/java.util=ALL-UNNAMED',
           '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-
-        --   '-jar', function()
-        --   local files = vim.fs.find("org.eclipse.equinox.launcher_*.jar",
-        --     { path = "/usr/share/java/jdtls/plugins/", depth = 1 })
-        --
-        --   for _, file in ipairs(files) do
-        --     if file:match("org.eclipse.equinox.launcher_.*%.jar$") then
-        --       return file
-        --     end
-        --   end
-        --
-        --   vim.notify("Failed to find jdtls jar", vim.log.levels.ERROR)
-        --   return ""
-        -- end,
+          '-jar', jdtls_path .. 'plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
 
 
-          '-configuration', '/usr/share/java/jdtls/config_linux',
+          '-configuration', jdtls_path .. 'config_linux/',
 
           -- See `data directory configuration` section in the README
           -- TODO: figure out how to configure this properly
 
-          -- '-data', '/path/to/unique/per/project/workspace/folder'
+          "-data", vim.fn.expand('~/.cache/jdtls-workspace/') .. workspace_dir
         },
 
-        root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew" }),
+        root_dir = root_dir,
 
         -- Here you can configure eclipse.jdt.ls specific settings
         -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
         -- for a list of options
         settings = {
           java = {
+            autobuild = { enabled = false },
+            configuration = {
+            }
           }
         },
 
@@ -63,6 +59,9 @@ return {
         init_options = {
           bundles = {}
         },
+        on_attach = function(client, bufnr)
+          client.handlers["textDocument/publishDiagnostics"] = function() end
+        end
       }
       require('jdtls').start_or_attach(config)
     end,

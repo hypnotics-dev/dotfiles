@@ -14,6 +14,18 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
+local lsp = require("helpers.lsp")
+
+vim.lsp.config('*', {
+  capabilities = lsp.get_lsp_snippets({
+    textDocument = {
+      semanticTokens = {
+        multilineTokenSupport = true, }
+    }
+  }),
+  root_markers = { '.git' },
+})
+
 -- Plugs
 -- https://github.com/stevearc/quicker.nvim
 --
