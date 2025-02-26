@@ -46,4 +46,5 @@ vim.lsp.enable({
   "clangd",
   "rust_analyzer",
   "bash_ls",
+  "merlin",
 })
