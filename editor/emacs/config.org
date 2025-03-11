@@ -144,36 +144,6 @@ Emacs use-package sugested by vertico
 
 #+end_src
 
-** Functions
-A list of random functions for doing miscellaneous tasks
-
-#+begin_src emacs-lisp
-  (defun date () 
-    "Prints the current date in message buffer"
-    (interactive)
-    (message (calendar-date-string (calendar-current-date))))
-
-  (defun hyp/average (list)
-    "Returns the average of the elements of a number list"
-    (/ (float (apply '+ list)) (length list)))
-
-  (defun hyp/evil-scroll (up &optional count)
-    "Move the cursor up|down count times, making sure it lands on an empty line"
-    (if up
-        (evil-next-line (or count 1)) 
-      (evil-previous-line (or count 1)))
-    (unless (looking-at-p "^[[:space:]]*$") (hyp/evil-scroll up))
-    (recenter))
-
-  (defun hyp/html-babel-src-template ()
-    "Insert a template for an HTML source block in Org-mode."
-    (interactive)
-    (insert "#+begin_src html\n\n#+end_src")
-    (forward-line -1)
-    (indent-for-tab-command))
-
-#+end_src
-
 
 ** Libs
 Libraries used by this configuration file
@@ -195,6 +165,42 @@ Libraries used by this configuration file
   - [[https://protesilaos.com/assets/images/ef/ef-winter.png][Ef-Winter]]
   - [[https://protesilaos.com/assets/images/ef/ef-dark-org.png][Ef-Dark]]
   - [[https://github.com/doomemacs/themes/blob/screenshots/doom-challenger-deep.png][Doom Challenger Deep]]
+* Functions
+A list of random functions for doing miscellaneous tasks
+
+** git
+#+begin_src emacs-lisp
+#+end_src
+** evil
+#+begin_src emacs-lisp
+  (defun hyp/evil-scroll (up &optional count)
+    "Move the cursor up|down count times, making sure it lands on an empty line"
+    (if up
+        (evil-next-line (or count 1)) 
+      (evil-previous-line (or count 1)))
+    (unless (looking-at-p "^[[:space:]]*$") (hyp/evil-scroll up))
+    (recenter))
+#+end_src
+** helpers
+#+begin_src emacs-lisp
+  (defun date () 
+    "Prints the current date in message buffer"
+    (interactive)
+    (message (calendar-date-string (calendar-current-date))))
+
+  (defun hyp/average (list)
+    "Returns the average of the elements of a number list"
+    (/ (float (apply '+ list)) (length list)))
+#+end_src
+** org
+#+begin_src emacs-lisp
+  (defun hyp/html-babel-src-template ()
+    "Insert a template for an HTML source block in Org-mode."
+    (interactive)
+    (insert "#+begin_src html\n\n#+end_src")
+    (forward-line -1)
+    (indent-for-tab-command))
+#+end_src
 * Org
 Org mode is a formatted plain text language.
 
@@ -448,10 +454,6 @@ Magit, a git client for emacs and forge a git instance tool.
 ** Functions 
 Supplemental functions for magit
 
-#+begin_src emacs-lisp
-  (defun hyp/magit-dir (dir) (interactive "Open with git:") (magit-status dir))
-
-#+end_src
 
 
 : hyp/magit-dir
@@ -950,9 +952,7 @@ SPC keybinds
 #+end_src
 *** Git
 #+begin_src emacs-lisp
-  (hyp/leader-keys
-    "vrf" 'hyp/magit-dir
-    )
+  ;; (hyp/leader-keys)
   (which-key-add-key-based-replacements
     "SPC v" "Version Control"
     "SPC v r" "Repo Functions")
@@ -1038,14 +1038,36 @@ Some evil keybinds to try and mimic my neovim keybinds
 #+begin_src emacs-lisp
   (general-define-key
    :keymaps 'org-mode-map
-   "C-c C-v C-v" '(lambda () (interactive)
-  		(tab-new) (org-edit-special) (delete-other-windows)) 
-   "C-c C-v v" 'org-edit-special
-   )
+   :prefix "C-c C-v"
+   "C-v" '(lambda () (interactive)
+  	(tab-new) (org-edit-special) (delete-other-windows)) 
+   "v" 'org-edit-special)
 
   (which-key-add-key-based-replacements "C-c C-v C-v" "open-src-block-in-new-tab")
 #+end_src
 
+#+begin_src emacs-lisp
+  (general-define-key
+   :keymaps 'org-mode-map
+   :prefix "C-c C-v C-<return>"
+   "C-c" '(lambda ()
+          (interactive)
+  	(insert ;; Inserts a named html block
+  	 (format "#+NAME: %s\n#+begin_src html :exports none\n\n#+end_src"
+  		 (read-string "Enter Name for Block: "))))
+   "c" '(lambda ()
+  	  (interactive)
+  	  (insert ;; Insrets a babel block for html chapter export block
+  	   (format "#+begin_src html :exports results :noweb yes :results raw :tangle %s.html\n\n#+end_src"
+  			  (read-string "Enter name of HTML file: "))))
+   )
+
+  (which-key-add-key-based-replacements
+    "C-c C-v C-<return>" "Insert Babel Blocks"
+    "C-c C-v C-<return> C-c" "Named HTML Block"
+    "C-c C-v C-<return> c" "HTML Export Block")
+    
+#+end_src
 
 #+begin_src emacs-lisp
   (general-define-key
@@ -1062,6 +1084,7 @@ Some evil keybinds to try and mimic my neovim keybinds
    "<tab>" '(lambda () (interactive) (tempo-expand-if-complete) (org-cycle));; This screws up table, make a function that does org-cycle or if tempo-complete-tag
    )
 #+end_src
+
 **** Agenda
 #+begin_src emacs-lisp
   (defun hyp/insert-org-header (head)

@@ -97,14 +97,12 @@
         '(read-only t cursor-intangible t face minibuffer-prompt))
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
-(defun date () 
-  "Prints the current date in message buffer"
-  (interactive)
-  (message (calendar-date-string (calendar-current-date))))
+(use-package dash
+  :config
+  (with-eval-after-load 'info-look
+(dash-register-info-lookup)))
 
-(defun hyp/average (list)
-  "Returns the average of the elements of a number list"
-  (/ (float (apply '+ list)) (length list)))
+
 
 (defun hyp/evil-scroll (up &optional count)
   "Move the cursor up|down count times, making sure it lands on an empty line"
@@ -114,17 +112,21 @@
   (unless (looking-at-p "^[[:space:]]*$") (hyp/evil-scroll up))
   (recenter))
 
+(defun date () 
+  "Prints the current date in message buffer"
+  (interactive)
+  (message (calendar-date-string (calendar-current-date))))
+
+(defun hyp/average (list)
+  "Returns the average of the elements of a number list"
+  (/ (float (apply '+ list)) (length list)))
+
 (defun hyp/html-babel-src-template ()
   "Insert a template for an HTML source block in Org-mode."
   (interactive)
   (insert "#+begin_src html\n\n#+end_src")
   (forward-line -1)
   (indent-for-tab-command))
-
-(use-package dash
-  :config
-  (with-eval-after-load 'info-look
-(dash-register-info-lookup)))
 
 (use-package visual-fill-column)
 
@@ -266,8 +268,6 @@
 
 (use-package git-modes
   :after magit)
-
-(defun hyp/magit-dir (dir) (interactive "Open with git:") (magit-status dir))
 
 (use-package auctex
   :config
@@ -581,9 +581,7 @@
   "w" 'hyp/window-hydra/body
   )
 
-(hyp/leader-keys
-  "vrf" 'hyp/magit-dir
-  )
+;; (hyp/leader-keys)
 (which-key-add-key-based-replacements
   "SPC v" "Version Control"
   "SPC v r" "Repo Functions")
@@ -638,12 +636,32 @@
 
 (general-define-key
  :keymaps 'org-mode-map
- "C-c C-v C-v" '(lambda () (interactive)
-		(tab-new) (org-edit-special) (delete-other-windows)) 
- "C-c C-v v" 'org-edit-special
- )
+ :prefix "C-c C-v"
+ "C-v" '(lambda () (interactive)
+	(tab-new) (org-edit-special) (delete-other-windows)) 
+ "v" 'org-edit-special)
 
 (which-key-add-key-based-replacements "C-c C-v C-v" "open-src-block-in-new-tab")
+
+(general-define-key
+ :keymaps 'org-mode-map
+ :prefix "C-c C-v C-<return>"
+ "C-c" '(lambda ()
+        (interactive)
+	(insert ;; Inserts a named html block
+	 (format "#+NAME: %s\n#+begin_src html :exports none\n\n#+end_src"
+		 (read-string "Enter Name for Block: "))))
+ "c" '(lambda ()
+	  (interactive)
+	  (insert ;; Insrets a babel block for html chapter export block
+	   (format "#+begin_src html :exports results :noweb yes :results raw :tangle %s.html\n\n#+end_src"
+			  (read-string "Enter name of HTML file: "))))
+ )
+
+(which-key-add-key-based-replacements
+  "C-c C-v C-<return>" "Insert Babel Blocks"
+  "C-c C-v C-<return> C-c" "Named HTML Block"
+  "C-c C-v C-<return> c" "HTML Export Block")
 
 (general-define-key
  :keymaps 'org-src-mode-map
