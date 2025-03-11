@@ -34,7 +34,7 @@ input "1267:12970:VEN_04F3:00_04F3:32AA_Touchpad" {
 }
 
 # Hide mouse cursor after a period of inactivity.
-seat seat0 hide_cursor 5000
+seat seat0 hide_cursor 20000
 
 ### Key bindings
 #
