@@ -41,6 +41,8 @@ vim.opt.showtabline = 0
 
 vim.opt.background = "dark"
 
+vim.g.no_ocaml_maps = 1
+
 vim.lsp.enable({
   "lua_ls",
   "clangd",

@@ -26,8 +26,7 @@ vim.lsp.config('*', {
   root_markers = { '.git' },
 })
 
--- Plugs
--- https://github.com/stevearc/quicker.nvim
---
--- flash.nvim
--- treesj
+--[[ general todo block
+-- TODO: Create a TODO highlight and project finder (if lsp get project root else use cwd)
+-- TODO: Add icons for whichkey items (ex: ocaml icon for ocaml only items)
+--]]
