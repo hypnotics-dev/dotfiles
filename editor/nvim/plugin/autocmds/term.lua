@@ -8,12 +8,3 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt.relativenumber = false
   end
 })
-
-vim.api.nvim_create_autocmd("TermClose", {
-  group = augroup,
-  buffer = term.data.bufnr,
-  callback = function (args)
-    term.data.job_id = nil
-    term.data.bufnr = nil
-  end
-})
