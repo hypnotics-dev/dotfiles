@@ -89,10 +89,12 @@ Better emacs help system
 ** Font
 Configuration for fonts and faces
 #+begin_src emacs-lisp
-
-    (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono")
-
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono")
+  (use-package unicode-fonts
+    :init
+    (unicode-fonts-setup))
 #+end_src
+
 
 
 ** Variable

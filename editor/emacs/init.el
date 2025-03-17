@@ -60,6 +60,9 @@
   ([remap describe-key]      . helpful-key))
 
 (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono")
+(use-package unicode-fonts
+  :init
+  (unicode-fonts-setup))
 
 (setq auth-sources '("~/.authinfo.gpg"))
 (setq epg-gpg-program "gpg2")
