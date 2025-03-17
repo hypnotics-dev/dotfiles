@@ -5,4 +5,5 @@ require("which-key").add({
   {"<leader>f"  , group = "[F]ile"},
   {"<leader>g"  , group = "[G]it"},
   {"<leader>t"  , group = "[T]reesitter"},
+  {"<leader><leader>", group  = "Language Extensions"}
 })
