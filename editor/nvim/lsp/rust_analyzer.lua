@@ -1,6 +1,6 @@
 local lsp = require("helpers.lsp")
 return {
-  cmd = { "rust-analyzer " },
+  cmd = { "rust-analyzer" },
   filetypes = { "rust" },
   root_markers = { "Cargo.toml" },
   on_attach = function() end,

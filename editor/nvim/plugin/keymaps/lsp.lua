@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd('LSPAttach', {
     map("n", "<leader>se", tlb.lsp_definitions, "[S]earch D[e]finitions")
     map("n", "<leader>si", tlb.lsp_implementations, "[S]earch [I]mplementation")
     map("n", "<leader>sy", tlb.lsp_outgoing_calls, "[S]earch T[y]pe Definition")
-    map("n", "<leader>sD", tlb.lsp_document_symbols, "[S]earch [D]ocument Symbol")
+    map("n", "<leader>sl", tlb.lsp_document_symbols, "[S]earch [L]SP Symbol")
     map("n", "<leader>sw", tlb.lsp_workspace_symbols, "[S]earch [W]orkspace Symbols")
     map("n", "<leader>sW", tlb.lsp_dynamic_workspace_symbols, "[S]earch [W]orkspace")
 
