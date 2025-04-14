@@ -1,0 +1,6 @@
+downloads
+dev/dotfiles
+dev/dotfiles/editor/emacs
+dev/dotfiles/editor/nvim
+dev/dotfiles/wm/sway
+dev/dotfiles/term/wezterm
