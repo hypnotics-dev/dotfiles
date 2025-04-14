@@ -1,0 +1,68 @@
+
+* Notes
+** use-package !':bind' use ':general' or ':general-config' instead
+If we need to bind something we can use the ':general' keyword, example would be something like this.
+#+begin_src emacs-lisp
+  (use-package counsel
+  :general
+  ("M-x" 'counsel-M-x)
+  (:states '(normal visual)
+   :prefix my/leader-key
+   "fr" 'counsel-recentf))
+#+end_src
+** ':general' vs ':general-config'
+:general is executed before the package is fully loaded. Meaning if something we bound is created by the package we should use general-config to ensure everything is fully loaded
+** general fix for 'Key sequence starts with non-prefix key' error
+you can refer to the key intended prefix key with "" and unbind it with nil
+Ex:
+#+begin_src emacs-lisp
+  (general-define-key
+   :keymaps 'normal
+   :prefix "s"
+   ;; prefix keys are prepended to other keys, so "" refers to the prefix itself
+   "" nil
+   "a" #'def) 
+#+end_src
+* SPC keymap
+** [S]earch
+*** [g]rep
+Bound to rg, calls ripgrep.
+*** [G]rep
+runs ripgrep in dir but passes the result to fzf
+*** [C-g]rep
+Bound to rg-menu, allows to customize the call to ripgrep
+*** [/ ] isearch
+Run ripgrep using the regex from isearch on f d or p
+*** [M-g] DWIM grep
+Tries to search the word within the project/dir/file, then you can refine the search (?somehow?)
+*** [f]iles
+Search for files in cwd
+*** [M-d] dir
+Search for files in given dir
+*** [r]ecent files
+Search recent files
+*** [p]rojectile
+search in current project (if not in project search git)
+*** [b]uffers
+searches buffer with fzf
+** [G]it
+*** [d]ispatch
+run magit command
+*** [f] file dispatch
+runs dispatch command on current file
+*** [s]earch
+searches the repo for file
+*** [g]rep
+searches the repo using ripgrep
+
+* EVIL keybinds [0/2] [0%]
+** vterm [0/1] [0%]
+*** TODO Unbind I_C-w
+In insert mode, unbind C-w, I think it's overwriting the binding set by the shell.
+** evil [0/1] [0%]
+*** TODO init state macro
+I want to create a macro that takes in pattern [MODE STATE] and applies evil-set-initial-state to each pattern
+* Functions [0/1] [0%]
+** Helpers [/] [%]
+*** TODO hyp/dep
+A function that checks if a dependency is installed, checks the list hyp/emacs-deps
