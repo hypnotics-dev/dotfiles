@@ -18,13 +18,13 @@
 ;; https://github.com/noctuid/general.el?tab=readme-ov-file#best-practices
 ;; https://github.com/noctuid/general.el?tab=readme-ov-file#use-package-keywords
 (use-package general
-  :straight (general :type git :host github :repo noctuid/general.el)
+  :straight (:type git :host github :repo noctuid/general.el)
   :config
   (general-evil-setup t))
 
 ;; Homepage: https://github.com/emacs-evil/evil
 (use-package evil
-  :straight (evil :type git :host github :repo emacs-evil/evil)
+  :straight (:type git :host github :repo emacs-evil/evil)
   :after (goto-chg general)
   :init (setq
 	 evil-want-integration t

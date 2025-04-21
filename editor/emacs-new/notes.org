@@ -23,6 +23,17 @@ Ex:
    "" nil
    "a" #'def) 
 #+end_src
+* Native Packages
+- Savehist
+- which-key
+- flyspell
+- org
+- DocView (For things other then epub and pdf)
+- BibTeX
+- dired
+- recentf
+- bookmarks
+- Image-dired
 * SPC keymap
 ** [S]earch
 *** [g]rep
@@ -54,7 +65,20 @@ runs dispatch command on current file
 searches the repo for file
 *** [g]rep
 searches the repo using ripgrep
-
+** [W]ord
+*** [P]owethesarus
+**** [s]ynonym
+Look up synonyms
+**** [a]ntonyms
+Lookup antonyms
+**** [r]elated
+lookup related words
+**** [d]efinition
+lookup definitions
+**** [w]ords
+lookup definition of words
+**** [<ret>]
+opens menu for lookup
 * EVIL keybinds [0/2] [0%]
 ** vterm [0/1] [0%]
 *** TODO Unbind I_C-w

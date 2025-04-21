@@ -14,8 +14,8 @@
 		       :pre-build ("make" "-s"))
   :requires (tablist) ;; pdf-tools depends on tablist (not sure if it's a hard dependency)
   :magic ("%PDF" . pdf-view-mode) ;; runs the command pdf-view-mode when Buffer meets the regex %PDF
-  :hook ((pdf-view-mode . (lambda () (interactive) (display-line-numbers-mode -1)))
-	 (pdf-view-mode . (turn-off-evil-mode)))
+  :hook ((pdf-view-mode-hook . (lambda () (interactive) (display-line-numbers-mode -1)))
+	 (pdf-view-mode-hook . (turn-off-evil-mode)))
   :general-config (pdf-view-mode-map
 	      "j" 'pdf-view-next-line-or-next-page
 	      "k" 'pdf-view-previous-line-or-previous-page)

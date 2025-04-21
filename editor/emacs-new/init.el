@@ -2,10 +2,12 @@
 (add-to-list 'load-path "~/.config/emacs/config/packages")
 (add-to-list 'load-path "~/.config/emacs/config/modes")
 (add-to-list 'load-path "~/.config/emacs/config/themes")
-(add-to-list 'load-path "~/.config/emacs/config/keys")
+(add-to-list 'load-path "~/.config/emacs/config/org")
 
 
-(straight-use-package 'use-package)
+;; Homepage: https://github.com/jwiegley/use-package
+(straight-use-package
+ '(use-package :type git :host github :repo "jwiegley/use-package"))
 
 (require 'hyp-globals)
 (require 'hyp-evil)

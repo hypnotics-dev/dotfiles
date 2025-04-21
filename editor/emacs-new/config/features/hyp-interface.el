@@ -5,11 +5,11 @@
 ;; Homepage: https://github.com/mhayashi1120/Emacs-wgrep
 ;; TODO: Configure?
 (use-package wgrep
-  :straight (wgrep :type git :host github :repo mhayashi1120/Emacs-wgrep))
+  :straight (:type git :host github :repo mhayashi1120/Emacs-wgrep))
 
 ;; Homepage: https://github.com/dajva/rg.el
 (use-package rg
-  :straight (rg :type git :host github :repo dajva/rg.el)
+  :straight (:type git :host github :repo dajva/rg.el)
   :after (transient wgrep)
   :custom
   (rg-keymap-prefix nil)
@@ -49,7 +49,7 @@
 
 ;; Homepage: https://github.com/bling/fzf.el
 (use-package fzf
-  :straight (fzf :type git :host github :repo bling/fzf.el)
+  :straight (:type git :host github :repo bling/fzf.el)
   :general-config
   (:states 'normal
 	   :prefix "<SPC>s"

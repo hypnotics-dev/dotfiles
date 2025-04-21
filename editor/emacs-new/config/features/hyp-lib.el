@@ -5,4 +5,4 @@
 
 ;; Homepage: https://github.com/magnars/dash.el
 (use-package dash
-  :straight (dash :type git :host github :repo magnars/dash.el))
+  :straight (:type git :host github :repo magnars/dash.el))
