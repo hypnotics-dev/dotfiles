@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 ERROR_FILE_SWWW="/var/log/swww_switcher"
+SWWW_BIN="$HOME/.local/bin/swww"
 
 # Error loging and printing
 eprint() {
@@ -10,8 +11,8 @@ eprint() {
 
 set_random() {
     # $1 is the path to look for img
-    # $2? is the symlink to the file to exclude from the search ?(readlink -f)?
-    # $3? is the symlink to the file to exclude from the search ?(readlink -f)?
+    # $2? is the symlink to the file to exclude from the search 
+    # $3? is the symlink to the file to exclude from the search 
     ERR_BAD_FILE=1
 
     if [ -z ${1+x} ]; then
@@ -53,12 +54,6 @@ set_random() {
     local d1
     local d2
 
-    # d1 = "${imgs[$((RANDOM % ${#imgs[@]}))]}"
-    # d2 = "${imgs[$((RANDOM % ${#imgs[@]}))]}"
-    # while [[ "$d1" == "$d2" ]]; do
-    #     d1 = "${imgs[$((RANDOM % ${#imgs[@]}))]}"
-    #     d2 = "${imgs[$((RANDOM % ${#imgs[@]}))]}"
-    # done
     # TODO make this script work with N screens instead of just the 2
     # Do while ????!?!?!?!?!?
     while 
@@ -68,6 +63,6 @@ set_random() {
     do true; done
 
     # Seting the desktops
-    swww img -o DP-3 "$1/$d1"
-    swww img -o HDMI-A-1 "$1/$d2"
+    "$SWWW_BIN img -o $SCREEN_MAIN $1/$d1"
+    "$SWWW_BIN img -o $SCREEN_ALT $1/$d2"
 }

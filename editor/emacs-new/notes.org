@@ -90,3 +90,6 @@ I want to create a macro that takes in pattern [MODE STATE] and applies evil-set
 ** Helpers [/] [%]
 *** TODO hyp/dep
 A function that checks if a dependency is installed, checks the list hyp/emacs-deps
+* Workflows
+** Script Writing
+Have an emacs minor mode to combine org with the emacs video player, a keybind could put the time stamp (as precise as possible) of the frame that is on display at that moment into the linked org document.
