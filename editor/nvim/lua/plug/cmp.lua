@@ -5,38 +5,11 @@ return {
   {
     "Saghen/blink.cmp",
     enabled = false, -- Reanable when plugin becomes more stable
-    dependencies = {
-      -- TODO: Learn how to make luasnips
-      "L3MON4D3/LuaSnip",
-      version = 'v2.*',
+    version = '1.*',
       dependencies = {
         -- NOTE: may have to lazy load these
         "rafamadriz/friendly-snippets",
       },
-      opts = {
-        loaders = {
-          from_vscode = {
-            load = {
-              include = {
-                "rust",
-                "c",
-                "lua",
-                "java",
-                "perl",
-                "make",
-                "nix",
-                "perl",
-                "sql",
-                "editorconfig",
-                -- "cpp",
-                -- "ocaml",
-                -- "haskell",
-              }
-            }
-          }
-        },
-      },
-    },
 
     opts = {
       -- snippet = {
@@ -50,7 +23,7 @@ return {
       --   jump = function(direction) require('luasnip').jump(direction) end,
       -- },
       sources = {
-        default = { 'lsp', 'path', 'luasnip', 'buffer' },
+        default = { 'lsp', 'snippets','path', 'buffer' },
         per_filetype = {
           -- NOTE: We can configure per FT sources here
 
@@ -124,36 +97,8 @@ return {
           },
 
           snippets = {
-            name = 'Snippets',
-            module = 'blink.cmp.sources.snippets',
-            min_keyword_length = 1,
-            opts = {
-              friendly_snippets = true,
-              search_paths = { vim.fn.stdpath('config') .. '/snippets' },
-              global_snippets = { 'all' },
-              extended_filetypes = {},
-              ignored_filetypes = {},
-              ---@diagnostic disable-next-line: unused-local
-              get_filetype = function(context)
-                return vim.bo.filetype
-              end
-            }
-            --- Example usage for disabling the snippet provider after pressing trigger characters (i.e. ".")
-            -- enabled = function(ctx)
-              --   return ctx ~= nil and ctx.trigger.kind == vim.lsp.protocol.CompletionTriggerKind.TriggerCharacter
-              -- end,
+            preset = "default",
             },
-
-          luasnip = {
-            name = 'Luasnip',
-            module = 'blink.cmp.sources.luasnip',
-            min_keyword_length = 1,
-            opts = {
-              use_show_condition = true,
-              -- Whether to show autosnippets in the completion list
-              show_autosnippets = true,
-            }
-          },
 
           buffer = {
             name = 'Buffer',
