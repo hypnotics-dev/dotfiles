@@ -21,4 +21,9 @@ function M.get_progs()
   return tbl
 end
 
+function M.merge(config,table)
+  for k,v in pairs(table) do config[k] = v end
+  return config
+end
+
 return M
