@@ -86,6 +86,8 @@ editor/new-nvim/lazy-lock.json
 editor/nvim/lua/config/hardware.lua
 *doc/
 *.log
+nvim/
+emacs/
 
 
 *hardware.*
