@@ -81,7 +81,8 @@ seat seat0 hide_cursor 20000
     bindsym XF86MonBrightnessDown       exec --no-startup-id brightnessctl -d 'intel_backlight' -c 'backlight' set 2000-
     bindsym Shift+XF86MonBrightnessUp   exec --no-startup-id brightnessctl -d 'intel_backlight' -c 'backlight' set 1000+
     bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl -d 'intel_backlight' -c 'backlight' set 1000-
-
+    bindsym $mod+XF86MonBrightnessDown  exec --no-startup-id brightnessctl -d 'intel_backlight' -c 'backlight' set 100-
+    bindsym $mod+XF86MonBrightnessUp    exec --no-startup-id brightnessctl -d 'intel_backlight' -c 'backlight' set 100+
 #
 # Moving around:
 #
