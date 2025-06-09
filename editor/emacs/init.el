@@ -24,6 +24,7 @@
 
 (setq inhibit-startup-message t)
 (setq visible-bell t)
+(add-to-list 'default-frame-alist '(undecorated . t))
 
 (scroll-bar-mode -1) ;Disable visible scrollbar
 (tool-bar-mode -1)   ;Disable the toolbar
@@ -152,6 +153,7 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)  
   (setq org-fold-core-style 'overlays) 
+  (setq org-latex-compiler "xelatex")
   (setq org-checkbox-hierarchical-statistics nil)
   (setq org-todo-keywords '(
 	  (sequence "TODO" "|" "DONE")
@@ -317,7 +319,6 @@
   :hook ((nov-mode . my-nov-font-setup)
          (nov-mode . visual-line-mode)
          (nov-mode . visual-fill-column-mode)))
-
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 (use-package pdf-tools

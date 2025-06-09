@@ -24,7 +24,7 @@ flags=(
     "--with-modules" 
 )
 
-EMACS_DIR="$HOME/dev/git/emacs/"
+EMACS_DIR="/home/hypnotics/dev/git/emacs/"
 # echo ${flags[@]}
 cd $EMACS_DIR
 sudo git clean -fdx

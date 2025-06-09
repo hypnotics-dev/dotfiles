@@ -38,11 +38,15 @@
 (use-package git-modes
   :straight (:source melpa))
 
+;; Homepage https://github.com/tarsius/hl-todo
+(use-package hl-todo
+  :straight (:source melpa))
+
 ;; Homepage: https://github.com/alphapapa/magit-todos
 ;; TODO: Fix the keymap, defaults don't work well with evil
 ;; (use-package magit-todos
 ;;   :straight (magit-todos :source melpa)
-;;   :after magit
+;;   :after (magit async dash f hl-todo pcre2el s)
 ;;   :hook (magit-mode-hook . (lambda () (interactive) (magit-todos-mode 1))))
   
   
