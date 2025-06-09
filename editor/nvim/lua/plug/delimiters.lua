@@ -16,10 +16,6 @@ return {
     },
   },
   {
-    "HiPhish/rainbow-delimiters.nvim",
-    event = "BufEnter",
-  },
-  {
     "echasnovski/mini.surround",
     version = false,
     event = "VeryLazy",
